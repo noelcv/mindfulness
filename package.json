@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/noelcv/mindfulness.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Noel Vieira",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/noelcv/mindfulness/issues"

@@ -69,3 +69,8 @@
 .btn-text-sidebar {
   padding-left: 0.5em;
 }
+
+.sidebar-link {
+  text-decoration: none;
+  color:rgba(2, 1, 44, 0.9)
+}

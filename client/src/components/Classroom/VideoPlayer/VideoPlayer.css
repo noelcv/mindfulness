@@ -1,0 +1,17 @@
+.videoplayer-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  border: 0.1em solid rgba(0, 0, 0, 0.9);
+  border-radius: 0.5em;
+  width:40em;
+  height: 20em;
+}
+
+.video-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 0.5em;
+  margin: 0.5em;
+}

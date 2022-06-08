@@ -1,0 +1,10 @@
+.classBoard-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 42em);
+  grid-auto-rows: 22em;
+  justify-content: center;
+  align-items: center;
+  width: 160vh;
+  height:80vh;
+  background-color: rgb(127, 255, 212, 0.8);
+}

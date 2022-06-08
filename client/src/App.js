@@ -3,17 +3,16 @@ import React from 'react';
 import Header from './components/appLevel/Header/Header';
 import SideBar from './components/appLevel/SideBar/SideBar';
 import Dashboard from './components/appLevel/Dashboard/Dashboard';
-import { Provider } from 'react-redux';
-import { Counter } from './features/counter/Counter';
+// import { Counter } from './features/counter/Counter';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-      <div className="App">
+      <div className="app">
         <Header />
         <div className="app-holder">
           <SideBar />
-          <Dashboard />
+          <Dashboard />       
         </div>
       </div>
   );

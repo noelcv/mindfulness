@@ -11,8 +11,7 @@ const App = () => {
       <div className="app">
         <Header />
         <div className="app-holder">
-          <SideBar />
-          <Dashboard />       
+          <SideBar />     
         </div>
       </div>
   );

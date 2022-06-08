@@ -9,7 +9,6 @@ import './App.css';
 
 function App() {
   return (
-    <Provider>
       <div className="App">
         <Header />
         <div className="app-holder">
@@ -17,7 +16,6 @@ function App() {
           <Dashboard />
         </div>
       </div>
-    </Provider>
   );
 }
 

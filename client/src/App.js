@@ -110,6 +110,11 @@ const App = () => {
     connectionRef.current = peer;
   };
   
+  const exitCall = () => {
+    setLeftCall(true);
+    connectionRef.current.destroy();
+  };
+  
   return (
     <div className="app">
       <Header />
@@ -162,7 +167,7 @@ const App = () => {
           />
           <div className="call-btn-container">
             {callTaken && !leftCall? (
-              <button> Leave Call</button>
+              <button onClick={exitCall}> Leave Call</button>
             ) : (
               <button onClick={() => callUser(callId)}>Call</button>
             )}
@@ -177,8 +182,6 @@ const App = () => {
             </div>
           ) : null}
         </div>
-        
-        
       </div>
     </div>
   );

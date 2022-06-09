@@ -31,6 +31,34 @@ const App = () => {
   const peerVideo = useRef();
   const connectionRef = useRef();
   
+  
+  useEffect(() => {
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: false })
+      .then((stream) => {
+        setStream(stream);
+        if (myVideo.current) myVideo.current.srcObject = stream;
+        // console.log(myVideo.current.srcObject, 'myyyyyyyy');
+        console.log(stream, 'from useEffect');
+        console.log(myVideo, 'my videeo');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    socket.on('me', (id) => {
+      setMyId(id);
+    });
+
+    socket.on('callOffer', (data) => {
+      setIncomingCall(true);
+      setCaller(data.from);
+      setName(data.name);
+      setCallerSignal(data.signal);
+    });
+  }, []);
+  
+  
    return(
       <div> App
     </div>

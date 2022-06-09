@@ -1,9 +1,11 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import App from './App';
+import Header from './components/appLevel/Header/Header';
+import SideBar from './components/appLevel/SideBar/SideBar';
 import Dashboard from './components/appLevel/Dashboard/Dashboard';
 import ProfileCard from './components/appLevel/ProfileCard/ProfileCard';
 import ClassBoard from './components/Classroom/ClassBoard/ClassBoard';
@@ -18,14 +20,14 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <Header />
+        <SideBar />
         <Routes>
-          <Route path="/" element={<App />}/>
           <Route path="profile" element={<ProfileCard />} />
           <Route path="events" element={<h2>Events</h2>} />
           <Route path="classroom" element={<ClassBoard />} />
           <Route path="settings" element={<h2>Settings</h2>} />
         </Routes>
-        <Outlet />
         <App />
       </BrowserRouter>
     </Provider>

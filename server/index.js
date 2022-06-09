@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
     });
   });
 
-  socket.on('answerCall', (data) => {
+  socket.on('joinCall', (data) => {
     io.to(data.to).emit('callTaken', data.signal);
   });
 });

@@ -90,6 +90,26 @@ const App = () => {
     connectionRef.current = peer;
   };
   
+  
+  const joinCall = () => {
+    setCallTaken(true);
+    const remoteStream = stream;
+    const peer = new Peer({
+      stream: remoteStream,
+    });
+
+    peer.on('signal', (data) => {
+      socket.emit('joinCall', { signal: data, to: caller });
+    });
+
+    peer.on('stream', (stream) => {
+      if (peerVideo.current) peerVideo.current.srcObject = stream;
+    });
+
+    peer.signal(callerSignal);
+    connectionRef.current = peer;
+  };
+  
   return (
     <div className="app">
       <Header />
@@ -149,6 +169,16 @@ const App = () => {
             {callId}
           </div>
         </div>
+        <div>
+          {incomingCall && !callTaken ? (
+            <div className="incoming-caller-container">
+              <h2>{name} calling...</h2>
+              <button onClick={joinCall}>Join Call</button>
+            </div>
+          ) : null}
+        </div>
+        
+        
       </div>
     </div>
   );

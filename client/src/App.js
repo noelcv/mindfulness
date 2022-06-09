@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Peer from 'simple-peer';
 import io from 'socket.io-client';
 import Header from './components/appLevel/Header/Header';
@@ -22,9 +23,9 @@ const App = () => {
   const [caller, setCaller] = useState('');
   const [incomingCall, setIncomingCall] = useState(false);
   const [callerSignal, setCallerSignal] = useState();
-  const [callStarted, setCallStarted] = useState(false);
+  const [callTaken, setCallTaken] = useState(false);
   const [callId, setCallId] = useState('');
-  const [exitCall, setExitCall] = useState(false);
+  const [leftCall, setLeftCall] = useState(false);
   
   
   const myVideo = useRef();
@@ -58,9 +59,97 @@ const App = () => {
     });
   }, []);
   
+  const callUser = (id) => {
+    const peer = new Peer({
+      initiator: true,
+      trickle: false,
+      stream: stream,
+    });
+
+    //needs to match the backend socket (index.js)
+    peer.on('signal', (data) => {
+      console.log(data, 'data line 70');
+      socket.emit('callUser', {
+        userToCall: id,
+        signal: data,
+        from: myId,
+        name: name,
+      });
+    });
+
+    peer.on('stream', (stream) => {
+      if (peerVideo.current) peerVideo.current.srcObject = stream;
+    });
+
+    socket.on('callTaken', (signal) => {
+      console.log(signal, 'signal line 84');
+      setCallTaken(true);
+      peer.signal(signal);
+    });
+
+    connectionRef.current = peer;
+  };
   
-   return(
-      <div> App
+  return (
+    <div className="app">
+      <Header />
+      <div className="app-holder">
+        <SideBar />
+
+        <div className="classBoard-container">
+          <div className="videoplayer-container">
+            {stream && (
+              <video
+                playsInline
+                muted
+                ref={myVideo}
+                autoPlay
+                className="video"
+              />
+            )}
+            <div className="video-controls">
+              {/* <CamButton className="cam-button" />
+          <MicButton className="mic-button" />
+          <PhoneButton className="phone-button" /> */}
+            </div>
+          </div>
+          <div className="video">
+            {callTaken && !leftCall ? (
+              <video
+                playsInline
+                ref={peerVideo}
+                autoPlay
+                className="videoplayer-container"
+              />
+            ) : null}
+          </div>
+        </div>
+
+        <div className="myId">
+          <input
+            label="Name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <CopyToClipboard text={myId} className="copy-to-clipboard">
+            <button>Copy Id</button>
+          </CopyToClipboard>
+          <input
+            type="text"
+            value={callId}
+            onChange={(e) => setCallId(e.target.value)}
+          />
+          <div className="call-btn-container">
+            {callTaken && !leftCall? (
+              <button> Leave Call</button>
+            ) : (
+              <button onClick={() => callUser(callId)}>Call</button>
+            )}
+            {callId}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

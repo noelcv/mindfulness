@@ -21,7 +21,7 @@
 }
 
 
-.video {
+.video-container {
   display: flex;
   justify-content: center;
   border-radius: 0.2em;
@@ -39,7 +39,8 @@
   margin: 0.5em;
 }
 
-.video-container {
+
+.video-video {
   display: flex;
 }  
 

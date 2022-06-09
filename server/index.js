@@ -25,7 +25,7 @@ io.on('connection', (socket) => {
   socket.emit('me', socket.id);
 
   socket.on('disconnect', () => {
-    socket.emit('callEnded');
+    socket.broadcast.emit('leftCall');
   });
 
   socket.on('callUser', (data) => {

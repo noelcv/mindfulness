@@ -32,10 +32,21 @@ const App = () => {
   const peerVideo = useRef();
   const connectionRef = useRef();
   
+  const videoConstraints = {
+    video: {
+     width: { min: 1024, ideal: 1280, max: 1920 },
+     height: { min: 576, ideal: 720, max: 1080 },
+    },
+    audio: false
+  }
+  
   
   useEffect(() => {
     navigator.mediaDevices
-      .getUserMedia({ video: true, audio: false })
+      .getUserMedia({
+        audio: true,
+        video: { frameRate: { ideal: 10, max: 15 } }
+      })
       .then((stream) => {
         setStream(stream);
         if (myVideo.current) myVideo.current.srcObject = stream;
@@ -68,7 +79,6 @@ const App = () => {
 
     //needs to match the backend socket (index.js)
     peer.on('signal', (data) => {
-      console.log(data, 'data line 70');
       socket.emit('callUser', {
         userToCall: id,
         signal: data,
@@ -122,31 +132,27 @@ const App = () => {
         <SideBar />
 
         <div className="classBoard-container">
-          <div className="videoplayer-container">
+          <div className="video">
             {stream && (
               <video
                 playsInline
                 muted
                 ref={myVideo}
                 autoPlay
-                className="video"
+                className="videoplayer-container video-settings"
               />
             )}
-            <div className="video-controls">
-              {/* <CamButton className="cam-button" />
-          <MicButton className="mic-button" />
-          <PhoneButton className="phone-button" /> */}
-            </div>
+            
           </div>
           <div className="video">
-            {callTaken && !leftCall ? (
+            {callTaken && !leftCall ? 
               <video
                 playsInline
                 ref={peerVideo}
                 autoPlay
                 className="videoplayer-container"
               />
-            ) : null}
+            : null}
           </div>
         </div>
 

@@ -20,14 +20,8 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Header />
-        <SideBar />
-        <Routes>
-          <Route path="profile" element={<ProfileCard />} />
-          <Route path="events" element={<h2>Events</h2>} />
-          <Route path="classroom" element={<ClassBoard />} />
-          <Route path="settings" element={<h2>Settings</h2>} />
-        </Routes>
+      {/* <Header />
+        <SideBar /> */}
         <App />
       </BrowserRouter>
     </Provider>

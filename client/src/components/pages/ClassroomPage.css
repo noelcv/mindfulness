@@ -7,9 +7,25 @@
   justify-content: space-between;
 }
 
+.classroom-dashboard{
+  display: flex;
+  flex-direction: center;
+  justify-content:center;
+  align-items: center;
+}
+
+.video-wrapper {
+  display: flex;
+  justify-content: center;  
+}
+.video {
+  display: flex;
+  justify-content: center;
+}
+
 .videoplayer-container {
   display: flex;
-  margin-left: 14em;
+  margin-left: 0em;
   justify-content: center;
   align-items: center;
   border: 0.2em solid rgba(0, 0, 0, 0.9);
@@ -36,21 +52,7 @@
   margin: 0.5em;
 }
 
-.video {
-  display: flex;
-}
 
-.classroom-dashboard{
-  display: flex;
-  flex-direction: center;
-  justify-content:center;
-  align-items: center;
-}
-
-.video-wrapper {
-  display: flex;
-  justify-content: center;  
-}
 
 
 .incoming-caller-container {

@@ -1,17 +1,19 @@
-import React from 'react'
-import EventCard from './EventCard'
+import React from 'react';
+import { sortEvents } from '../../utils/utils';
+import EventCard from './EventCard';
 
-
-const EventList = ({events}) => {
+const EventList = ({ events }) => {
+  
+  const sortedEvents = sortEvents(events);
   return (
     <>
       <div id="list">
-      {events.map((event, index) => (
-        <EventCard key={index} event={event} />
-      ))}
+        {sortedEvents.map((event, index) => (
+          <EventCard key={index} event={event} />
+        ))}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default EventList
+export default EventList;

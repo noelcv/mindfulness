@@ -1,7 +1,7 @@
 import { currentDate, sortEvents } from './utils';
 
 export const postEvent = (addOne) => {
-  return fetch('http://localhost:3010/events', {
+  return fetch('http://localhost:3002/events', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(addOne),
@@ -10,7 +10,7 @@ export const postEvent = (addOne) => {
 }
 
 export const getEvents = () => {
-  return fetch('http://localhost:3010/events')
+  return fetch('http://localhost:3002/events')
     .then(res => res.json())
     .then(data => data.filter((key) => key.date > currentDate))
     .then(filtered => sortEvents(filtered))

@@ -1,0 +1,27 @@
+.app {
+  text-align: center;
+}
+
+.app-holder {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard-container {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 2vh;
+  margin-left: 1vh;
+  margin-right: 5vh;
+  margin-bottom: 2vh;
+  width: 160vh;
+  height: fit-content;
+  background-color: rgb(127, 255, 212, 0.5);
+  z-index: 1;
+}
+
+.page-title {
+  display:flex;
+  z-index: 10;
+  margin: 5vh;
+}

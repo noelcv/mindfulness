@@ -1,20 +1,17 @@
 'use strict';
 
-
-
-const db_url = process.env.DB_URL;
-const db_name = process.env.DB_NAME;
+const {DB_URL, DB_NAME} = require('../config');
 
 const mongoose = require('mongoose');
 
 (async () => {
   try {
-    await mongoose.connect(`${db_url}/${db_name}`, {
+    await mongoose.connect(`${DB_URL}/${DB_NAME}`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     console.log(
-      `Mongoose connection established at ${db_url}}/${db_name}`
+      `Mongoose connection established at ${DB_URL}}/${DB_NAME}`
     );
   } catch (error) {
     console.log(error);

@@ -35,7 +35,7 @@ const EventForm = ({setEvents}) => {
       <div className="form-container">
         <h3>Create a new Event</h3>
         <form className="form" onSubmit={submitHandler}> 
-          <label for="title">Title</label>
+          <label htmlFor="title">Title</label>
           <input
             id="title"
             name="title"
@@ -45,7 +45,7 @@ const EventForm = ({setEvents}) => {
               setTitle(e.target.value);
             }}
           />
-          <label for="date">Date</label>
+          <label htmlFor="date">Date</label>
           <input
             id="date"
             name="date"
@@ -56,7 +56,7 @@ const EventForm = ({setEvents}) => {
               setDate(e.target.value);
             }}
           />
-          <label for="location">Location</label>
+          <label htmlFor="location">Location</label>
           <input
             id="location"
             name="location"

@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
       useUnifiedTopology: true,
     });
     console.log(
-      `Mongoose connection established at ${DB_URL}}/${DB_NAME}`
+      `Mongoose connection established at ${DB_URL}/${DB_NAME}`
     );
   } catch (error) {
     console.log(error);

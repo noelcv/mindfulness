@@ -5,7 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const http = require('http');
-// const router = require('./router');
+const router = require('./router');
 const { PORT } = require('./config');
 
 app.use(cors());
@@ -20,7 +20,7 @@ const io = require('socket.io')(server, {
     methods: ['GET', 'POST'],
   },
 });
-// app.use(router);
+app.use(router);
 
 io.on('connection', (socket) => {
   socket.emit('me', socket.id);

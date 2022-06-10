@@ -24,13 +24,13 @@ app.use(router);
 
 io.on('connection', (socket) => {
   socket.emit('me', socket.id);
-
+  
   socket.on('disconnect', () => {
     socket.broadcast.emit('leftCall');
   });
 
   socket.on('callUser', (data) => {
-    console.log(data.signal, 'daaaaaattaa   signal on serverr');
+    console.log(data.signal, 'daaaaaattaa   signal on server');
     io.to(data.userToCall).emit('callOffer', {
       signal: data.signal,
       from: data.from,

@@ -9,14 +9,16 @@
 
 .dashboard-container {
   display: flex;
+  padding-top: 22vh;
   align-items: flex-start;
   margin-top: 2vh;
   margin-left: 1vh;
   margin-right: 5vh;
   margin-bottom: 2vh;
   width: 160vh;
+  min-height: 35vh;
   height: fit-content;
-  background-color: rgb(127, 255, 212, 0.5);
+  background-color: rgba(86, 81, 81, 0.1);
   z-index: 1;
 }
 

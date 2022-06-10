@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import './EventForm.css'; 
 
 const EventCard = ({event}) => {
   return (

@@ -32,18 +32,15 @@ const ClassroomPage = () => {
 
   const videoConstraints = {
     video: {
-      width: { min: 1024, ideal: 1280, max: 1920 },
-      height: { min: 576, ideal: 720, max: 1080 },
+      width: { ideal: 1920, max: 1920 },
+      height: { ideal: 1080, max: 1080 },
     },
     audio: false,
   };
 
   useEffect(() => {
     navigator.mediaDevices
-      .getUserMedia({
-        audio: false,
-        video: { frameRate: { ideal: 10, max: 15 } },
-      })
+      .getUserMedia(videoConstraints)
       .then((stream) => {
         setStream(stream);
         if (myVideo.current) myVideo.current.srcObject = stream;
@@ -119,6 +116,9 @@ const ClassroomPage = () => {
   const exitCall = () => {
     setLeftCall(true);
     connectionRef.current.destroy();
+    
+    
+    
   };
 
   return (

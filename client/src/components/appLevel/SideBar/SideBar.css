@@ -1,10 +1,13 @@
 .sidebar-container {
   display: flex;
   justify-content: flex-start;
+  position: fixed;
   flex-direction: column;
+  padding-top: 22vh;
   margin-left: 1em;
   width: 10vw;
   height: 80vh;
+  z-index: 2;
 }
 
 .btn-section-sidebar {

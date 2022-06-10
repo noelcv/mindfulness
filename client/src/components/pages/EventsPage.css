@@ -6,25 +6,6 @@
   line-height: 1.5;
 }
 
-.app-header {
-  top: 0;
-  position: fixed;
-  z-index: 2;
-  width: 100%;
-  background-color: #fff;
-}
-
-.app-title {
-  margin-left: 5vh;
-}
-
-header {
-  border-bottom: 1px solid #999;
-  box-shadow: 2px 2px 0px 0px rgba(185, 185, 185, 0.5),
-    1.8px 1.8px 0px 0px rgba(233, 233, 233, 0.5),
-    1.5px 1.6px 0px 0px rgba(158, 145, 145, 0.2),
-    1.2px 1.2px 0px 0px rgba(230, 230, 230, 0.5);
-}
 .app-main {
   margin-top: 15vh;
   display: flex;
@@ -32,74 +13,7 @@ header {
   
 }
 
-/*Form*/
 
-.form-container {
-  display: flex;
-  position: sticky;
-  top: 15vh;
-  flex-direction: column;
-  border: 1px solid rgba(202, 202, 202, 0.5);
-  border-radius: 0.2em;
-  padding: 1em 3em;
-  margin-top: 1em;
-  width: 30vh;
-  height: 40vh;
-  box-shadow: 2px 2px 0px 0px rgba(217, 254, 247, 0.926),
-    1.8px 1.8px 0px 0px rgba(88, 77, 77, 0.5),
-    1.2px 1.2px 0px 0px rgba(23, 236, 232, 0.933);
-}
-
-input {
-  height: 0.5em;
-  padding-top: 0.5em;
-  padding-bottom: 1em;
-}
-
-
-.form {
-  display: flex;
-  flex-direction: column;
-  overflow-y: hidden;
-}
-
-
-
-label {
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1em;
-  margin-top: 1em;
-  margin-bottom: 0.5em;
-  text-transform: uppercase;
-}
-
-.submit-btn {
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
-  height: 2em;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
-  border: none;
-  font-weight: 700;
-  font-size: 1.2em;
-  background-color: #fe7b10;
-  color: #fff;
-  border-radius: 0.2em;
-  cursor: pointer;
-}
-
-.submit-btn-pending {
-  margin-top: 1em;
-  padding: 0.5em;
-  border: none;
-  font-weight: 700;
-  background-color: #fe7b10;
-  color: #fff;
-  border-radius: 0.2em;
-  transform: translate(-1%, 1%);
-  transition: opacity 0.25s;
-}
 
 /*NEXT Event*/
 
@@ -157,24 +71,28 @@ label {
 
 
 #list .event-container {
+  background-color: rgba(125, 125, 125, 0.1);
+
   display: flex;
-  max-width: 90%;
+  max-width: 99%;
   width: auto;
   justify-content: flex-start;
   margin-top: 2vh;
   border: 1px solid #999;
   border-radius: 0.2em;
-  box-shadow: 2px 2px 0px 0px rgba(217, 254, 247, 0.926),
-    1.8px 1.8px 0px 0px rgba(88, 77, 77, 0.5),
-    1.2px 1.2px 0px 0px rgba(23, 236, 232, 0.933);
+  box-shadow: 2px 2px 2px 2px rgba(217, 254, 247, 0.926),
+    1.8px 1.8px 0px 1.8px rgba(88, 77, 77, 0.5),
+    2.2px 2.2px 0.5px 0.5x rgba(23, 236, 232, 0.933),
+    1px 2px 1px 1.8px rgba(255, 0, 255, 0.9),
 }
 
 #list .event-container:hover {
-  background-color: rgba(125, 125, 125, 0.1);
+  background-color: rgba(125, 125, 125, 0.01);
   border: 1px solid #999;
   box-shadow: 2px 2px 0px 0px rgba(217, 254, 247, 0.926),
     1.8px 1.8px 0px 0px rgba(88, 77, 77, 0.5),
-    1.2px 1.2px 0px 0px rgba(23, 236, 232, 0.933);
+    1.2px 1.2px 0px 0px rgba(23, 236, 232, 0.933),
+    1px 2px 1px 1.8px rgba(255, 0, 255, 0.9),
 }
 
 #list .event-date-container {
@@ -184,7 +102,7 @@ label {
   text-align: center;
   align-items: center;
   border-radius: 0.1em;
-  background-color: #fe7b10;
+  background-color: rgba(103, 15, 147, 0.632);
 }
 
 #list .event-date {

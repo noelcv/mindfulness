@@ -64,11 +64,9 @@
   width: 60%;
 }
 
-
 #list {
   overflow-y: auto;
 }
-
 
 #list .event-container {
   background-color: rgba(125, 125, 125, 0.1);
@@ -113,13 +111,24 @@
 
 }
 
+#list .go-to-event-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items:flex-end;
+  
+}
+
+#list .go-to-event-btn {
+  display: flex;
+  align-items:center;
+}
 
 #list .event-content-container {
   margin-left: 5vh;
   margin-right: 20vh;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: left;
   text-align: left;
 }

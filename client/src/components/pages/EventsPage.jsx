@@ -17,9 +17,6 @@ const EventsPage = () => {
         <div className="dashboard-container">
         <h2 className="page-title">Events</h2>
         
-        
-        
-        
         </div>
       </div>
     </div>

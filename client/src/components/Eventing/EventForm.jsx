@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import { currentDate } from '../../utils/utils';
 
 
 const EventForm = () => {
@@ -29,6 +30,7 @@ const EventForm = () => {
           <input
             id="date"
             name="date"
+            min={currentDate}
             type="datetime-local"
             required
             onChange={(e) => {

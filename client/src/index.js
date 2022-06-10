@@ -11,6 +11,10 @@ import ProfileCard from './components/appLevel/ProfileCard/ProfileCard';
 import ClassBoard from './components/Classroom/ClassBoard/ClassBoard';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import ClassroomPage from './components/pages/ClassroomPage';
+import EventsPage from './components/pages/EventsPage';
+import ProfilePage from './components/pages/ProfilePage';
+import SettingsPage from './components/pages/SettingsPage';
 
 
 const container = document.getElementById('root');
@@ -20,9 +24,13 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-      {/* <Header />
-        <SideBar /> */}
-        <App />
+        <Routes>
+          <Route path='/' element={<App />}/>
+          <Route path='/profile' element={<ProfilePage />}/>
+          <Route path='/events' element={<EventsPage />}/>
+          <Route path='/classroom' element={<ClassroomPage />}/>
+          <Route path='/settings' element={<SettingsPage />}/>
+        </Routes>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

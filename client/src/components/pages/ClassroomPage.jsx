@@ -1,9 +1,190 @@
-import React from 'react'
+import React from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Peer from 'simple-peer';
+import io from 'socket.io-client';
+import Header from '../appLevel/Header/Header';
+import SideBar from '../appLevel/SideBar/SideBar';
+import Dashboard from '../appLevel/Dashboard/Dashboard';
+import CamButton from '../Classroom/CamButton/CamButton';
+import MicButton from '../Classroom/MicButton/MicButton';
+import PhoneButton from '../Classroom/PhoneButton/PhoneButton';
+import './ClassroomPage.css';
+
+const socket = io.connect('http://localhost:3002');
 
 const ClassroomPage = () => {
-  return (
-    <div>ClassroomPage</div>
-  )
-}
+  //HOOKS for classroom state management
+  const [myId, setMyId] = useState('');
+  const [stream, setStream] = useState();
+  const [name, setName] = useState('');
+  const [caller, setCaller] = useState('');
+  const [incomingCall, setIncomingCall] = useState(false);
+  const [callerSignal, setCallerSignal] = useState();
+  const [callTaken, setCallTaken] = useState(false);
+  const [callId, setCallId] = useState('');
+  const [leftCall, setLeftCall] = useState(false);
 
-export default ClassroomPage
+  const myVideo = useRef();
+  const peerVideo = useRef();
+  const connectionRef = useRef();
+
+  const videoConstraints = {
+    video: {
+      width: { min: 1024, ideal: 1280, max: 1920 },
+      height: { min: 576, ideal: 720, max: 1080 },
+    },
+    audio: false,
+  };
+
+  useEffect(() => {
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: { frameRate: { ideal: 10, max: 15 } },
+      })
+      .then((stream) => {
+        setStream(stream);
+        if (myVideo.current) myVideo.current.srcObject = stream;
+        // console.log(myVideo.current.srcObject, 'myyyyyyyy');
+        console.log(stream, 'from useEffect');
+        console.log(myVideo, 'my videeo');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    socket.on('me', (id) => {
+      setMyId(id);
+    });
+
+    socket.on('callOffer', (data) => {
+      setIncomingCall(true);
+      setCaller(data.from);
+      setName(data.name);
+      setCallerSignal(data.signal);
+    });
+  }, []);
+
+  const callUser = (id) => {
+    const peer = new Peer({
+      initiator: true,
+      trickle: false,
+      stream: stream,
+    });
+
+    //needs to match the backend socket (index.js)
+    peer.on('signal', (data) => {
+      socket.emit('callUser', {
+        userToCall: id,
+        signal: data,
+        from: myId,
+        name: name,
+      });
+    });
+
+    peer.on('stream', (stream) => {
+      if (peerVideo.current) peerVideo.current.srcObject = stream;
+    });
+
+    socket.on('callTaken', (signal) => {
+      console.log(signal, 'signal line 84');
+      setCallTaken(true);
+      peer.signal(signal);
+    });
+
+    connectionRef.current = peer;
+  };
+
+  const joinCall = () => {
+    setCallTaken(true);
+    const remoteStream = stream;
+    const peer = new Peer({
+      stream: remoteStream,
+    });
+
+    peer.on('signal', (data) => {
+      socket.emit('joinCall', { signal: data, to: caller });
+    });
+
+    peer.on('stream', (stream) => {
+      if (peerVideo.current) peerVideo.current.srcObject = stream;
+    });
+
+    peer.signal(callerSignal);
+    connectionRef.current = peer;
+  };
+
+  const exitCall = () => {
+    setLeftCall(true);
+    connectionRef.current.destroy();
+  };
+
+  return (
+    <div className="app">
+      <Header />
+      <div className="app-holder">
+        <SideBar />
+
+        <div className="classBoard-container">
+          <div className="video">
+            {stream && (
+              <video
+                playsInline
+                muted
+                ref={myVideo}
+                autoPlay
+                className="videoplayer-container video-settings"
+              />
+            )}
+          </div>
+          <div className="video">
+            {callTaken && !leftCall ? (
+              <video
+                playsInline
+                ref={peerVideo}
+                autoPlay
+                className="videoplayer-container"
+              />
+            ) : null}
+          </div>
+        </div>
+
+        <div className="myId">
+          <input
+            label="Name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <CopyToClipboard text={myId} className="copy-to-clipboard">
+            <button>Copy Id</button>
+          </CopyToClipboard>
+          <input
+            type="text"
+            value={callId}
+            onChange={(e) => setCallId(e.target.value)}
+          />
+          <div className="call-btn-container">
+            {callTaken && !leftCall ? (
+              <button onClick={exitCall}> Leave Call</button>
+            ) : (
+              <button onClick={() => callUser(callId)}>Call</button>
+            )}
+            {callId}
+          </div>
+        </div>
+        <div>
+          {incomingCall && !callTaken ? (
+            <div className="incoming-caller-container">
+              <h2>{name} calling...</h2>
+              <button onClick={joinCall}>Join Call</button>
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ClassroomPage;

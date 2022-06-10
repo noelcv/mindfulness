@@ -1,0 +1,56 @@
+.app {
+  text-align: center;
+}
+
+
+.app-holder {
+  display: flex;
+  justify-content: space-between;
+}
+
+.videoplayer-container {
+  display: flex;
+  margin-left: 14em;
+  justify-content: center;
+  align-items: center;
+  border: 0.2em solid rgba(0, 0, 0, 0.9);
+  border-radius: 0.5em;
+  width: 26.66em;
+  height: 19.98em;
+  z-index: 999;
+}
+
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  border-radius: 0.2em;
+  margin-left: 2em;
+  width: 29em;
+  height: 19.99em;
+  
+}
+
+.video-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+
+.video-video {
+  display: flex;
+}  
+
+.classBoard-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 42em);
+  grid-auto-rows: 22em;
+  justify-content: space-between;
+  align-items: center;
+  width: 160vh;
+  height:80vh;
+  background-color: rgb(127, 255, 212, 0.1);
+}

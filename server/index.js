@@ -6,8 +6,7 @@ const cors = require('cors');
 const app = express();
 const http = require('http');
 // const router = require('./router');
-const config = require('./config');
-console.log(config)
+const { PORT } = require('./config');
 
 app.use(cors());
 app.use(express.json());
@@ -44,9 +43,9 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(process.env.PORT, () => {
+server.listen(PORT, () => {
   try {
-    console.log(`Express Server up and running at http://localhost:${process.env.PORT}`);
+    console.log(`Express Server up and running at http://localhost:${PORT}`);
   } catch (err) {
     console.log(err);
   }

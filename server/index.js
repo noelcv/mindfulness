@@ -1,11 +1,13 @@
 'use strict';
+console.log(process.env)
 
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const http = require('http');
 // const router = require('./router');
-const PORT = 3002;
+const config = require('./config');
+console.log(config)
 
 app.use(cors());
 app.use(express.json());
@@ -42,9 +44,9 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(PORT, () => {
+server.listen(process.env.PORT, () => {
   try {
-    console.log(`Express Server up and running at http://localhost:${PORT}`);
+    console.log(`Express Server up and running at http://localhost:${process.env.PORT}`);
   } catch (err) {
     console.log(err);
   }

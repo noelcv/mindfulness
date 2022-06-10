@@ -9,7 +9,7 @@ const EventForm = ({setEvents}) => {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [location, setLocation] = useState('');
-  const [roomId, setRoomId] = useState('');
+  const [roomId, setRoomId] = useState(''); //this will grab the callID for the video calls
   const [isPending, setIsPending] = useState(false);
   
   
@@ -34,7 +34,7 @@ const EventForm = ({setEvents}) => {
     <>
       <div className="form-container">
         <h3>Create a new Event</h3>
-        <form className="form"> 
+        <form className="form" onSubmit={submitHandler}> 
           <label for="title">Title</label>
           <input
             id="title"

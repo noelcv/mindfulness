@@ -10,6 +10,7 @@ import CamButton from '../Classroom/CamButton/CamButton';
 import MicButton from '../Classroom/MicButton/MicButton';
 import PhoneButton from '../Classroom/PhoneButton/PhoneButton';
 import './ClassroomPage.css';
+import './CommonPageStyles.css';
 
 const socket = io.connect('http://localhost:3002');
 
@@ -126,61 +127,79 @@ const ClassroomPage = () => {
       <div className="app-holder">
         <SideBar />
 
-        <div className="classBoard-container">
-          <div className="video">
-            {stream && (
-              <video
-                playsInline
-                muted
-                ref={myVideo}
-                autoPlay
-                className="videoplayer-container video-settings"
+        <div className="dashboard-container classroom-dashboard">
+          <div className="forms-wrapper">
+            <div className="myId">
+              <h3 className="input-label">Username</h3>
+              <input
+                label="Name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
-            )}
-          </div>
-          <div className="video">
-            {callTaken && !leftCall ? (
-              <video
-                playsInline
-                ref={peerVideo}
-                autoPlay
-                className="videoplayer-container"
+              <CopyToClipboard text={myId}>
+                <button className="copy-btn call-btn">copy ID</button>
+              </CopyToClipboard>
+              <h3 className="input-label"> Insert Caller ID</h3>
+              <input
+                type="text"
+                value={callId}
+                onChange={(e) => setCallId(e.target.value)}
               />
-            ) : null}
-          </div>
-        </div>
-
-        <div className="myId">
-          <input
-            label="Name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <CopyToClipboard text={myId} className="copy-to-clipboard">
-            <button>Copy Id</button>
-          </CopyToClipboard>
-          <input
-            type="text"
-            value={callId}
-            onChange={(e) => setCallId(e.target.value)}
-          />
-          <div className="call-btn-container">
-            {callTaken && !leftCall ? (
-              <button onClick={exitCall}> Leave Call</button>
-            ) : (
-              <button onClick={() => callUser(callId)}>Call</button>
-            )}
-            {callId}
-          </div>
-        </div>
-        <div>
-          {incomingCall && !callTaken ? (
-            <div className="incoming-caller-container">
-              <h2>{name} calling...</h2>
-              <button onClick={joinCall}>Join Call</button>
+              <div className="call-btn-container">
+                {callTaken && !leftCall ? (
+                  <button className="exit-call-btn call-btn" onClick={exitCall}>
+                    {' '}
+                    Leave Call
+                  </button>
+                ) : (
+                  <button
+                    className="call-user-btn call-btn"
+                    onClick={() => callUser(callId)}
+                  >
+                    Call
+                  </button>
+                )}
+                {callId}
+              </div>
             </div>
-          ) : null}
+            <div className="videos-wrapper">
+              <div>
+                {incomingCall && !callTaken ? (
+                  <div className="incoming-caller-container">
+                    <h4>{name} calling...</h4>
+                    <button
+                      className="call-user-btn call-btn"
+                      onClick={joinCall}
+                    >
+                      Join Call
+                    </button>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+            <div className="video">
+              {stream && (
+                <video
+                  playsInline
+                  muted
+                  ref={myVideo}
+                  autoPlay
+                  className="videoplayer-container video-settings"
+                />
+              )}
+            </div>
+            <div className="video">
+              {callTaken && !leftCall ? (
+                <video
+                  playsInline
+                  ref={peerVideo}
+                  autoPlay
+                  className="videoplayer-container peer-container"
+                />
+              ) : null}
+            </div>
+          </div>
         </div>
       </div>
     </div>

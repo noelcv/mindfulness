@@ -1,15 +1,34 @@
 import React from 'react'
 import { useState } from 'react';
 import { currentDate } from '../../utils/utils';
+import { postEvent } from '../../utils/ApiService'
 
 
-const EventForm = () => {
+const EventForm = ({setEvents}) => {
   //HOOKS
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [location, setLocation] = useState('');
   const [roomId, setRoomId] = useState('');
   const [isPending, setIsPending] = useState(false);
+  
+  
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    const newEvent = { title, date, location };
+    if (newEvent.date > currentDate){
+        setIsPending(true);
+        await postEvent(newEvent);
+        setEvents((existingEvents) => [...existingEvents, newEvent]);
+        e.target.reset();
+        setIsPending(false);
+    } else {
+      window.alert(`The date you picked belongs to the past. Please, choose a new date`);
+    }
+  };
+  
+  
   
    return (
     <>
@@ -44,7 +63,7 @@ const EventForm = () => {
             type="text"
             required
             onChange={(e) => {
-              setVenue(e.target.value);
+              setLocation(e.target.value);
             }}
           />
           {!isPending && (

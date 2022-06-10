@@ -7,6 +7,8 @@ import './CommonPageStyles.css';
 
 
 const EventsPage = () => {
+  
+  
   return (
     <div className="app">
       <Header />

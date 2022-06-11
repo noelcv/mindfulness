@@ -44,9 +44,6 @@ const ClassroomPage = () => {
       .then((stream) => {
         setStream(stream);
         if (myVideo.current) myVideo.current.srcObject = stream;
-        // console.log(myVideo.current.srcObject, 'myyyyyyyy');
-        console.log(stream, 'from useEffect');
-        console.log(myVideo, 'my videeo');
       })
       .catch((err) => {
         console.log(err);
@@ -66,7 +63,6 @@ const ClassroomPage = () => {
     
     socket.on('leftCall', () => {
       setLeftCall(true);
-      console.log('left call on the frontend')
     });
   }, []);
 
@@ -92,7 +88,6 @@ const ClassroomPage = () => {
     });
 
     socket.on('callTaken', (signal) => {
-      console.log(signal, 'signal line 84');
       setCallTaken(true);
       setLeftCall(false); //in case the state changes set it to false when taking the call
       peer.signal(signal);  
@@ -122,12 +117,7 @@ const ClassroomPage = () => {
 
   const exitCall = () => {
     setLeftCall(true);
-    
-    if (connectionRef.current) {
-      console.log(connectionRef.current, 'connRef BEFORE')
-      connectionRef.current.destroy();
-      console.log(connectionRef.current, 'connRef AFTER')
-    }
+    if (connectionRef.current) connectionRef.current.destroy();
     window.location.reload();  
   };
 

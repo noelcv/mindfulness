@@ -27,11 +27,9 @@ io.on('connection', (socket) => {
   
   socket.on('disconnect', () => {
     socket.broadcast.emit('leftCall');
-    console.log('socket exiting callllllllllll', socket)
   });
 
   socket.on('callUser', (data) => {
-    console.log(data.signal, 'daaaaaattaa   signal on server');
     io.to(data.userToCall).emit('callOffer', {
       signal: data.signal,
       from: data.from,
@@ -41,7 +39,6 @@ io.on('connection', (socket) => {
 
   socket.on('joinCall', (data) => {
     io.to(data.to).emit('callTaken', data.signal);
-    console.log('user joined............', data.signal)
   });  
 });
 

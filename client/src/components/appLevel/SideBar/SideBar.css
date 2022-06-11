@@ -12,8 +12,9 @@
 
 .btn-section-sidebar {
   display: flex;
+
   max-width: 100%;
-  justify-content: flex-start;
+  justify-content:flex-start;
   padding: 0.5em;
   border: 1px solid rgb(69, 67, 67, 0.3);
   box-shadow: 1px 2px 1px 1.8px rgba(58, 154, 154, 0.9),
@@ -75,6 +76,7 @@
 
 .sidebar-link {
   text-decoration: none;
+  min-width: 13vh;
   color: rgba(2, 1, 44, 0.9);
 }
 
@@ -87,6 +89,7 @@
 }
 
 .classroom-btn {
+  min-width:200vh;
   width: 90%;
 }
 

@@ -49,6 +49,20 @@
   margin: 0.5em;
 }
 
+.cam-input-btn {
+  background-color: rgba(25, 216, 223, 0.9);
+  border: 1px solid rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
 
 .incoming-caller-container {
   margin: 0.5em;

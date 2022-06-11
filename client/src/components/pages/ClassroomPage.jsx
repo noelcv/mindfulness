@@ -30,17 +30,14 @@ const ClassroomPage = () => {
   const peerVideo = useRef();
   const connectionRef = useRef();
 
- 
-
   useEffect(() => {
-    
     const videoConstraints = {
-    video: {
-      width: { ideal: 1920, max: 7680 },
-      height: { ideal: 1080, max: 4320 },
-    },
-    audio: false,
-  };
+      video: {
+        width: { ideal: 1920, max: 7680 },
+        height: { ideal: 1080, max: 4320 },
+      },
+      audio: false,
+    };
     navigator.mediaDevices
       .getUserMedia(videoConstraints)
       .then((stream) => {
@@ -62,7 +59,7 @@ const ClassroomPage = () => {
       setName(data.name);
       setCallerSignal(data.signal);
     });
-    
+
     socket.on('leftCall', () => {
       setLeftCall(true);
     });
@@ -92,9 +89,9 @@ const ClassroomPage = () => {
     socket.on('callTaken', (signal) => {
       setCallTaken(true);
       setLeftCall(false); //in case the state changes set it to false when taking the call
-      peer.signal(signal);  
+      peer.signal(signal);
     });
-    
+
     connectionRef.current = peer;
   };
 
@@ -112,7 +109,7 @@ const ClassroomPage = () => {
     peer.on('stream', (stream) => {
       if (peerVideo.current) peerVideo.current.srcObject = stream;
     });
-    
+
     peer.signal(callerSignal);
     connectionRef.current = peer;
   };
@@ -120,8 +117,22 @@ const ClassroomPage = () => {
   const exitCall = () => {
     setLeftCall(true);
     if (connectionRef.current) connectionRef.current.destroy();
-    window.location.reload();  
+    window.location.reload();
   };
+
+  const toggleCam = () => {
+    console.log('ahaha')
+    const videoTrack = stream
+      .getTracks()
+      .find((track) => track.kind === 'video');
+    if (videoTrack.enabled) {
+      videoTrack.enabled = !videoTrack.enabled;
+    } else {
+      videoTrack.enabled = true;
+    }
+  };
+  
+  
 
   return (
     <div className="app">
@@ -182,23 +193,41 @@ const ClassroomPage = () => {
             </div>
             <div className="video">
               {stream && (
-                <video
-                  playsInline
-                  muted
-                  ref={myVideo}
-                  autoPlay
-                  className="videoplayer-container video-settings"
-                />
+                <>
+                  <video
+                    playsInline
+                    muted
+                    ref={myVideo}
+                    autoPlay
+                    className="videoplayer-container video-settings"
+                  />
+                  <>
+                    <div className="controls-container">
+                    <button className="cam-input-btn" onClick={toggleCam}>📸</button>
+                      <MicButton />
+                      <PhoneButton />
+                    </div>
+                  </>
+                </>
               )}
             </div>
             <div className="video">
               {callTaken && !leftCall ? (
-                <video
-                  playsInline
-                  ref={peerVideo}
-                  autoPlay
-                  className="videoplayer-container peer-container"
-                />
+                <>
+                  <video
+                    playsInline
+                    ref={peerVideo}
+                    autoPlay
+                    className="videoplayer-container peer-container"
+                  />
+                  <>
+                    <div className="controls-container">
+                      <button onClick={toggleCam}>📹</button>
+                      <MicButton />
+                      <PhoneButton />
+                    </div>
+                  </>
+                </>
               ) : null}
             </div>
           </div>

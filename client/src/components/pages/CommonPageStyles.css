@@ -22,6 +22,21 @@
   z-index: 1;
 }
 
+
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: 15vw;
+  margin-right: 10vw;
+  height: 80vh;
+  /* background-color:red; */
+  background-color: rgba(125,125,125, 0.055);
+  z-index:-12;
+}
+
+
 .page-title {
   display:flex;
   z-index: 10;

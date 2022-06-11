@@ -36,7 +36,7 @@ const ClassroomPage = () => {
         width: { ideal: 1920, max: 7680 },
         height: { ideal: 1080, max: 4320 },
       },
-      audio: false,
+      audio: true,
     };
     navigator.mediaDevices
       .getUserMedia(videoConstraints)
@@ -132,7 +132,17 @@ const ClassroomPage = () => {
     }
   };
   
-  
+  const toggleMic = () => {
+    console.log('ahaha')
+    const audioTrack = stream
+      .getTracks()
+      .find((track) => track.kind === 'audio');
+    if (audioTrack.enabled) {
+      audioTrack.enabled = !audioTrack.enabled;
+    } else {
+      audioTrack.enabled = true;
+    }
+  };
 
   return (
     <div className="app">
@@ -204,7 +214,9 @@ const ClassroomPage = () => {
                   <>
                     <div className="controls-container">
                     <button className="cam-input-btn" onClick={toggleCam}>📸</button>
-                      <MicButton />
+                    <button className="mic-input-btn" onClick={toggleMic}>🎙️</button>
+                    
+            
                       <PhoneButton />
                     </div>
                   </>
@@ -222,9 +234,6 @@ const ClassroomPage = () => {
                   />
                   <>
                     <div className="controls-container">
-                      <button onClick={toggleCam}>📹</button>
-                      <MicButton />
-                      <PhoneButton />
                     </div>
                   </>
                 </>

@@ -5,8 +5,9 @@ import './EventForm.css';
 
 
 const EventCard = ({ event }) => {
-  let goTo = useNavigate();
   
+  
+  let goTo = useNavigate();
   const goToEvent = () => {
     let eventPath = '../classroom';
     goTo(eventPath, {replace: true});

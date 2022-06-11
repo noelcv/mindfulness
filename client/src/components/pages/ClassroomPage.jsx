@@ -58,9 +58,15 @@ const ClassroomPage = () => {
 
     socket.on('callOffer', (data) => {
       setIncomingCall(true);
+      setLeftCall(false);
       setCaller(data.from);
       setName(data.name);
       setCallerSignal(data.signal);
+    });
+    
+    socket.on('leftCall', () => {
+      setLeftCall(true);
+      console.log('left call on the frontend')
     });
   }, []);
 
@@ -88,9 +94,10 @@ const ClassroomPage = () => {
     socket.on('callTaken', (signal) => {
       console.log(signal, 'signal line 84');
       setCallTaken(true);
-      peer.signal(signal);
+      setLeftCall(false); //in case the state changes set it to false when taking the call
+      peer.signal(signal);  
     });
-
+    
     connectionRef.current = peer;
   };
 
@@ -108,17 +115,20 @@ const ClassroomPage = () => {
     peer.on('stream', (stream) => {
       if (peerVideo.current) peerVideo.current.srcObject = stream;
     });
-
+    
     peer.signal(callerSignal);
     connectionRef.current = peer;
   };
 
   const exitCall = () => {
     setLeftCall(true);
-    connectionRef.current.destroy();
     
-    
-    
+    if (connectionRef.current) {
+      console.log(connectionRef.current, 'connRef BEFORE')
+      connectionRef.current.destroy();
+      console.log(connectionRef.current, 'connRef AFTER')
+    }
+    window.location.reload();  
   };
 
   return (

@@ -27,6 +27,7 @@ io.on('connection', (socket) => {
   
   socket.on('disconnect', () => {
     socket.broadcast.emit('leftCall');
+    console.log('socket exiting callllllllllll', socket)
   });
 
   socket.on('callUser', (data) => {
@@ -40,7 +41,8 @@ io.on('connection', (socket) => {
 
   socket.on('joinCall', (data) => {
     io.to(data.to).emit('callTaken', data.signal);
-  });
+    console.log('user joined............', data.signal)
+  });  
 });
 
 server.listen(PORT, () => {

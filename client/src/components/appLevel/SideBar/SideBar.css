@@ -7,7 +7,8 @@
   margin-left: 1em;
   width: 10vw;
   height: 80vh;
-  z-index: 2;
+  z-index: 3;
+  background-color: #fff;
 }
 
 .btn-section-sidebar {
@@ -23,11 +24,11 @@
 
   margin-top: 1em;
   margin-bottom: 1em;
-  background-color: rgba(100, 100, 100, 0.01);
   align-items: center;
   height: auto;
   flex-direction: row;
   cursor: pointer;
+  background-color: #fff;
 }
 
 .btn-section-sidebar:active {
@@ -72,12 +73,14 @@
 .btn-text-sidebar {
   font-size: 80%;
   padding-left: 0.5em;
+  background-color: #fff;
 }
 
 .sidebar-link {
   text-decoration: none;
   min-width: 13vh;
   color: rgba(2, 1, 44, 0.9);
+  background-color: #fff;
 }
 
 .profile-btn {

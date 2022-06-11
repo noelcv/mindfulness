@@ -26,12 +26,10 @@
 .videoplayer-container {
   display: flex;
   margin-left: 0em;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex;
+  align-items: justify;
   border: 0.2em solid rgba(0, 0, 0, 0.9);
   border-radius: 0.5em;
-  width: 26.66em;
-  height: 19.98em;
   z-index: 999;
 }
 
@@ -39,9 +37,8 @@
   display: flex;
   justify-content: center;
   border-radius: 0.2em;
-  margin-left: 2em;
-  width: 29em;
-  height: 19.99em;
+  margin-left: 0em;
+
 }
 
 .video-controls {
@@ -51,8 +48,6 @@
   padding: 0.5em;
   margin: 0.5em;
 }
-
-
 
 
 .incoming-caller-container {

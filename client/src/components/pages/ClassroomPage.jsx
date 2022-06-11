@@ -30,15 +30,17 @@ const ClassroomPage = () => {
   const peerVideo = useRef();
   const connectionRef = useRef();
 
-  const videoConstraints = {
+ 
+
+  useEffect(() => {
+    
+    const videoConstraints = {
     video: {
-      width: { ideal: 1920, max: 1920 },
-      height: { ideal: 1080, max: 1080 },
+      width: { ideal: 1920, max: 7680 },
+      height: { ideal: 1080, max: 4320 },
     },
     audio: false,
   };
-
-  useEffect(() => {
     navigator.mediaDevices
       .getUserMedia(videoConstraints)
       .then((stream) => {

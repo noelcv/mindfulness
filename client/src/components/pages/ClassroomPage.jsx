@@ -215,9 +215,7 @@ const ClassroomPage = () => {
                     <div className="controls-container">
                     <button className="cam-input-btn" onClick={toggleCam}>📸</button>
                     <button className="mic-input-btn" onClick={toggleMic}>🎙️</button>
-                    
-            
-                      <PhoneButton />
+                    <button className="phone-input-btn" onClick={exitCall}>☎️</button>
                     </div>
                   </>
                 </>

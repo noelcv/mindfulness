@@ -24,6 +24,7 @@ root.render(
           <Route path='/profile' element={<ProfilePage />}/>
           <Route path='/events' element={<EventsPage />}/>
           <Route path='/classroom' element={<ClassroomPage />}/>
+          <Route path='/classroom/:location' element={<ClassroomPage />}/>
           <Route path='/settings' element={<SettingsPage />}/>
         </Routes>
       </BrowserRouter>

@@ -26,10 +26,11 @@ const ClassroomPage = (props) => {
   const [callId, setCallId] = useState('');
   const [leftCall, setLeftCall] = useState(false);
 
+
   const myVideo = useRef([]);
   const peerVideo = useRef();
   const connectionRef = useRef();
-  const senders = useRef([]);
+  const roomId = props.match.params.roomId;
 
   useEffect(() => {
     const videoConstraints = {

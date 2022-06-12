@@ -25,7 +25,6 @@ const EventForm = ({setEvents}) => {
         await postEvent(newEvent);
         setEvents((existingEvents) => [...existingEvents, newEvent]);
         e.target.reset();
-       
         setIsPending(false);
     } else {
       window.alert(`The date you picked belongs to the past. Please, choose a new date`);
@@ -46,6 +45,7 @@ const EventForm = ({setEvents}) => {
             id="title"
             name="title"
             type="text"
+            placeholder="What is the event?"
             required
             onChange={(e) => {
               setTitle(e.target.value);

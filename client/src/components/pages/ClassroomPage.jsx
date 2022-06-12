@@ -14,7 +14,7 @@ import './CommonPageStyles.css';
 
 const socket = io.connect('http://localhost:3002');
 
-const ClassroomPage = () => {
+const ClassroomPage = (props) => {
   //HOOKS for classroom state management
   const [myId, setMyId] = useState('');
   const [stream, setStream] = useState();

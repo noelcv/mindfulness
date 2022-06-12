@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Peer from 'simple-peer';
 import io from 'socket.io-client';
@@ -30,6 +31,13 @@ const ClassroomPage = (props) => {
   const myVideo = useRef([]);
   const peerVideo = useRef();
   const connectionRef = useRef();
+  
+  
+  
+  const currentPath = useLocation();
+  const roomId = currentPath.pathname.split('/').pop();
+  console.log('roomId:', roomId);
+
   
 
   useEffect(() => {

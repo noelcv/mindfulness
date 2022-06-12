@@ -17,6 +17,7 @@ const EventForm = ({setEvents}) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const id = uuid();
+    
     console.log(id, 'id from submitHandler');
     const newEvent = { title, date, id };
     console.log()

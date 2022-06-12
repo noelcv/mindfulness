@@ -30,7 +30,7 @@ const ClassroomPage = (props) => {
   const myVideo = useRef([]);
   const peerVideo = useRef();
   const connectionRef = useRef();
-  const roomId = props.match.params.roomId;
+  
 
   useEffect(() => {
     const videoConstraints = {

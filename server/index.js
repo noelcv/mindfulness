@@ -41,11 +41,6 @@ io.on('connection', (socket) => {
   socket.on('joinCall', (data) => {
     io.to(data.to).emit('callTaken', data.signal);
   });  
-  
-  
-  
-  
-  
   socket.on('disconnect', () => {
     socket.broadcast.emit('leftCall');
   });

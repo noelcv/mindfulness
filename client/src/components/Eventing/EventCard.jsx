@@ -9,7 +9,7 @@ const EventCard = ({ event }) => {
   
   let goTo = useNavigate();
   const goToEvent = () => {
-    let eventPath = `../classroom/${event.location}`;
+    let eventPath = `../classroom/${event.id}`;
     goTo(eventPath, {replace: true});
   }
   
@@ -18,7 +18,7 @@ const EventCard = ({ event }) => {
     <>
       <div className="event-container">
         <div className="event-date-container">
-          <h3 className="event-date">{moment(event.date).format(`Do MMM`)}</h3>
+          <h3 className="event-date">{moment(event.date).format(`ddd`)}</h3>
         </div>
         <div className="event-content-container">
           <div className="event-content-wrapper">
@@ -27,7 +27,7 @@ const EventCard = ({ event }) => {
             </div>
             <div className="event-details-container">
               <p className="event-detail event-time">
-                {moment(event.date).format('hh:mm a - MMMM Do, YYYY')}
+                {moment(event.date).format('HH:mm a - MMMM Do, YYYY')}
               </p>
               <p className="event-detail event-location">{event.location}</p>
             </div>

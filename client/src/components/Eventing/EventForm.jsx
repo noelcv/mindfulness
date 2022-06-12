@@ -9,18 +9,17 @@ const EventForm = ({setEvents}) => {
   //HOOKS
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
-  const [location, setLocation] = useState('');
-  const [roomId, setRoomId] = useState(''); //this will grab the callID for the video calls
+  // const [location, setLocation] = useState('');
+  // const [roomId, setRoomId] = useState(''); //this will grab the callID for the video calls
   const [isPending, setIsPending] = useState(false);
   
   
   const submitHandler = async (e) => {
     e.preventDefault();
     const id = uuid();
-    setLocation(id)
     console.log(id, 'id from submitHandler');
-    console.log(location, 'location from submitHandler');
-    const newEvent = { title, date, location };
+    const newEvent = { title, date, id };
+    console.log()
     if (newEvent.date > currentDate){
         setIsPending(true);
         await postEvent(newEvent);

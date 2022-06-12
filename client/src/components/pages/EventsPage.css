@@ -65,6 +65,9 @@
 }
 
 #list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 70vh;
   overflow-y: auto;
 }
 
@@ -72,7 +75,8 @@
   background-color: rgba(125, 125, 125, 0.1);
 
   display: flex;
-  max-width: 99%;
+  max-width: 99.5%;
+  max-height: fit-content;
   width: auto;
   justify-content: flex-start;
   margin-top: 2vh;

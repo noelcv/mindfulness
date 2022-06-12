@@ -33,7 +33,8 @@ const EventCard = ({ event }) => {
             </div>
           </div>
           <div className="go-to-event-container">
-            <button className="go-to-event-btn submit-btn" onClick={goToEvent}>Join</button>
+            <button className="go-to-event-btn submit-btn" onClick={goToEvent}>Start Call</button>
+            <button className="go-to-event-btn submit-btn" onClick={goToEvent}>Go to Classroom</button>
           </div>
         </div>
       </div>

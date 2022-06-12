@@ -21,6 +21,10 @@
 .video {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  border-radius: 0.5em;
+  border: 0.2em solid rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.85);;
 }
 
 .videoplayer-container {
@@ -28,15 +32,12 @@
   margin-left: 0em;
   justify-content: flex;
   align-items: justify;
-  border: 0.2em solid rgba(0, 0, 0, 0.9);
-  border-radius: 0.5em;
   z-index: 999;
 }
 
 .video-container {
   display: flex;
   justify-content: center;
-  border-radius: 0.2em;
   margin-left: 0em;
 
 }

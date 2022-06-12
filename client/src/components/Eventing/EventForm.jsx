@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import { v4 as uuid } from 'uuid';
 import { currentDate } from '../../utils/utils';
 import { postEvent } from '../../utils/ApiService'
 import './EventForm.css';
@@ -15,13 +16,17 @@ const EventForm = ({setEvents}) => {
   
   const submitHandler = async (e) => {
     e.preventDefault();
-
+    const id = uuid();
+    setLocation(id)
+    console.log(id, 'id from submitHandler');
+    console.log(location, 'location from submitHandler');
     const newEvent = { title, date, location };
     if (newEvent.date > currentDate){
         setIsPending(true);
         await postEvent(newEvent);
         setEvents((existingEvents) => [...existingEvents, newEvent]);
         e.target.reset();
+       
         setIsPending(false);
     } else {
       window.alert(`The date you picked belongs to the past. Please, choose a new date`);
@@ -63,7 +68,7 @@ const EventForm = ({setEvents}) => {
           />
           </div>
           
-          <div className="group-form-wrapper">
+          {/* <div className="group-form-wrapper">
           <label htmlFor="location">Location</label>
           <input
             id="location"
@@ -74,7 +79,7 @@ const EventForm = ({setEvents}) => {
               setLocation(e.target.value);
             }}
           />
-          </div>
+          </div> */}
           </div>
           <div className="group-form-wrapper submit-wrapper">
           {!isPending && (

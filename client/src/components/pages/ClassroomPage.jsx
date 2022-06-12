@@ -26,9 +26,10 @@ const ClassroomPage = () => {
   const [callId, setCallId] = useState('');
   const [leftCall, setLeftCall] = useState(false);
 
-  const myVideo = useRef();
+  const myVideo = useRef([]);
   const peerVideo = useRef();
   const connectionRef = useRef();
+  const senders = useRef([]);
 
   useEffect(() => {
     const videoConstraints = {
@@ -121,7 +122,6 @@ const ClassroomPage = () => {
   };
 
   const toggleCam = () => {
-    console.log('ahaha')
     const videoTrack = stream
       .getTracks()
       .find((track) => track.kind === 'video');
@@ -131,9 +131,8 @@ const ClassroomPage = () => {
       videoTrack.enabled = true;
     }
   };
-  
+
   const toggleMic = () => {
-    console.log('ahaha')
     const audioTrack = stream
       .getTracks()
       .find((track) => track.kind === 'audio');
@@ -142,8 +141,10 @@ const ClassroomPage = () => {
     } else {
       audioTrack.enabled = true;
     }
+    console.log(audioTrack.enabled, 'myMic');
   };
 
+  
   return (
     <div className="app">
       <Header />
@@ -170,12 +171,7 @@ const ClassroomPage = () => {
                 onChange={(e) => setCallId(e.target.value)}
               />
               <div className="call-btn-container">
-                {callTaken && !leftCall ? (
-                  <button className="exit-call-btn call-btn" onClick={exitCall}>
-                    {' '}
-                    Leave Call
-                  </button>
-                ) : (
+                {callTaken && !leftCall ? null : (
                   <button
                     className="call-user-btn call-btn"
                     onClick={() => callUser(callId)}
@@ -209,34 +205,40 @@ const ClassroomPage = () => {
                     muted
                     ref={myVideo}
                     autoPlay
-                    className="videoplayer-container video-settings"
+                    className="videoplayer-container"
                   />
                   <>
-                    <div className="controls-container">
-                    <button className="cam-input-btn" onClick={toggleCam}>📸</button>
-                    <button className="mic-input-btn" onClick={toggleMic}>🎙️</button>
-                    <button className="phone-input-btn" onClick={exitCall}>☎️</button>
+                    <div className="video-controls">
+                      <button className="cam-input-btn" onClick={toggleCam}>
+                        📸
+                      </button>
+                      <button className="mic-input-btn" onClick={toggleMic}>
+                        🎙️
+                      </button>
+                      <button className="phone-input-btn" onClick={exitCall}>
+                        ☎️
+                      </button>
                     </div>
                   </>
                 </>
               )}
             </div>
-            <div className="video">
               {callTaken && !leftCall ? (
+            <div className="video">
                 <>
                   <video
                     playsInline
+                    controls
                     ref={peerVideo}
                     autoPlay
                     className="videoplayer-container peer-container"
                   />
                   <>
-                    <div className="controls-container">
-                    </div>
+                    <div className="controls-container"></div>
                   </>
                 </>
-              ) : null}
             </div>
+              ) : null}
           </div>
         </div>
       </div>

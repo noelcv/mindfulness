@@ -9,7 +9,7 @@ const EventCard = ({ event }) => {
   
   let goTo = useNavigate();
   const goToEvent = () => {
-    let eventPath = '../classroom';
+    let eventPath = `../classroom/${event.location}`;
     goTo(eventPath, {replace: true});
   }
   

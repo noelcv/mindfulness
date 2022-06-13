@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Peer from 'simple-peer';
 import io from 'socket.io-client';
@@ -15,7 +14,7 @@ import './CommonPageStyles.css';
 
 const socket = io.connect('http://localhost:3002');
 
-const ClassroomPage = (props) => {
+const ClassroomPage = () => {
   //HOOKS for classroom state management
   const [myId, setMyId] = useState('');
   const [stream, setStream] = useState();
@@ -27,18 +26,10 @@ const ClassroomPage = (props) => {
   const [callId, setCallId] = useState('');
   const [leftCall, setLeftCall] = useState(false);
 
-
   const myVideo = useRef([]);
   const peerVideo = useRef();
   const connectionRef = useRef();
-  
-  
-  
-  const currentPath = useLocation();
-  const roomId = currentPath.pathname.split('/').pop();
-  console.log('roomId:', roomId);
-
-  
+  const senders = useRef([]);
 
   useEffect(() => {
     const videoConstraints = {

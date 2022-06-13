@@ -22,14 +22,13 @@ const io = require('socket.io')(server, {
 });
 app.use(router);
 
-const participants = {};
-
 io.on('connection', (socket) => {
-  if(!participants[socket.id]) participants[socket.id] = socket.id;
   socket.emit('me', socket.id);
-  console.log(participants, 'participants');
   
-  
+  socket.on('disconnect', () => {
+    socket.broadcast.emit('leftCall');
+  });
+
   socket.on('callUser', (data) => {
     io.to(data.userToCall).emit('callOffer', {
       signal: data.signal,
@@ -37,13 +36,10 @@ io.on('connection', (socket) => {
       name: data.name,
     });
   });
-  
+
   socket.on('joinCall', (data) => {
     io.to(data.to).emit('callTaken', data.signal);
   });  
-  socket.on('disconnect', () => {
-    socket.broadcast.emit('leftCall');
-  });
 });
 
 server.listen(PORT, () => {

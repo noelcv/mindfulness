@@ -114,7 +114,14 @@ const ClassroomPage = () => {
           setPeers((participants) => [...participants, peerObj]);
         }); 
         
-
+        socketRef.current.on('theBackEndReceivedTheReturnedSignal', (data) => {
+          const targetPeer = peersRef.current.find(
+            (target) => target.peerId === data.id
+          );
+          targetPeer.peer.signal(data.signal);
+        });
+        
+        
       })
       .catch((err) => {
         console.log(err);

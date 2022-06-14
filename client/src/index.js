@@ -13,6 +13,8 @@ import SettingsPage from './components/pages/SettingsPage';
 import SignInPage from './components/pages/SignInPage';
 import HomePage from './components/pages/HomePage';
 import AccountPage from './components/pages/AccountPage';
+import { AuthContextProvider } from './AuthContext/AuthContext';
+
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -20,7 +22,10 @@ const root = createRoot(container);
 root.render(
   // <React.StrictMode>
     <Provider store={store}>
+    
       <BrowserRouter>
+      <AuthContextProvider>
+      
         <Routes>
           <Route path='/' element={<App />}/>
           <Route path='/signin' element={<SignInPage />}/>
@@ -32,6 +37,7 @@ root.render(
           <Route path='/classroom/:location' element={<ClassroomPage />}/>
           <Route path='/settings' element={<SettingsPage />}/>
         </Routes>
+        </AuthContextProvider>
       </BrowserRouter>
     </Provider>
   // </React.StrictMode>

@@ -17,7 +17,6 @@ const Video = (props) => {
   const ref = useRef();
 
   useEffect(() => {
-
     props.peer.on('stream', (stream) => {
       ref.current.srcObject = stream;
     });
@@ -36,22 +35,20 @@ const Video = (props) => {
   );
 };
 
-
 const ClassroomPage = () => {
   //HOOKS for classroom state management
   const [peers, setPeers] = useState([]); //this will track the peers for rendering purposes
   const socketRef = useRef(); //will handle the sockets communications for signaling
-  const userVideo = useRef(); 
+  const userVideo = useRef();
   const peersRef = useRef([]); //this will be used to track and handle the RTC Connections
   const userStream = useRef();
-  
+
   const currentPath = useLocation();
   const roomId = currentPath.pathname.split('/').pop();
   console.log('roomId:', roomId);
-  
-  
+
   useEffect(() => {
-    const socket = io.connect('http://localhost:3002');
+    const socketRef = io.connect('http://localhost:3002');
     const videoConstraints = {
       video: {
         width: { ideal: 1920, max: 7680 },
@@ -59,16 +56,15 @@ const ClassroomPage = () => {
       },
       audio: true,
     };
-    
-    
+
     navigator.mediaDevices
       .getUserMedia(videoConstraints)
       .then((stream) => {
         userVideo.current.srcObject = stream;
         userStream.current = stream; //TODO: check if this can be removed
-        
+
         socketRef.current.emit('joiningRoom', roomId);
-        
+
         socketRef.current.on(
           'everybodyInTheHouse',
           (participantsInClassroom) => {
@@ -81,12 +77,12 @@ const ClassroomPage = () => {
                 socketRef.current.id,
                 stream
               );
-            
+
               peersRef.current.push({
                 peerId: participantId,
                 peer,
               });
-              
+
               //the peer itself plus the peerId will be used when rendering
               peersArr.push({
                 peerId: participantId,
@@ -96,8 +92,8 @@ const ClassroomPage = () => {
             console.log(peersArr, 'peersArr before setting setPeers');
             setPeers(peersArr);
           }
-        ); 
-        
+        );
+
         socketRef.current.on('userJoinedClassroom', (data) => {
           const peer = addNewPeer(data.signal, data.callerId, stream);
 
@@ -113,15 +109,15 @@ const ClassroomPage = () => {
           };
 
           setPeers((participants) => [...participants, peerObj]);
-        }); 
-        
+        });
+
         socketRef.current.on('theBackEndReceivedTheReturnedSignal', (data) => {
           const targetPeer = peersRef.current.find(
             (target) => target.peerId === data.id
           );
           targetPeer.peer.signal(data.signal);
         });
-        
+
         socketRef.current.on('leftCall', (id) => {
           const peerObj = peersRef.current.find(
             (target) => target.peerId === id
@@ -130,7 +126,7 @@ const ClassroomPage = () => {
             peerObj.peer.destroy();
           }
           console.log(peerObj, 'the guy to be destroyed');
-          
+
           /*filter out the participant that is leaving and use that
           to update the state that will be used to re-render to everybody else*/
           const peers = peersRef.current.filter(
@@ -163,7 +159,6 @@ const ClassroomPage = () => {
     return peer;
   };
 
-
   const addNewPeer = (newSignalIncoming, callerId, stream) => {
     const peer = new Peer({
       initiator: false,
@@ -192,30 +187,30 @@ const ClassroomPage = () => {
   //   window.location.reload();
   // };
 
-  // const toggleCam = () => {
-  //   const videoTrack = stream
-  //     .getTracks()
-  //     .find((track) => track.kind === 'video');
-  //   if (videoTrack.enabled) {
-  //     videoTrack.enabled = !videoTrack.enabled;
-  //   } else {
-  //     videoTrack.enabled = true;
-  //   }
-  // };
+  const toggleCam = () => {
+    const videoTrack = userStream.current
+      .getVideoTracks()
+      .find((track) => track.kind === 'video');
+    if (videoTrack.enabled) {
+      videoTrack.enabled = !videoTrack.enabled;
+    } else {
+      videoTrack.enabled = true;
+    }
+    console.log(videoTrack.enabled, 'myCam');
+  };
+ 
+  const toggleMic = () => {
+    const audioTrack = userStream.current
+      .getTracks()
+      .find((track) => track.kind === 'audio');
+    if (audioTrack.enabled) {
+      audioTrack.enabled = !audioTrack.enabled;
+    } else {
+      audioTrack.enabled = true;
+    }
+    console.log(audioTrack.enabled, 'myMic');
+  };
 
-  // const toggleMic = () => {
-  //   const audioTrack = stream
-  //     .getTracks()
-  //     .find((track) => track.kind === 'audio');
-  //   if (audioTrack.enabled) {
-  //     audioTrack.enabled = !audioTrack.enabled;
-  //   } else {
-  //     audioTrack.enabled = true;
-  //   }
-  //   console.log(audioTrack.enabled, 'myMic');
-  // };
-
-  
   return (
     <div className="app">
       <Header />
@@ -234,10 +229,10 @@ const ClassroomPage = () => {
               />
               <>
                 <div className="video-controls">
-                  <button className="cam-input-btn">
+                <button className="cam-input-btn" onClick={toggleCam}>
                     📸
                   </button>
-                  <button className="mic-input-btn">
+                  <button className="mic-input-btn" onClick={toggleMic}>
                     🎙️
                   </button>
                   <button className="phone-input-btn">
@@ -248,11 +243,11 @@ const ClassroomPage = () => {
 
               {peers.map((peer) => {
                 return (
-                    <Video
-                      key={peer.peerId}
-                      peer={peer.peer}
-                      className="videoplayer-container"
-                    />
+                  <Video
+                    key={peer.peerId}
+                    peer={peer.peer}
+                    className="videoplayer-container"
+                  />
                 );
               })}
             </div>

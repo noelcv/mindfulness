@@ -112,7 +112,7 @@ const ClassroomPage = () => {
           };
 
           setPeers((participants) => [...participants, peerObj]);
-        }); //TODO: create addNewPeer function 
+        }); 
         
 
       })
@@ -145,6 +145,27 @@ const ClassroomPage = () => {
   };
 
 
+  const addNewPeer = (newSignalIncoming, callerId, stream) => {
+    const peer = new Peer({
+      initiator: false,
+      trickle: false,
+      stream,
+    });
+
+    //we signal upon the newly incoming signal
+    //so when we receive an offer we send our signal back to the callerID
+    peer.on('signal', (signal) => {
+      socketRef.current.emit('returningSignalToTheBackEnd', {
+        signal,
+        callerId,
+      });
+    });
+
+    //we are accepting the signal and fire the socket event above
+    peer.signal(newSignalIncoming);
+
+    return peer;
+  };
 
   // const exitCall = () => {
   //   setLeftCall(true);

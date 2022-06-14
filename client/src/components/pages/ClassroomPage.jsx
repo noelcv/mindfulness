@@ -38,6 +38,15 @@ const Video = (props) => {
 
 const ClassroomPage = () => {
   //HOOKS for classroom state management
+  const [peers, setPeers] = useState([]);
+  const socketRef = useRef();
+  const userVideo = useRef();
+  const peersRef = useRef([]);
+  const userStream = useRef();
+  
+  const currentPath = useLocation();
+  const roomId = currentPath.pathname.split('/').pop();
+  console.log('roomId:', roomId);
   
   
   useEffect(() => {

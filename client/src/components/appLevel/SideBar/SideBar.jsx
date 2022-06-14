@@ -9,8 +9,10 @@ import ClassBoard from '../../Classroom/ClassBoard/ClassBoard';
 import SignInBtn from './SigninBtn/SigninBtn';
 import AccountBtn from './AccountBtn/AccountBtn';
 import HomeBtn from './HomeBtn/HomeBtn';
+import { UserAuth } from '../../../AuthContext/AuthContext';
 
 const SideBar = () => {
+  
   return (
     <div className="sidebar-container">
       

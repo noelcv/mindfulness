@@ -14,7 +14,7 @@ const SignInPage = () => {
   
   const handleGoogleSignIn = async () => {
     try {
-      await handleGoogleSignIn()
+      await googleSignIn()
     } catch (err) {
       console.log(err);
     }
@@ -29,7 +29,7 @@ const SignInPage = () => {
         
           <div className="sign-in-container">
           <h2 className="page-title">Sign In</h2>
-          <GoogleButton />
+          <GoogleButton onClick={handleGoogleSignIn} />
           </div>
         </div>
     

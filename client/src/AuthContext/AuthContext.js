@@ -13,7 +13,7 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   
  
-    const googleSignIn = (auth) => {
+    const googleSignIn = () => {
       const provider = new GoogleAuthProvider();
       signInWithPopup(auth, provider);
     };

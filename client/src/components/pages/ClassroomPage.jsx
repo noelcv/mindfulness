@@ -38,10 +38,10 @@ const Video = (props) => {
 
 const ClassroomPage = () => {
   //HOOKS for classroom state management
-  const [peers, setPeers] = useState([]);
-  const socketRef = useRef();
-  const userVideo = useRef();
-  const peersRef = useRef([]);
+  const [peers, setPeers] = useState([]); //this will track the peers for rendering purposes
+  const socketRef = useRef(); //will handle the sockets communications for signaling
+  const userVideo = useRef(); 
+  const peersRef = useRef([]); //this will be used to track and handle the RTC Connections
   const userStream = useRef();
   
   const currentPath = useLocation();
@@ -63,7 +63,11 @@ const ClassroomPage = () => {
     navigator.mediaDevices
       .getUserMedia(videoConstraints)
       .then((stream) => {
-       
+        userVideo.current.srcObject = stream;
+        userStream.current = stream; //TODO: check if this can be removed
+        
+        socketRef.current.emit('joiningRoom', roomId);
+        
       })
       .catch((err) => {
         console.log(err);

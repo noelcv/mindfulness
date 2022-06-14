@@ -22,10 +22,8 @@ const root = createRoot(container);
 root.render(
   // <React.StrictMode>
     <Provider store={store}>
-    
+    <AuthContextProvider>
       <BrowserRouter>
-      <AuthContextProvider>
-      
         <Routes>
           <Route path='/' element={<App />}/>
           <Route path='/signin' element={<SignInPage />}/>
@@ -37,8 +35,8 @@ root.render(
           <Route path='/classroom/:location' element={<ClassroomPage />}/>
           <Route path='/settings' element={<SettingsPage />}/>
         </Routes>
-        </AuthContextProvider>
       </BrowserRouter>
+      </AuthContextProvider>
     </Provider>
   // </React.StrictMode>
 );

@@ -2,11 +2,24 @@ import React from 'react';
 import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import  { GoogleButton } from 'react-google-button';
+import { UserAuth } from '../../AuthContext/AuthContext'
 import './SignInPage.css';
 
 import './CommonPageStyles.css';
 
 const SignInPage = () => {
+  
+  const { googleSignIn } = UserAuth();
+  
+  
+  const handleGoogleSignIn = async () => {
+    try {
+      await handleGoogleSignIn()
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  
   return (
     <div className="app">
       <Header />

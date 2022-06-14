@@ -10,16 +10,21 @@ import SignInBtn from './SigninBtn/SigninBtn';
 import AccountBtn from './AccountBtn/AccountBtn';
 import HomeBtn from './HomeBtn/HomeBtn';
 import { UserAuth } from '../../../AuthContext/AuthContext';
+import SignOutBtn from './SignOutBtn/SignOutBtn';
+
 
 const SideBar = () => {
   
+  const { user, logOut } = UserAuth();
+  
   return (
     <div className="sidebar-container">
-      
+      {user?.displayName ? <SignOutBtn /> :
       <Link to="/signin" className="sidebar-link">
         <SignInBtn />
-      </Link>
+      </Link> 
       
+      }
       <Link to="/home" className="sidebar-link">
         <HomeBtn />
       </Link> 

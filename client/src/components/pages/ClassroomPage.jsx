@@ -12,13 +12,36 @@ import PhoneButton from '../Classroom/PhoneButton/PhoneButton';
 import './ClassroomPage.css';
 import './CommonPageStyles.css';
 
-const socket = io.connect('http://localhost:3002');
+const Video = (props) => {
+  const ref = useRef();
+
+  useEffect(() => {
+
+    props.peer.on('stream', (stream) => {
+      ref.current.srcObject = stream;
+    });
+  }, []);
+
+  return (
+    <>
+      <video
+        playsInline
+        muted
+        autoPlay
+        ref={ref}
+        className="videoplayer-container"
+      />
+    </>
+  );
+};
+
 
 const ClassroomPage = () => {
   //HOOKS for classroom state management
   
-
+  
   useEffect(() => {
+    const socket = io.connect('http://localhost:3002');
     const videoConstraints = {
       video: {
         width: { ideal: 1920, max: 7680 },

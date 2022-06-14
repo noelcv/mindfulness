@@ -108,10 +108,23 @@ const ClassroomPage = () => {
     });
   }, []);
 
-  
+  const generateNewPeer = (userToSignal, callerId, stream) => {
+    const peer = new Peer({
+      initiator: true, //so that I can inform the others that I joined
+      trickle: false,
+      stream,
+    });
 
-  
+    peer.on('signal', (signal) => {
+      socketRef.current.emit('sendingSignalToBackEnd', {
+        userToSignal,
+        callerId,
+        signal,
+      });
+    });
 
+    return peer;
+  };
 
 
 

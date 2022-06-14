@@ -6,10 +6,6 @@ import Peer from 'simple-peer';
 import io from 'socket.io-client';
 import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
-import Dashboard from '../appLevel/Dashboard/Dashboard';
-import CamButton from '../Classroom/CamButton/CamButton';
-import MicButton from '../Classroom/MicButton/MicButton';
-import PhoneButton from '../Classroom/PhoneButton/PhoneButton';
 import './ClassroomPage.css';
 import './CommonPageStyles.css';
 
@@ -62,7 +58,7 @@ const ClassroomPage = () => {
       .getUserMedia(videoConstraints)
       .then((stream) => {
         userVideo.current.srcObject = stream;
-        userStream.current = stream; //TODO: check if this can be removed
+        userStream.current = stream; //
 
         socketRef.current.emit('joiningRoom', roomId);
 
@@ -216,6 +212,7 @@ const ClassroomPage = () => {
       <Header />
       <div className="app-holder">
         <SideBar />
+
         <div className="dashboard-container">
           <div className="videos-wrapper">
             <div className="video">
@@ -228,7 +225,7 @@ const ClassroomPage = () => {
               />
               <>
                 <div className="video-controls">
-                <button className="cam-input-btn" onClick={toggleCam}>
+                  <button className="cam-input-btn" onClick={toggleCam}>
                     📸
                   </button>
                   <button className="mic-input-btn" onClick={toggleMic}>
@@ -242,11 +239,11 @@ const ClassroomPage = () => {
 
               {peers.map((peer) => {
                 return (
-                  <Video
-                    key={peer.peerId}
-                    peer={peer.peer}
-                    className="videoplayer-container"
-                  />
+                    <Video
+                      key={peer.peerId}
+                      peer={peer.peer}
+                      className="videoplayer-container"
+                    />
                 );
               })}
             </div>

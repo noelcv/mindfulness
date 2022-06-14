@@ -3,9 +3,11 @@ import './CamButton.css';
 import Polaroid from './polaroid.svg';
 
 const CamButton = () => {
-  return ( <div className="cam-input-btn">
+  return ( <div type="button" className="cam-input-btn">
     <img src={Polaroid} alt="button-to-turn-on-and-off-camera"/>
-  </div>
+   </div>
+    
+
   )
 };
 

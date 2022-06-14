@@ -68,6 +68,35 @@ const ClassroomPage = () => {
         
         socketRef.current.emit('joiningRoom', roomId);
         
+        socketRef.current.on(
+          'everybodyInTheHouse',
+          (participantsInClassroom) => {
+            console.log(participantsInClassroom, 'participantsInClassroom');
+            const peersArr = []; //array for rendering
+
+            participantsInClassroom.forEach((participantId) => {
+              const peer = generateNewPeer(
+                participantId,
+                socketRef.current.id,
+                stream
+              );
+            
+              peersRef.current.push({
+                peerId: participantId,
+                peer,
+              });
+              
+              //the peer itself plus the peerId will be used when rendering
+              peersArr.push({
+                peerId: participantId,
+                peer,
+              });
+            });
+            console.log(peersArr, 'peersArr before setting setPeers');
+            setPeers(peersArr);
+          }
+        ); //TODO: define generateNewPeer function
+        
       })
       .catch((err) => {
         console.log(err);

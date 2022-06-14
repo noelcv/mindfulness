@@ -22,10 +22,34 @@ const io = require('socket.io')(server, {
 });
 app.use(router);
 
+const participants = {};
+const socketToClassroom = {};
+
+
 io.on('connection', (socket) => {
   socket.emit('me', socket.id);
   
-  
+  socket.on('joiningRoom', (roomId) => {
+    if (participants[roomId]) {
+      // const numberOfParticipants = participants[roomId].length;
+      // if (numberOfParticipants === 4) {
+      //   socket.emit('classroomIsComplete');
+      //   console.log('complete classroom');
+      //   return;
+      // }
+      participants[roomId].push(socket.id);
+    } else {
+      participants[roomId] = [socket.id];
+    }
+    socketToClassroom[socket.id] = roomId;
+    
+    const participantsInClassroom = participants[roomId].filter(
+      (id) => id !== socket.id
+    );
+
+    socket.emit('everybodyInTheHouse', participantsInClassroom);
+    console.log('everybodyInTheHouse', participantsInClassroom);
+  });
   
   socket.on('disconnect', () => {
     socket.broadcast.emit('leftCall');

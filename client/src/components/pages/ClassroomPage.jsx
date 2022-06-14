@@ -47,15 +47,16 @@ const ClassroomPage = () => {
   const roomId = currentPath.pathname.split('/').pop();
   console.log('roomId:', roomId);
 
+  const videoConstraints = {
+    video: {
+      width: { ideal: 1920, max: 7680 },
+      height: { ideal: 1080, max: 4320 },
+    },
+    audio: true,
+  };
+
   useEffect(() => {
-    const socketRef = io.connect('http://localhost:3002');
-    const videoConstraints = {
-      video: {
-        width: { ideal: 1920, max: 7680 },
-        height: { ideal: 1080, max: 4320 },
-      },
-      audio: true,
-    };
+    socketRef.current = io.connect('http://localhost:3002');
 
     navigator.mediaDevices
       .getUserMedia(videoConstraints)

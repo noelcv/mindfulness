@@ -25,21 +25,12 @@ app.use(router);
 io.on('connection', (socket) => {
   socket.emit('me', socket.id);
   
+  
+  
   socket.on('disconnect', () => {
     socket.broadcast.emit('leftCall');
   });
 
-  socket.on('callUser', (data) => {
-    io.to(data.userToCall).emit('callOffer', {
-      signal: data.signal,
-      from: data.from,
-      name: data.name,
-    });
-  });
-
-  socket.on('joinCall', (data) => {
-    io.to(data.to).emit('callTaken', data.signal);
-  });  
 });
 
 server.listen(PORT, () => {

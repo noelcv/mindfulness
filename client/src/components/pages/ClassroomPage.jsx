@@ -16,20 +16,7 @@ const socket = io.connect('http://localhost:3002');
 
 const ClassroomPage = () => {
   //HOOKS for classroom state management
-  const [myId, setMyId] = useState('');
-  const [stream, setStream] = useState();
-  const [name, setName] = useState('');
-  const [caller, setCaller] = useState('');
-  const [incomingCall, setIncomingCall] = useState(false);
-  const [callerSignal, setCallerSignal] = useState();
-  const [callTaken, setCallTaken] = useState(false);
-  const [callId, setCallId] = useState('');
-  const [leftCall, setLeftCall] = useState(false);
-
-  const myVideo = useRef([]);
-  const peerVideo = useRef();
-  const connectionRef = useRef();
-  const senders = useRef([]);
+  
 
   useEffect(() => {
     const videoConstraints = {
@@ -39,210 +26,64 @@ const ClassroomPage = () => {
       },
       audio: true,
     };
+    
+    
     navigator.mediaDevices
       .getUserMedia(videoConstraints)
       .then((stream) => {
-        setStream(stream);
-        if (myVideo.current) myVideo.current.srcObject = stream;
+       
       })
       .catch((err) => {
         console.log(err);
       });
 
-    socket.on('me', (id) => {
-      setMyId(id);
-    });
-
-    socket.on('callOffer', (data) => {
-      setIncomingCall(true);
-      setLeftCall(false);
-      setCaller(data.from);
-      setName(data.name);
-      setCallerSignal(data.signal);
-    });
 
     socket.on('leftCall', () => {
-      setLeftCall(true);
+      
     });
   }, []);
 
-  const callUser = (id) => {
-    const peer = new Peer({
-      initiator: true,
-      trickle: false,
-      stream: stream,
-    });
+  
 
-    //needs to match the backend socket (index.js)
-    peer.on('signal', (data) => {
-      socket.emit('callUser', {
-        userToCall: id,
-        signal: data,
-        from: myId,
-        name: name,
-      });
-    });
+  
 
-    peer.on('stream', (stream) => {
-      if (peerVideo.current) peerVideo.current.srcObject = stream;
-    });
 
-    socket.on('callTaken', (signal) => {
-      setCallTaken(true);
-      setLeftCall(false); //in case the state changes set it to false when taking the call
-      peer.signal(signal);
-    });
 
-    connectionRef.current = peer;
-  };
 
-  const joinCall = () => {
-    setCallTaken(true);
-    const remoteStream = stream;
-    const peer = new Peer({
-      stream: remoteStream,
-    });
+  // const exitCall = () => {
+  //   setLeftCall(true);
+  //   if (connectionRef.current) connectionRef.current.destroy();
+  //   window.location.reload();
+  // };
 
-    peer.on('signal', (data) => {
-      socket.emit('joinCall', { signal: data, to: caller });
-    });
+  // const toggleCam = () => {
+  //   const videoTrack = stream
+  //     .getTracks()
+  //     .find((track) => track.kind === 'video');
+  //   if (videoTrack.enabled) {
+  //     videoTrack.enabled = !videoTrack.enabled;
+  //   } else {
+  //     videoTrack.enabled = true;
+  //   }
+  // };
 
-    peer.on('stream', (stream) => {
-      if (peerVideo.current) peerVideo.current.srcObject = stream;
-    });
-
-    peer.signal(callerSignal);
-    connectionRef.current = peer;
-  };
-
-  const exitCall = () => {
-    setLeftCall(true);
-    if (connectionRef.current) connectionRef.current.destroy();
-    window.location.reload();
-  };
-
-  const toggleCam = () => {
-    const videoTrack = stream
-      .getTracks()
-      .find((track) => track.kind === 'video');
-    if (videoTrack.enabled) {
-      videoTrack.enabled = !videoTrack.enabled;
-    } else {
-      videoTrack.enabled = true;
-    }
-  };
-
-  const toggleMic = () => {
-    const audioTrack = stream
-      .getTracks()
-      .find((track) => track.kind === 'audio');
-    if (audioTrack.enabled) {
-      audioTrack.enabled = !audioTrack.enabled;
-    } else {
-      audioTrack.enabled = true;
-    }
-    console.log(audioTrack.enabled, 'myMic');
-  };
+  // const toggleMic = () => {
+  //   const audioTrack = stream
+  //     .getTracks()
+  //     .find((track) => track.kind === 'audio');
+  //   if (audioTrack.enabled) {
+  //     audioTrack.enabled = !audioTrack.enabled;
+  //   } else {
+  //     audioTrack.enabled = true;
+  //   }
+  //   console.log(audioTrack.enabled, 'myMic');
+  // };
 
   
   return (
-    <div className="app">
-      <Header />
-      <div className="app-holder">
-        <SideBar />
-
-        <div className="dashboard-container classroom-dashboard">
-          <div className="forms-wrapper">
-            <div className="myId">
-              <h3 className="input-label">Username</h3>
-              <input
-                label="Name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <CopyToClipboard text={myId}>
-                <button className="copy-btn call-btn">copy ID</button>
-              </CopyToClipboard>
-              <h3 className="input-label"> Insert Caller ID</h3>
-              <input
-                type="text"
-                value={callId}
-                onChange={(e) => setCallId(e.target.value)}
-              />
-              <div className="call-btn-container">
-                {callTaken && !leftCall ? null : (
-                  <button
-                    className="call-user-btn call-btn"
-                    onClick={() => callUser(callId)}
-                  >
-                    Call
-                  </button>
-                )}
-                {callId}
-              </div>
-            </div>
-            <div className="videos-wrapper">
-              <div>
-                {incomingCall && !callTaken ? (
-                  <div className="incoming-caller-container">
-                    <h4>{name} calling...</h4>
-                    <button
-                      className="call-user-btn call-btn"
-                      onClick={joinCall}
-                    >
-                      Join Call
-                    </button>
-                  </div>
-                ) : null}
-              </div>
-            </div>
-            <div className="video">
-              {stream && (
-                <>
-                  <video
-                    playsInline
-                    muted
-                    ref={myVideo}
-                    autoPlay
-                    className="videoplayer-container"
-                  />
-                  <>
-                    <div className="video-controls">
-                      <button className="cam-input-btn" onClick={toggleCam}>
-                        📸
-                      </button>
-                      <button className="mic-input-btn" onClick={toggleMic}>
-                        🎙️
-                      </button>
-                      <button className="phone-input-btn" onClick={exitCall}>
-                        ☎️
-                      </button>
-                    </div>
-                  </>
-                </>
-              )}
-            </div>
-              {callTaken && !leftCall ? (
-            <div className="video">
-                <>
-                  <video
-                    playsInline
-                    controls
-                    ref={peerVideo}
-                    autoPlay
-                    className="videoplayer-container peer-container"
-                  />
-                  <>
-                    <div className="controls-container"></div>
-                  </>
-                </>
-            </div>
-              ) : null}
-          </div>
-        </div>
-      </div>
-    </div>
+    
+     
+    
   );
 };
 

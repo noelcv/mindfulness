@@ -95,8 +95,26 @@ const ClassroomPage = () => {
             console.log(peersArr, 'peersArr before setting setPeers');
             setPeers(peersArr);
           }
-        ); //TODO: define generateNewPeer function
+        ); 
         
+        socketRef.current.on('userJoinedClassroom', (data) => {
+          const peer = addNewPeer(data.signal, data.callerId, stream);
+
+          peersRef.current.push({
+            peerId: data.callerId,
+            peer,
+          });
+
+          //this object will contain the peer plus the callerId
+          const peerObj = {
+            peer,
+            peerId: data.callerId,
+          };
+
+          setPeers((participants) => [...participants, peerObj]);
+        }); //TODO: create addNewPeer function 
+        
+
       })
       .catch((err) => {
         console.log(err);

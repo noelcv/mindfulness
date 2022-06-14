@@ -70,6 +70,21 @@ io.on('connection', (socket) => {
     });
   });
   
+  socket.on('disconnect', (id) => {
+    console.log('disconnecting.....', id);
+    const roomId = socketToClassroom[socket.id];
+    let room = participants[roomId];
+
+    if (room) {
+      room = room.filter((id) => id !== socket.id);
+      participants[roomId] = room;
+    }
+
+    //the server side is listening for leavers
+    socket.broadcast.emit('leftCall', socket.id);
+    console.log(socket.id, 'left the room');
+  });
+  
   
 });
 

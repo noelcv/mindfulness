@@ -10,7 +10,11 @@ import ClassBoard from '../../Classroom/ClassBoard/ClassBoard';
 const SideBar = () => {
   return (
     <div className="sidebar-container">
-     
+      
+      <Link to="/account" className="sidebar-link">
+        Sign-in
+      </Link> 
+      
       <Link to="/profile" className="sidebar-link">
         <ProfileBtn />
       </Link>

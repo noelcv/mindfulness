@@ -181,11 +181,10 @@ const ClassroomPage = () => {
     return peer;
   };
 
-  // const exitCall = () => {
-  //   setLeftCall(true);
-  //   if (connectionRef.current) connectionRef.current.destroy();
-  //   window.location.reload();
-  // };
+  const exitCall = () => {
+    userStream.current.getVideoTracks()[0].enabled = false;
+    window.location.replace('/events');
+  };
 
   const toggleCam = () => {
     const videoTrack = userStream.current
@@ -216,7 +215,6 @@ const ClassroomPage = () => {
       <Header />
       <div className="app-holder">
         <SideBar />
-
         <div className="dashboard-container">
           <div className="videos-wrapper">
             <div className="video">
@@ -235,7 +233,7 @@ const ClassroomPage = () => {
                   <button className="mic-input-btn" onClick={toggleMic}>
                     🎙️
                   </button>
-                  <button className="phone-input-btn">
+                  <button className="phone-input-btn" onClick={exitCall}>
                     ☎️
                   </button>
                 </div>

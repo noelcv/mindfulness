@@ -121,16 +121,25 @@ const ClassroomPage = () => {
           targetPeer.peer.signal(data.signal);
         });
         
-        
+        socketRef.current.on('leftCall', (id) => {
+          const peerObj = peersRef.current.find(
+            (target) => target.peerId === id
+          );
+          if (peerObj) {
+            peerObj.peer.destroy();
+          }
+          console.log(peerObj, 'the guy to be destroyed');
+          
+          const peers = peersRef.current.filter(
+            (target) => target.peerId !== id
+          );
+          peersRef.current = peers;
+          setPeers(peers);
+        });
       })
       .catch((err) => {
         console.log(err);
       });
-
-
-    socket.on('leftCall', () => {
-      
-    });
   }, []);
 
   const generateNewPeer = (userToSignal, callerId, stream) => {

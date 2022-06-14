@@ -1,5 +1,5 @@
 import React from 'react'
-import './SignInBtn.css';
+import './SigninBtn.css';
 import Lotus from './lotus.svg';
 
 const SignInBtn = () => {

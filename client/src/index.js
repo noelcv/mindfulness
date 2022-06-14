@@ -10,7 +10,8 @@ import ClassroomPage from './components/pages/ClassroomPage';
 import EventsPage from './components/pages/EventsPage';
 import ProfilePage from './components/pages/ProfilePage';
 import SettingsPage from './components/pages/SettingsPage';
-
+import SignInPage from './components/pages/SignInPage';
+import HomePage from './components/pages/HomePage';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -21,6 +22,8 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<App />}/>
+          <Route path='/signin' element={<SignInPage />}/>
+          <Route path='/home' element={<HomePage />}/>
           <Route path='/profile' element={<ProfilePage />}/>
           <Route path='/events' element={<EventsPage />}/>
           <Route path='/classroom' element={<ClassroomPage />}/>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Peer from 'simple-peer';
 import io from 'socket.io-client';
@@ -130,6 +131,8 @@ const ClassroomPage = () => {
           }
           console.log(peerObj, 'the guy to be destroyed');
           
+          /*filter out the participant that is leaving and use that
+          to update the state that will be used to re-render to everybody else*/
           const peers = peersRef.current.filter(
             (target) => target.peerId !== id
           );
@@ -138,7 +141,7 @@ const ClassroomPage = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err, 'error at useEffect');
       });
   }, []);
 
@@ -214,9 +217,49 @@ const ClassroomPage = () => {
 
   
   return (
-    
-     
-    
+    <div className="app">
+      <Header />
+      <div className="app-holder">
+        <SideBar />
+
+        <div className="dashboard-container">
+          <div className="videos-wrapper">
+            <div className="video">
+              <video
+                playsInline
+                muted
+                ref={userVideo}
+                autoPlay
+                className="videoplayer-container"
+              />
+              <>
+                <div className="video-controls">
+                  <button className="cam-input-btn">
+                    📸
+                  </button>
+                  <button className="mic-input-btn">
+                    🎙️
+                  </button>
+                  <button className="phone-input-btn">
+                    ☎️
+                  </button>
+                </div>
+              </>
+
+              {peers.map((peer) => {
+                return (
+                    <Video
+                      key={peer.peerId}
+                      peer={peer.peer}
+                      className="videoplayer-container"
+                    />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

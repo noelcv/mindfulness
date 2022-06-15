@@ -7,8 +7,6 @@ import ClassroomBtn from './ClassroomBtn/ClassroomBtn';
 import SettingsBtn from './SettingsBtn/SettingsBtn';
 import ClassBoard from '../../Classroom/ClassBoard/ClassBoard';
 import SignInBtn from './SigninBtn/SigninBtn';
-import AccountBtn from './AccountBtn/AccountBtn';
-import HomeBtn from './HomeBtn/HomeBtn';
 import { UserAuth } from '../../../AuthContext/AuthContext';
 import SignOutBtn from './SignOutBtn/SignOutBtn';
 
@@ -25,14 +23,7 @@ const SideBar = () => {
 
   return (
     <div className="sidebar-container">
-      <Link to="/home" className="sidebar-link">
-        <HomeBtn />
-      </Link>
-
-      <Link to="/account" className="sidebar-link">
-        <AccountBtn />
-      </Link>
-
+    
       <Link to="/profile" className="sidebar-link">
         <ProfileBtn />
       </Link>

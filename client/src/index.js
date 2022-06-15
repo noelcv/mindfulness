@@ -27,7 +27,6 @@ root.render(
         <Routes>
           <Route path='/' element={<App />}/>
           <Route path='/signin' element={<SignInPage />}/>
-          <Route path='/account' element={<AccountPage />}/>
           <Route path='/home' element={<HomePage />}/>
           <Route path='/profile' element={<ProfilePage />}/>
           <Route path='/events' element={<EventsPage />}/>

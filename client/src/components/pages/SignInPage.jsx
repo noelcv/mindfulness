@@ -23,11 +23,11 @@ const SignInPage = () => {
   }
   
   useEffect(() => {
-    if (user !== null) {
+    if (user != null) {
       console.log('some user', user)
-      goTo('/account');
+      goTo('/profile');
     }
-  }, [user])
+  }, [])
   
   
   return (

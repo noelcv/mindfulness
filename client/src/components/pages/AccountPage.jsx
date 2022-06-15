@@ -6,32 +6,33 @@ import { UserAuth } from '../../AuthContext/AuthContext';
 import SignOutBtn from '../appLevel/SideBar/SignOutBtn/SignOutBtn';
 
 const AccountPage = () => {
-  const { logout, user } = UserAuth;
-  
+  const { logOut, user } = UserAuth;
+
   const signOutHandler = async () => {
     try {
-      await logout();
+      await logOut();
     } catch (err) {
       console.log(err);
     }
-  }
-  
-  
+  };
+
   return (
     <div className="app">
       <Header />
       <div className="app-holder">
         <SideBar />
-        <div className='dashboard-container'>
-        <div className="sign-in-container">
-          <h2 className="page-title">Welcome, {user?.displayName}</h2>
-          
-          <SignOutBtn onClick={signOutHandler}/>
-          
+        <div className="dashboard-container">
+          <div className="sign-in-container">
+            <h2 className="page-title">Welcome, {user?.displayName}</h2>
+
+            <button
+              className="btn-section-sidebar sidebar-link"
+              onClick={signOutHandler}
+            >
+              Sign Out
+            </button>
           </div>
-          
         </div>
-    
       </div>
     </div>
   );

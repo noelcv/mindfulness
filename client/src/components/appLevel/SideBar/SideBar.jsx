@@ -12,35 +12,27 @@ import HomeBtn from './HomeBtn/HomeBtn';
 import { UserAuth } from '../../../AuthContext/AuthContext';
 import SignOutBtn from './SignOutBtn/SignOutBtn';
 
-
 const SideBar = () => {
-  
-  const { user, logout } = UserAuth();
-  
+  const { user, logOut } = UserAuth();
+
   const signOutHandler = async () => {
     try {
-      await logout();
+      await logOut();
     } catch (err) {
       console.log(err);
     }
-  }
-  
+  };
+
   return (
     <div className="sidebar-container">
-      {user?.displayName ? ( <button onClick={signOutHandler}>Sign Out</button> ) : (
-      <Link to="/signin" className="sidebar-link">
-        <SignInBtn />
-      </Link> 
-      )}
-      
       <Link to="/home" className="sidebar-link">
         <HomeBtn />
-      </Link> 
-      
+      </Link>
+
       <Link to="/account" className="sidebar-link">
         <AccountBtn />
-      </Link> 
-      
+      </Link>
+
       <Link to="/profile" className="sidebar-link">
         <ProfileBtn />
       </Link>
@@ -53,6 +45,20 @@ const SideBar = () => {
       <Link to="/settings" className="sidebar-link">
         <SettingsBtn />
       </Link>
+
+      {user?.displayName ? (
+        <button
+          className="btn-section-sidebar sidebar-link"
+          onClick={signOutHandler}
+        >
+          Sign Out
+        </button>
+      ) : (
+        <Link to="/signin" className="sidebar-link btn-section-sidebar ">
+          Sign In
+        </Link>
+      )}
+
       <Outlet />
     </div>
   );

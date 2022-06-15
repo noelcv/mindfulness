@@ -11,33 +11,33 @@ import { auth } from '../firebase';
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-    const [user, setUser] = useState({});
- 
-    const googleSignIn = () => {
-      const provider = new GoogleAuthProvider();
-      signInWithRedirect(auth, provider);
-    };
-    
-    const logout = () => {
-      signOut(auth);
-    } 
-    
-    useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
-        console.log(currentUser, ' user at context user')
-      });
-      return () => {
-        unsubscribe();
-      }
-    }, []);
-    
-    return (
-      <AuthContext.Provider value={{ googleSignIn, logout, user }}>
-        {children}
-      </AuthContext.Provider>
-    );
+  const [user, setUser] = useState({});
+
+  const googleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
   };
+
+  const logOut = () => {
+    signOut(auth);
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      console.log(currentUser, ' user at context user');
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ googleSignIn, logOut, user }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
 export const UserAuth = () => {
   return useContext(AuthContext);

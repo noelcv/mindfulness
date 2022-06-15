@@ -68,18 +68,6 @@ const EventForm = ({setEvents}) => {
           />
           </div>
           
-          {/* <div className="group-form-wrapper">
-          <label htmlFor="location">Location</label>
-          <input
-            id="location"
-            name="location"
-            type="text"
-            required
-            onChange={(e) => {
-              setLocation(e.target.value);
-            }}
-          />
-          </div> */}
           </div>
           <div className="group-form-wrapper submit-wrapper">
           {!isPending && (

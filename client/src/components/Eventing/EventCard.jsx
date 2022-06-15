@@ -15,16 +15,14 @@ const EventCard = ({ event }) => {
   
   return (
     <>
-      <div className="event-container">
-        <div className="event-date-container">
-          <h3 className="event-date">{moment(event.date).format(`ddd`)}</h3>
-        </div>
-        <div className="event-content-container">
+      <div className="sidebar-link ">  
+        <div className="sidebar-link btn-section-sidebar">
+          <h3 className="week-day">{moment(event.date).format(`ddd`)}</h3>
           <div className="event-content-wrapper">
             <div className="event-title-wrapper">
               <h3 className="event-title">{event.title}</h3>
             </div>
-            <div className="event-details-container">
+            <div className="">
               <p className="event-detail event-time">
                 {moment(event.date).format('HH:mm a - MMMM Do, YYYY')}
               </p>

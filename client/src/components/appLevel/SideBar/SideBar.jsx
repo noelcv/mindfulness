@@ -15,16 +15,24 @@ import SignOutBtn from './SignOutBtn/SignOutBtn';
 
 const SideBar = () => {
   
-  const { user, logOut } = UserAuth();
+  const { user, logout } = UserAuth();
+  
+  const signOutHandler = async () => {
+    try {
+      await logout();
+    } catch (err) {
+      console.log(err);
+    }
+  }
   
   return (
     <div className="sidebar-container">
-      {user?.displayName ? <SignOutBtn /> :
+      {user?.displayName ? ( <button onClick={signOutHandler}>Sign Out</button> ) : (
       <Link to="/signin" className="sidebar-link">
         <SignInBtn />
       </Link> 
+      )}
       
-      }
       <Link to="/home" className="sidebar-link">
         <HomeBtn />
       </Link> 

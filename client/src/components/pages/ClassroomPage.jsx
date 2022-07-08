@@ -237,7 +237,8 @@ const ClassroomPage = () => {
                 </div>
               </>
 
-              {peers.map((peer) => {
+              {peers.map((peer, index) => {
+                if (index === 0) {
                 return (
                     <Video
                       key={peer.peerId}
@@ -245,6 +246,11 @@ const ClassroomPage = () => {
                       className="videoplayer-container"
                     />
                 );
+                } else {
+                  return (
+                    <></>
+                  )
+                }              
               })}
             </div>
           </div>

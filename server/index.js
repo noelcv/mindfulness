@@ -15,7 +15,7 @@ const server = http.createServer(app);
 // https://socket.io/docs/v3/handling-cors/
 const io = require('socket.io')(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: '*',
     methods: ['GET', 'POST'],
   },
 });
@@ -84,7 +84,7 @@ io.on('connection', (socket) => {
 
 server.listen(PORT, () => {
   try {
-    console.log(`Express Server up and running at http://localhost:${PORT}`);
+    console.log(`Express Server up and running`);
   } catch (err) {
     console.log(err);
   }

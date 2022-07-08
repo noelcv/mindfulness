@@ -1,7 +1,9 @@
 import { currentDate, sortEvents } from './utils';
 
+const BASE_URL = 'https://mindfulnessp2p.herokuapp.com'
+
 export const postEvent = (addOne) => {
-  return fetch('http://localhost:3002/events', {
+  return fetch(`${BASE_URL}/events`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(addOne),
@@ -10,7 +12,7 @@ export const postEvent = (addOne) => {
 }
 
 export const getEvents = () => {
-  return fetch('http://localhost:3002/events')
+  return fetch(`${BASE_URL}/events`)
     .then(res => res.json())
     .then(data => data.filter((key) => key.date > currentDate))
     .then(filtered => sortEvents(filtered))

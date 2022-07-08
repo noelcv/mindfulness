@@ -51,7 +51,7 @@ const ClassroomPage = () => {
   };
 
   useEffect(() => {
-    socketRef.current = io.connect('http://localhost:3002');
+    socketRef.current = io.connect('https://mindfulnessp2p.herokuapp.com');
 
     navigator.mediaDevices
       .getUserMedia(videoConstraints)

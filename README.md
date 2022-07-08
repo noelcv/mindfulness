@@ -1,6 +1,6 @@
 # Mindfulness
 
-Mindfulness promotes safe spaces for gathering Wellness professionals and people.
+Mindfulness promotes safe spaces for gathering Wellness professionals and their clients.
 
 Using WebRTC technology, users can communicate directly with their favorite therapist in Real-Time, peer-to-peer (p2p), without having the content of their communications intercepted and stored in a server.
 

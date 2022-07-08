@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Peer from 'simple-peer';
 import io from 'socket.io-client';
 import Header from '../appLevel/Header/Header';
@@ -16,7 +15,7 @@ const Video = (props) => {
     props.peer.on('stream', (stream) => {
       ref.current.srcObject = stream;
     });
-  }, []);
+  }, []); //eslint-disable-line
 
   return (
     <>
@@ -122,7 +121,6 @@ const ClassroomPage = () => {
           if (peerObj) {
             peerObj.peer.destroy();
           }
-          console.log(peerObj, 'the guy to be destroyed');
 
           /*filter out the participant that is leaving and use that
           to update the state that will be used to re-render to everybody else*/

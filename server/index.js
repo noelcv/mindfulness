@@ -47,7 +47,6 @@ io.on('connection', (socket) => {
     );
 
     socket.emit('everybodyInTheHouse', participantsInClassroom);
-    console.log('everybodyInTheHouse', participantsInClassroom);
   });
   
   socket.on('sendingSignalToBackEnd', (data) => {
@@ -55,7 +54,6 @@ io.on('connection', (socket) => {
       signal: data.signal,
       callerId: data.callerId,
     });
-    console.log(' voila voila', data.callerId);
   });
   
   socket.on('disconnect', () => {
@@ -79,12 +77,9 @@ io.on('connection', (socket) => {
       participants[roomId] = room;
     }
 
-    //the server side is listening for leavers
+    //the server-side is listening for leavers
     socket.broadcast.emit('leftCall', socket.id);
-    console.log(socket.id, 'left the room');
   });
-  
-  
 });
 
 server.listen(PORT, () => {

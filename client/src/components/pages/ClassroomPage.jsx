@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Peer from 'simple-peer';
 import io from 'socket.io-client';
 import Header from '../appLevel/Header/Header';
@@ -41,6 +41,7 @@ const ClassroomPage = () => {
   const userVideo = useRef();
   const peersRef = useRef([]); //this will be used to track and handle the RTC Connections
   const userStream = useRef();
+  const navigate = useNavigate();
 
   const currentPath = useLocation();
   const roomId = currentPath.pathname.split('/').pop();
@@ -182,7 +183,8 @@ const ClassroomPage = () => {
 
   const exitCall = () => {
     userStream.current.getVideoTracks()[0].enabled = false;
-    window.location.replace('/events');
+    if(socketRef.current) socketRef.current.disconnect();
+    navigate('/events');
   };
 
   const toggleCam = () => {

@@ -3,12 +3,14 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 const http = require('http');
 const router = require('./router');
 const { PORT } = require('./config');
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, './client/build')));
 
 const server = http.createServer(app);
 
@@ -20,7 +22,9 @@ const io = require('socket.io')(server, {
   },
 });
 app.use(router);
-
+app.get('*', (req, res) => {
+  res.sendFile(__dirname, 'client', 'build', 'index.html');
+});
 const participants = {};
 const socketToClassroom = {};
 
@@ -81,6 +85,9 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('leftCall', socket.id);
   });
 });
+
+
+
 
 server.listen(PORT, () => {
   try {

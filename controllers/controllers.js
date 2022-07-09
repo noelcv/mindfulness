@@ -23,3 +23,7 @@ exports.addEvent = async (req, res) => {
     res.sendStatus(500);
   }
 };
+
+// exports.routesHandler = (req, res) => {
+//   res.sendFile(__dirname, 'client', 'build', 'index.html');
+// }

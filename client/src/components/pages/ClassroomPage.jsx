@@ -32,7 +32,7 @@ const Video = (props) => {
 
 const DEV = "http://localhost:3002";
 const PROD = 'https://mindfulnessp2p.herokuapp.com';
-const BASE_URL = DEV;
+const BASE_URL = PROD;
 
 const ClassroomPage = () => {
   //HOOKS for classroom state management

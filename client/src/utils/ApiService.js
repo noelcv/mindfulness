@@ -1,6 +1,6 @@
 import { currentDate, sortEvents } from './utils';
 
-const BASE_URL = 'https://mindfulnessp2p.herokuapp.com'
+const BASE_URL = 'http://localhost:3002';
 
 export const postEvent = (addOne) => {
   return fetch(`${BASE_URL}/events`, {

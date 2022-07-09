@@ -30,7 +30,7 @@ const Video = (props) => {
   );
 };
 
-const DEV = "http://localhost:3002";
+const DEV = "http://localhost:3002"; 
 const PROD = 'https://mindfulnessp2p.herokuapp.com';
 const BASE_URL = PROD;
 

@@ -30,6 +30,10 @@ const Video = (props) => {
   );
 };
 
+const DEV = "http://localhost:3002";
+const PROD = 'https://mindfulnessp2p.herokuapp.com';
+const BASE_URL = DEV;
+
 const ClassroomPage = () => {
   //HOOKS for classroom state management
   const [peers, setPeers] = useState([]); //this will track the peers for rendering purposes
@@ -51,7 +55,7 @@ const ClassroomPage = () => {
   };
 
   useEffect(() => {
-    socketRef.current = io.connect('https://mindfulnessp2p.herokuapp.com');
+    socketRef.current = io.connect(BASE_URL);
 
     navigator.mediaDevices
       .getUserMedia(videoConstraints)

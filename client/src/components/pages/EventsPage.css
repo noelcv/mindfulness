@@ -20,8 +20,10 @@
 }
 
 .events-wrapper {
-
-  flex-direction: row;
+  flex-direction: column;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #list {

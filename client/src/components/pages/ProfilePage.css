@@ -1,16 +1,27 @@
 .profile-container {
+  margin-top: 9vh;
+  margin-left: 18vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.profile-inner-container {
+.profile-pic {
+  border-radius: 50%;
+  margin-bottom: 0.3em;
+  width: 10vh;
+}
+
+.profile-detail {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  border-bottom: 2px solid black;
+  width: 200%;
+  margin-left: -16vh;
 }
 
-h2 {
-  text-align: center;
-  justify-content: center;
+.expertise-list {
+  text-align: left;
 }
-

@@ -3,7 +3,7 @@ import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import  { GoogleButton } from 'react-google-button';
 import { UserAuth } from '../../AuthContext/AuthContext'
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './SignInPage.css';
 
 import './CommonPageStyles.css';
@@ -11,7 +11,6 @@ import './CommonPageStyles.css';
 const SignInPage = () => {
   
   const { googleSignIn, user } = UserAuth();
-  
   const goTo = useNavigate();
   
   const handleGoogleSignIn = async () => {
@@ -24,8 +23,7 @@ const SignInPage = () => {
   
   useEffect(() => {
     if (user != null) {
-      console.log('some user', user)
-      goTo('/profile');
+      goTo('/events');
     }
   }, [])
   
@@ -38,7 +36,6 @@ const SignInPage = () => {
         <div className='dashboard-container'>
         
           <div className="sign-in-container">
-          <h2 className="page-title">Sign In</h2>
           <GoogleButton onClick={handleGoogleSignIn} />
           </div>
         </div>

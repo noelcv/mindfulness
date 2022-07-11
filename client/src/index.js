@@ -21,7 +21,6 @@ const root = createRoot(container);
 
 root.render(
   // <React.StrictMode>
-    <Provider store={store}>
     <AuthContextProvider>
       <BrowserRouter>
         <Routes>
@@ -36,7 +35,6 @@ root.render(
         </Routes>
       </BrowserRouter>
       </AuthContextProvider>
-    </Provider>
   // </React.StrictMode>
 );
 

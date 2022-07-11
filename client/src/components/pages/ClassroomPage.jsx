@@ -3,10 +3,13 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Peer from 'simple-peer';
 import io from 'socket.io-client';
+import { BACKEND_CONNECTION } from '../../utils/envSwitch';
 import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import './ClassroomPage.css';
 import './CommonPageStyles.css';
+
+const BASE_URL = BACKEND_CONNECTION;
 
 const Video = (props) => {
   const ref = useRef();
@@ -30,9 +33,8 @@ const Video = (props) => {
   );
 };
 
-const DEV = "http://localhost:3002"; 
-const PROD = 'https://mindfulnessp2p.herokuapp.com';
-const BASE_URL = PROD;
+// const DEV = "http://localhost:3002"; 
+// const PROD = 'https://mindfulnessp2p.herokuapp.com';
 
 const ClassroomPage = () => {
   //HOOKS for classroom state management
@@ -45,7 +47,6 @@ const ClassroomPage = () => {
 
   const currentPath = useLocation();
   const roomId = currentPath.pathname.split('/').pop();
-  console.log('roomId:', roomId);
 
   const videoConstraints = {
     video: {
@@ -69,8 +70,7 @@ const ClassroomPage = () => {
         socketRef.current.on(
           'everybodyInTheHouse',
           (participantsInClassroom) => {
-            console.log(participantsInClassroom, 'participantsInClassroom');
-            const peersArr = []; //array for rendering
+            const peersArr = []; //array for rendering purposes
 
             participantsInClassroom.forEach((participantId) => {
               const peer = generateNewPeer(
@@ -90,7 +90,6 @@ const ClassroomPage = () => {
                 peer,
               });
             });
-            console.log(peersArr, 'peersArr before setting setPeers');
             setPeers(peersArr);
           }
         );

@@ -9,8 +9,6 @@ const EventForm = ({setEvents}) => {
   //HOOKS
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
-  // const [location, setLocation] = useState('');
-  // const [roomId, setRoomId] = useState(''); //this will grab the callID for the video calls
   const [isPending, setIsPending] = useState(false);
   
   
@@ -18,9 +16,7 @@ const EventForm = ({setEvents}) => {
     e.preventDefault();
     const id = uuid();
     
-    console.log(id, 'id from submitHandler');
     const newEvent = { title, date, id };
-    console.log()
     if (newEvent.date > currentDate){
         setIsPending(true);
         await postEvent(newEvent);
@@ -32,43 +28,39 @@ const EventForm = ({setEvents}) => {
     }
   };
   
-  
-  
   return (
     <>
       <div className="form-container">
         <h3>Create a new Event</h3>
         <form className="form" onSubmit={submitHandler}> 
-        <div className="form-group">
-        <div className="group-form-wrapper">
-          <label htmlFor="title">Title</label>
-          <input
-            id="title"
-            name="title"
-            type="text"
-            placeholder="What is the event?"
-            required
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-          />
+          <div className="form-group">
+            <div className="group-form-wrapper">
+              <label htmlFor="title">Title</label>
+              <input
+                id="title"
+                name="title"
+                type="text"
+                placeholder="What is the event?"
+                required
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+              />
+              
+              <label htmlFor="date">Date</label>
+              <input
+                id="date"
+                name="date"
+                min={currentDate}
+                type="datetime-local"
+                required
+                onChange={(e) => {
+                  setDate(e.target.value);
+                }}
+              />
+            </div>
           </div>
           
-          <div className="group-form-wrapper">
-          <label htmlFor="date">Date</label>
-          <input
-            id="date"
-            name="date"
-            min={currentDate}
-            type="datetime-local"
-            required
-            onChange={(e) => {
-              setDate(e.target.value);
-            }}
-          />
-          </div>
-          
-          </div>
           <div className="group-form-wrapper submit-wrapper">
           {!isPending && (
             <button className="submit-btn" type="submit">

@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
-import './EventForm.css';
+import './EventCard.css';
 
 
 const EventCard = ({ event }) => {
@@ -15,8 +15,8 @@ const EventCard = ({ event }) => {
   
   return (
     <>
-      <div className="sidebar-link ">  
-        <div className="sidebar-link btn-section-sidebar">
+      <div className="">  
+        <div className="event-card">
           <h3 className="week-day">{moment(event.date).format(`ddd`)}</h3>
           <div className="event-content-wrapper">
             <div className="event-title-wrapper">

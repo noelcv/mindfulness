@@ -1,13 +1,5 @@
 .event-card {
-  background-color: #E3E2E2;
-  box-shadow: 1px 2px 1px 1.8px rgba(58, 154, 154, 0.9),
-  2.8px 3px 7.9px 1px rgba(255, 0, 255, 0.9),
-  2.3px 5.5px 15px 1.5px rgba(15, 255, 251, 0.998);
-}
-
-.event-card {
   display: flex;
-
   max-width: 100%;
   justify-content:flex-start;
   padding: 0.5em;
@@ -21,7 +13,6 @@
   align-items: center;
   height: auto;
   flex-direction: row;
-  cursor: pointer;
   background-color: #fff;
 }
 

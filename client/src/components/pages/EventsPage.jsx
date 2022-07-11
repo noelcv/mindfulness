@@ -7,11 +7,12 @@ import EventForm from '../Eventing/EventForm';
 import './CommonPageStyles.css';
 import './EventsPage.css'
 import { getEvents } from '../../utils/ApiService';
+import { UserAuth } from '../../AuthContext/AuthContext';
 
 const EventsPage = () => {
   //HOOKS
-
   const [events, setEvents] = useState([]);
+  const { user } = UserAuth();
 
   useEffect(() => {
     getEvents().then((res) => setEvents(res));
@@ -22,11 +23,15 @@ const EventsPage = () => {
       <Header />
       <div className="app-holder">
         <SideBar />
-        <div className="dashboard-container">
+        <div className="events-page-container">
           <div className="events-wrapper">
-          <EventForm setEvents={setEvents} />
-        
-          <EventList id="list" events={events} setEvents={setEvents} />
+            <div className="events-list-wrapper">
+              <EventList id="list" events={events} setEvents={setEvents} />
+            </div>
+              { user?.displayName ? 
+            <div className="form-wrapper">
+              <EventForm setEvents={setEvents} />
+            </div> : <></>} 
           </div>
         </div>
       </div>

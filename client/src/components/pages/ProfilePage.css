@@ -1,5 +1,6 @@
 .profile-container {
-  margin-top: 0vh;
+  margin-top: 5vh;
+  margin-left: 18vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,6 +8,7 @@
 
 .profile-pic {
   border-radius: 50%;
+  margin-bottom: 0.3em;
   width: 10vh;
 }
 

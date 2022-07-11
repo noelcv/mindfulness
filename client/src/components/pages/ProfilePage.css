@@ -1,11 +1,36 @@
 .profile-container {
+  margin-top: -5vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-h2 {
-  text-align: center;
-  justify-content: center;
+.profile-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  border-bottom: 2px solid black;
+  width: 200%;
+  margin-left: -16vh;
 }
 
+.expertise-list {
+  text-align: left;
+}
+
+.name-card {
+  /* background-color: rgba(6, 6, 253, 0.36); */
+}
+
+.location-card {
+  /* background-color: rgba(32, 229, 32, 0.17); */
+}
+
+.job-card {
+  /* background-color: rgba(255, 255, 0, 0.595); */
+}
+
+.expertise-card {
+  /* background-color: rgba(255, 166, 0, 0.445); */
+}

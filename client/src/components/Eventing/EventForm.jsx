@@ -16,9 +16,7 @@ const EventForm = ({setEvents}) => {
     e.preventDefault();
     const id = uuid();
     
-    console.log(id, 'id from submitHandler');
     const newEvent = { title, date, id };
-    console.log()
     if (newEvent.date > currentDate){
         setIsPending(true);
         await postEvent(newEvent);

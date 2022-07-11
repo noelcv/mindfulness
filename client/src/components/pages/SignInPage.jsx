@@ -23,7 +23,6 @@ const SignInPage = () => {
   
   useEffect(() => {
     if (user != null) {
-      console.log('some user', user)
       goTo('/events');
     }
   }, [])

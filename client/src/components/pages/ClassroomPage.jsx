@@ -47,7 +47,6 @@ const ClassroomPage = () => {
 
   const currentPath = useLocation();
   const roomId = currentPath.pathname.split('/').pop();
-  console.log('roomId:', roomId);
 
   const videoConstraints = {
     video: {
@@ -71,8 +70,7 @@ const ClassroomPage = () => {
         socketRef.current.on(
           'everybodyInTheHouse',
           (participantsInClassroom) => {
-            console.log(participantsInClassroom, 'participantsInClassroom');
-            const peersArr = []; //array for rendering
+            const peersArr = []; //array for rendering purposes
 
             participantsInClassroom.forEach((participantId) => {
               const peer = generateNewPeer(
@@ -92,7 +90,6 @@ const ClassroomPage = () => {
                 peer,
               });
             });
-            console.log(peersArr, 'peersArr before setting setPeers');
             setPeers(peersArr);
           }
         );

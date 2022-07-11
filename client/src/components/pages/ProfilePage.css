@@ -1,5 +1,5 @@
 .profile-container {
-  margin-top: 5vh;
+  margin-top: 9vh;
   margin-left: 18vh;
   display: flex;
   justify-content: center;
@@ -24,20 +24,4 @@
 
 .expertise-list {
   text-align: left;
-}
-
-.name-card {
-  /* background-color: rgba(6, 6, 253, 0.36); */
-}
-
-.location-card {
-  /* background-color: rgba(32, 229, 32, 0.17); */
-}
-
-.job-card {
-  /* background-color: rgba(255, 255, 0, 0.595); */
-}
-
-.expertise-card {
-  /* background-color: rgba(255, 166, 0, 0.445); */
 }

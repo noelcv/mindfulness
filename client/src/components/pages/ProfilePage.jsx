@@ -36,15 +36,17 @@ const ProfilePage = () => {
           
           <div className='profile-detail job-card'>
             <h4>I am a </h4>
-            <h2 className="display-job">Yoga Teacher</h2>
+            <h2 className="display-job">Full-Stack (Yoga) Developer</h2>
           </div>
           
           <div className='profile-detail expertise-card'>
             <h4>With an Expertise in</h4>
             <ul className="expertise-list">
-              <li>AcroYoga</li> 
-              <li>Kundalini</li>
-              <li>Sound Baths</li>
+              <li>JavaScript</li> 
+              <li>React</li>
+              <li>AcroYoga</li>
+              <li>WebRTC</li>
+              <li>SocketIO</li>
             </ul>
           </div>
           

@@ -6,6 +6,7 @@ import buymeacoffee from '../../assets/buymeacoffee.svg'
 
 import { UserAuth } from '../../AuthContext/AuthContext';
 import SignInPage from './SignInPage';
+import SignInBtn from '../appLevel/SideBar/SigninBtn/SigninBtn';
 
 
 const ProfilePage = () => {
@@ -51,7 +52,8 @@ const ProfilePage = () => {
           </div>
           </div>
         </div>
-        : <SignInPage />}
+        : <SignInPage /> 
+          }
       </div>
     </div>
   );

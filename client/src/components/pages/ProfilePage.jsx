@@ -5,19 +5,20 @@ import './ProfilePage.css';
 import buymeacoffee from '../../assets/buymeacoffee.svg'
 
 import { UserAuth } from '../../AuthContext/AuthContext';
+import SignInPage from './SignInPage';
 
 
 const ProfilePage = () => {
   
   const { user } = UserAuth();
-  console.log(user.displayName, 'user at profile page');
-  const profilePic = user.photoURL;
+  const profilePic = user?.photoURL;
   
   return (
     <div className="app">
       <Header />
       <div className="app-holder">
         <SideBar />
+      { user?.displayName ? 
         <div className='dashboard-container profile-container'>
         <div className='profile-inner-container'>
           <div className='profile-detail name-card'>
@@ -50,6 +51,7 @@ const ProfilePage = () => {
           </div>
           </div>
         </div>
+        : <SignInPage />}
       </div>
     </div>
   );

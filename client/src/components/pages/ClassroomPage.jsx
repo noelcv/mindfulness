@@ -3,10 +3,13 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Peer from 'simple-peer';
 import io from 'socket.io-client';
+import { BACKEND_CONNECTION } from '../../utils/envSwitch';
 import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import './ClassroomPage.css';
 import './CommonPageStyles.css';
+
+const BASE_URL = BACKEND_CONNECTION;
 
 const Video = (props) => {
   const ref = useRef();
@@ -30,9 +33,8 @@ const Video = (props) => {
   );
 };
 
-const DEV = "http://localhost:3002"; 
-const PROD = 'https://mindfulnessp2p.herokuapp.com';
-const BASE_URL = PROD;
+// const DEV = "http://localhost:3002"; 
+// const PROD = 'https://mindfulnessp2p.herokuapp.com';
 
 const ClassroomPage = () => {
   //HOOKS for classroom state management

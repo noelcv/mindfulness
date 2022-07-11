@@ -1,8 +1,7 @@
 import { currentDate, sortEvents } from './utils';
+import { BACKEND_CONNECTION } from './envSwitch';
 
-const DEV = "http://localhost:3002/api";
-const PROD = 'https://mindfulnessp2p.herokuapp.com/api';
-const BASE_URL = PROD;
+const BASE_URL = BACKEND_CONNECTION + '/api';
 
 export const postEvent = (addOne) => {
   return fetch(`${BASE_URL}/events`, {

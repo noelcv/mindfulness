@@ -5,6 +5,11 @@
   align-items: center;
 }
 
+.profile-pic {
+  border-radius: 50%;
+  width: 10vh;
+}
+
 .profile-detail {
   display: flex;
   justify-content: space-between;

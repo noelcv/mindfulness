@@ -5,13 +5,13 @@ import './ProfilePage.css';
 import buymeacoffee from '../../assets/buymeacoffee.svg'
 
 import { UserAuth } from '../../AuthContext/AuthContext';
-import SignOutBtn from '../appLevel/SideBar/SignOutBtn/SignOutBtn';
 
 
 const ProfilePage = () => {
   
-  const { user } = UserAuth;
-  console.log(user, 'user at profile page');
+  const { user } = UserAuth();
+  console.log(user.displayName, 'user at profile page');
+  const profilePic = user.photoURL;
   
   return (
     <div className="app">
@@ -21,8 +21,8 @@ const ProfilePage = () => {
         <div className='dashboard-container profile-container'>
         <div className='profile-inner-container'>
           <div className='profile-detail name-card'>
-            <h4>My name is</h4> 
-            <h2 className="display-name">{user?.DisplayName}</h2>
+            <img src={profilePic} className="profile-pic" alt="profilePic"/>
+            <h2 className="display-name">{user?.displayName}</h2>
           </div>
           
           <div className='profile-detail location-card'>
@@ -37,7 +37,7 @@ const ProfilePage = () => {
           
           <div className='profile-detail expertise-card'>
             <h4>With an Expertise in</h4>
-            <ul className="expertise-list" contentEditable="false">
+            <ul className="expertise-list">
               <li>AcroYoga</li> 
               <li>Kundalini</li>
               <li>Sound Baths</li>

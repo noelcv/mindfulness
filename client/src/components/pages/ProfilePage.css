@@ -4,11 +4,6 @@
   align-items: center;
 }
 
-.profile-inner-container {
-  display: flex;
-  justify-content: center;
-}
-
 h2 {
   text-align: center;
   justify-content: center;

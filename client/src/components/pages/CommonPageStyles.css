@@ -10,7 +10,7 @@
 
 .dashboard-container {
   display: flex;
-  padding-top: 22vh;
+  padding-top: 10vh;
   align-items: flex-start;
   margin-top: 2vh;
   margin-bottom: 2vh;
@@ -19,7 +19,7 @@
   width: 160vh;
   min-height: 35vh;
   height: fit-content;
-  /* background-color: rgba(86, 81, 81, 0.1); */
+  background-color: rgba(86, 81, 81, 0.1);
 }
 
 

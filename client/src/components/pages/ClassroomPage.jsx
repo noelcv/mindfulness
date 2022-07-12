@@ -211,6 +211,7 @@ const ClassroomPage = () => {
             <div className="my-video">
               <video
                 playsInline
+                muted
                 ref={userVideo}
                 autoPlay
                 className="videoplayer-container"

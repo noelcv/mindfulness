@@ -36,7 +36,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10em;
+  margin-left: 0em;
 }
 
 
@@ -136,3 +136,4 @@
   display: flex;
   padding-left: 2em;
 }
+

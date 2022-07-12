@@ -224,13 +224,13 @@ const ClassroomPage = () => {
               />
               
                 <div className="video-controls">
-                  <button className="cam-input-btn" onClick={toggleCam}>
+                  <button className="cam-input-btn video-btn" onClick={toggleCam}>
                     📸
                   </button>
-                  <button className="mic-input-btn" onClick={toggleMic}>
+                  <button className="mic-input-btn video-btn" onClick={toggleMic}>
                     🎙️
                   </button>
-                  <button className="phone-input-btn" onClick={exitCall}>
+                  <button className="phone-input-btn video-btn" onClick={exitCall}>
                     ☎️
                   </button>
                 </div>
@@ -239,7 +239,7 @@ const ClassroomPage = () => {
               {peers.map((peer, index) => {
                 if (index === 0) {
                 return (
-                  <div className="peer-video">
+                  <div className="peer-video" key={peer.peerId}>
                     <Video
                       key={peer.peerId}
                       peer={peer.peer}

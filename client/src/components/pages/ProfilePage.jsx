@@ -3,7 +3,6 @@ import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import './ProfilePage.css';
 import buymeacoffee from '../../assets/buymeacoffee.svg'
-
 import { UserAuth } from '../../AuthContext/AuthContext';
 import SignInPage from './SignInPage';
 

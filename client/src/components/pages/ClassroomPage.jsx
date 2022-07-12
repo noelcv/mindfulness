@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Peer from 'simple-peer';
 import io from 'socket.io-client';
 import { BACKEND_CONNECTION } from '../../utils/envSwitch';
@@ -39,7 +39,6 @@ const ClassroomPage = () => {
   const userVideo = useRef();
   const peersRef = useRef([]); //this will be used to track and handle the RTC Connections
   const userStream = useRef();
-  const navigate = useNavigate();
 
   const currentPath = useLocation();
   const roomId = currentPath.pathname.split('/').pop();
@@ -128,7 +127,7 @@ const ClassroomPage = () => {
       .catch((err) => {
         console.log(err, 'error at useEffect');
       });
-  }, []);
+  }, []); //eslint-disable-line
 
   const generateNewPeer = (userToSignal, callerId, stream) => {
     const peer = new Peer({

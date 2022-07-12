@@ -183,7 +183,7 @@ const ClassroomPage = () => {
   const exitCall = () => {
     userStream.current.getVideoTracks()[0].enabled = false;
     if(socketRef.current) socketRef.current.disconnect();
-    navigate('/events');
+    window.location.replace('/events');
   };
 
   const toggleCam = () => {
@@ -197,10 +197,10 @@ const ClassroomPage = () => {
     }
     console.log(videoTrack.enabled, 'myCam');
   };
- 
+
   const toggleMic = () => {
     const audioTrack = userStream.current
-      .getTracks()
+      .getAudioTracks()
       .find((track) => track.kind === 'audio');
     if (audioTrack.enabled) {
       audioTrack.enabled = !audioTrack.enabled;
@@ -213,12 +213,8 @@ const ClassroomPage = () => {
   return (
     <div className="app">
       <Header />
-      <div className="app-holder">
-        <SideBar />
-
-        <div className="dashboard-container">
           <div className="videos-wrapper">
-            <div className="video">
+            <div className="my-video">
               <video
                 playsInline
                 muted
@@ -226,28 +222,30 @@ const ClassroomPage = () => {
                 autoPlay
                 className="videoplayer-container"
               />
-              <>
+              
                 <div className="video-controls">
-                  <button className="cam-input-btn" onClick={toggleCam}>
+                  <button className="cam-input-btn video-btn" onClick={toggleCam}>
                     📸
                   </button>
-                  <button className="mic-input-btn" onClick={toggleMic}>
+                  <button className="mic-input-btn video-btn" onClick={toggleMic}>
                     🎙️
                   </button>
-                  <button className="phone-input-btn" onClick={exitCall}>
+                  <button className="phone-input-btn video-btn" onClick={exitCall}>
                     ☎️
                   </button>
                 </div>
-              </>
+            </div>
 
               {peers.map((peer, index) => {
                 if (index === 0) {
                 return (
+                  <div className="peer-video" key={peer.peerId}>
                     <Video
                       key={peer.peerId}
                       peer={peer.peer}
                       className="videoplayer-container"
                     />
+                    </div>
                 );
                 } else {
                   return (
@@ -255,12 +253,9 @@ const ClassroomPage = () => {
                   )
                 }              
               })}
-            </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
+      );
 };
 
 export default ClassroomPage;

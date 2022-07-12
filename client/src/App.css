@@ -1,0 +1,73 @@
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .app {
+    display: flex;
+    flex-direction: column;
+  }
+  h1 {
+    display: flex;
+    line-height: 1em;
+    font-size: 2em;
+  }
+  
+  .header-wrapper {
+    top: 0;
+    display: flex;
+    position: fixed;
+    width: 60%;
+    justify-content: center;
+    background-color: white;
+    z-index: 3;
+  }
+  
+  
+  .app-holder {
+   flex-direction: column;
+  }
+  
+  img {
+    display: none;
+  }
+  
+  .btn-section-sidebar {
+    width: 50%;
+    margin: 0.1em;
+    padding: 0.1em;
+  
+  }
+  
+  .btn-text-sidebar {
+    padding-left: 0.1em;
+    font-size: 70%;
+  }
+  
+  .sidebar-container {
+    flex-direction: row;
+    margin-top: -12vh;
+    height: 10%;
+  }
+  
+  .sidebar-link {
+    min-width: 13.5vh;
+    margin:-1em;
+  }
+
+  .sign-out-btn {
+    font-weight: 600;
+    font-size: 70%;
+    min-width: 6.2vh;
+    margin-bottom: 11em;
+  }
+  
+  .event-card {
+    width: 90%;
+  }
+  
+  .events-page-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+}

@@ -22,7 +22,9 @@ const EventsPage = () => {
     <div className="app">
       <Header />
       <div className="app-holder">
-        <SideBar />
+        <div className='sidebar-wrapper'>
+        <SideBar/>
+        </div>
         <div className="events-page-container">
           <div className="events-wrapper">
             <div className="events-list-wrapper">

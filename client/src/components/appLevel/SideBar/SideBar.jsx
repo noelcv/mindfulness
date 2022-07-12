@@ -39,13 +39,13 @@ const SideBar = () => {
 
       {user?.displayName ? (
         <button
-          className="btn-section-sidebar sidebar-link"
+          className="btn-section-sidebar sidebar-link sign-out-btn"
           onClick={signOutHandler}
         >
           Sign Out
         </button>
       ) : (
-        <Link to="/signin" className="sidebar-link btn-section-sidebar ">
+        <Link to="/signin" className="sidebar-link btn-section-sidebar  sign-in-btn">
           Sign In
         </Link>
       )}

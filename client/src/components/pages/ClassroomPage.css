@@ -14,17 +14,23 @@
   align-items: center;
 }
 
-.video-wrapper {
+.videos-wrapper {
   display: flex;
-  justify-content: center;  
+  justify-content: space-evenly;  
+  flex-direction: row;
+  margin-top: 30vh;
 }
-.video {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border-radius: 0.5em;
-  border: 0.2em solid rgba(0, 0, 0, 0.9);
-  background-color: rgba(0, 0, 0, 0.85);;
+
+.my-video {
+  padding-top: 1em;
+  background-color:#060606;
+  border-radius: 0.3em;
+}
+
+.peer-video {
+  padding-top: 1em;
+  background-color:#060606;
+  border-radius: 0.3em;
 }
 
 .videoplayer-container {
@@ -33,132 +39,79 @@
   justify-content: flex;
   align-items: justify;
   z-index: 999;
+  border-radius: 0.5em;
+  border: 0.2em solid rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
-.video-container {
+.video-btn {
+  border: 1px solid rgba(0,0,0,0.9);
   display: flex;
   justify-content: center;
-  margin-left: 0em;
-
-}
-
-.video-controls {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  align-items: center;
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  cursor: pointer;
   padding: 0.5em;
   margin: 0.5em;
 }
 
 .cam-input-btn {
   background-color: rgba(25, 216, 223, 0.9);
-  border: 1px solid rgba(0,0,0,0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 4em;
-  height: 4em;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0.5em;
-  margin: 0.5em;
+  
 }
 
 .mic-input-btn {
   background-color: rgba(223, 141, 25, 0.65);
-  border: 1px solid rgba(0,0,0,0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 4em;
-  height: 4em;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0.5em;
-  margin: 0.5em;
 }
 
 .phone-input-btn {
   background-color: rgba(249, 52, 52, 0.738);
-  border: 1px solid rgba(0, 0, 0, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 4em;
-  height: 4em;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0.5em;
-  margin: 0.5em;
 }
 
-.incoming-caller-container {
-  margin: 0.5em;
-}
+@media screen and (max-width: 900px) {
 
-.peer-container {
-  margin: 2em;
-}
-
-/*FORM*/
-
-.forms-wrapper {
-  display: fley;
-  flex-direction: row;
-}
-
-.myId {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-}
-
-.input-label {
-  display: flex;
-}
-
-.call-btn {
-  justify-content: flex-start;
-  min-width: 10vh;
-  width: 20vh;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-  padding-top: 0.5vh;
-  padding-bottom: 0.5vh;
-  border: none;
-  border-radius: 0.1vh;
-  color: #fff;
-  font-weight: 900;
-  font-family: Lato;
-  text-transform: uppercase;
-  letter-spacing: 0.1vh;
-  text-align: center;
-  z-index: 2000;
-  cursor: pointer;
-}
-
-call-btn:hover {
-  box-shadow: 1px 2px 1px 1.8px rgba(58, 154, 154, 0.9),
-    2.8px 3px 7.9px 1px rgba(255, 0, 255, 0.9),
-    2.3px 5.5px 15px 1.5px rgba(15, 255, 251, 0.998);
-}
-
-call-btn:active {
-  transform: translate(0.2%, 10%);
-}
-
-.copy-btn {
-  background-color: rgba(50, 50, 255, 0.9);
-}
-
-.call-user-btn {
-  background-color: rgba(10, 90, 24, 0.9);
-  display: flex;
-  justify-content: center;
-}
-
-.exit-call-btn {
-  background-color: rgba(201, 9, 9, 0.9);
-  display: flex;
-  justify-content: center;
+  .videos-wrapper {
+    margin-top: -5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .videoplayer-container {
+    width:480px;
+    height: auto;
+    z-index: 999;
+    border-radius: 0.5em;
+    border: 0.2em solid rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+  
+  .video-btn {
+    border: 1px solid rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+    padding: -1em;
+    margin: -1em;
+  }
+  
+  .my-video {
+    padding-top: 0.2em;
+    background-color:#060606;
+  }
+  
+  .peer-video {
+    padding-top: 1em;
+    background-color:#060606;
+    border-radius: 0.3em;
+  }
 }

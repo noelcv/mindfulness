@@ -4,8 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Peer from 'simple-peer';
 import io from 'socket.io-client';
 import { BACKEND_CONNECTION } from '../../utils/envSwitch';
+import { avSettings } from '../../utils/avSettings';
 import Header from '../appLevel/Header/Header';
-import SideBar from '../appLevel/SideBar/SideBar';
 import './ClassroomPage.css';
 import './CommonPageStyles.css';
 
@@ -24,7 +24,6 @@ const Video = (props) => {
     <>
       <video
         playsInline
-        muted
         autoPlay
         ref={ref}
         className="videoplayer-container"
@@ -32,9 +31,6 @@ const Video = (props) => {
     </>
   );
 };
-
-// const DEV = "http://localhost:3002"; 
-// const PROD = 'https://mindfulnessp2p.herokuapp.com';
 
 const ClassroomPage = () => {
   //HOOKS for classroom state management
@@ -48,19 +44,13 @@ const ClassroomPage = () => {
   const currentPath = useLocation();
   const roomId = currentPath.pathname.split('/').pop();
 
-  const videoConstraints = {
-    video: {
-      width: { ideal: 1920, max: 7680 },
-      height: { ideal: 1080, max: 4320 },
-    },
-    audio: true,
-  };
+
 
   useEffect(() => {
     socketRef.current = io.connect(BASE_URL);
 
     navigator.mediaDevices
-      .getUserMedia(videoConstraints)
+      .getUserMedia(avSettings)
       .then((stream) => {
         userVideo.current.srcObject = stream;
         userStream.current = stream; //
@@ -200,24 +190,28 @@ const ClassroomPage = () => {
 
   const toggleMic = () => {
     const audioTrack = userStream.current
-      .getAudioTracks()
+      .getTracks()
       .find((track) => track.kind === 'audio');
     if (audioTrack.enabled) {
-      audioTrack.enabled = !audioTrack.enabled;
+      audioTrack.enabled = false;
+      console.log(audioTrack, 'audioTrack');
     } else {
       audioTrack.enabled = true;
+      console.log(audioTrack, 'audioTrack');
+
     }
     console.log(audioTrack.enabled, 'myMic');
   };
 
   return (
     <div className="app">
-      <Header />
+      <div className="header-wrapper">
+        <Header />
+      </div>
           <div className="videos-wrapper">
             <div className="my-video">
               <video
                 playsInline
-                muted
                 ref={userVideo}
                 autoPlay
                 className="videoplayer-container"

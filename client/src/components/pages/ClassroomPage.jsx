@@ -200,7 +200,7 @@ const ClassroomPage = () => {
 
   const toggleMic = () => {
     const audioTrack = userStream.current
-      .getTracks()
+      .getAudioTracks()
       .find((track) => track.kind === 'audio');
     if (audioTrack.enabled) {
       audioTrack.enabled = !audioTrack.enabled;

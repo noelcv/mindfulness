@@ -73,7 +73,7 @@
 @media screen and (max-width: 900px) {
 
   .videos-wrapper {
-    margin-top: 14vh;
+    margin-top: -5vh;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,6 +1,9 @@
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-  
+  .app {
+    display: flex;
+    flex-direction: column;
+  }
   h1 {
     display: flex;
     line-height: 1em;
@@ -17,11 +20,9 @@
     z-index: 3;
   }
   
-  .sidebar-wrapper {
-  }
   
   .app-holder {
-  
+   flex-direction: column;
   }
   
   img {
@@ -43,19 +44,30 @@
   .sidebar-container {
     flex-direction: row;
     margin-top: -12vh;
+    height: 10%;
   }
   
   .sidebar-link {
     min-width: 13.5vh;
     margin:-1em;
   }
-  
+
   .sign-out-btn {
     font-weight: 600;
     font-size: 70%;
     min-width: 6.2vh;
-    max-height: 4vh;
-    margin-bottom: 20em;
+    margin-bottom: 11em;
   }
+  
+  .event-card {
+    width: 90%;
+  }
+  
+  .events-page-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
 
 }

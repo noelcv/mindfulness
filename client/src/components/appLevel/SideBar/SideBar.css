@@ -79,7 +79,7 @@
   text-decoration: none;
   min-width: 13vh;
   color: rgba(2, 1, 44, 0.9);
-  background-color: #fff;
+  background-color: none;
 }
 
 .profile-btn {
@@ -100,5 +100,7 @@
 };
 
 .sign-out-btn {
+  font-weight:600;
+  font-size: 70%;
   width: 90%;
 }

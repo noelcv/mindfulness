@@ -197,7 +197,7 @@ const ClassroomPage = () => {
     }
     console.log(videoTrack.enabled, 'myCam');
   };
- 
+
   const toggleMic = () => {
     const audioTrack = userStream.current
       .getTracks()
@@ -213,12 +213,8 @@ const ClassroomPage = () => {
   return (
     <div className="app">
       <Header />
-      <div className="app-holder">
-        <SideBar />
-
-        <div className="dashboard-container">
           <div className="videos-wrapper">
-            <div className="video">
+            <div className="my-video">
               <video
                 playsInline
                 muted
@@ -226,7 +222,7 @@ const ClassroomPage = () => {
                 autoPlay
                 className="videoplayer-container"
               />
-              <>
+              
                 <div className="video-controls">
                   <button className="cam-input-btn" onClick={toggleCam}>
                     📸
@@ -238,16 +234,18 @@ const ClassroomPage = () => {
                     ☎️
                   </button>
                 </div>
-              </>
+            </div>
 
               {peers.map((peer, index) => {
                 if (index === 0) {
                 return (
+                  <div className="peer-video">
                     <Video
                       key={peer.peerId}
                       peer={peer.peer}
                       className="videoplayer-container"
                     />
+                    </div>
                 );
                 } else {
                   return (
@@ -255,12 +253,9 @@ const ClassroomPage = () => {
                   )
                 }              
               })}
-            </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
+      );
 };
 
 export default ClassroomPage;

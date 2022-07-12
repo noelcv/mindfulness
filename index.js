@@ -21,6 +21,7 @@ const io = require('socket.io')(server, {
     methods: ['GET', 'POST'],
   },
 });
+
 app.use(router);
 app.get('*', (req, res) => {
   res.sendFile(__dirname, 'client', 'build', 'index.html');

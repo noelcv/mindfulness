@@ -32,9 +32,6 @@ const Video = (props) => {
   );
 };
 
-// const DEV = "http://localhost:3002"; 
-// const PROD = 'https://mindfulnessp2p.herokuapp.com';
-
 const ClassroomPage = () => {
   //HOOKS for classroom state management
   const [peers, setPeers] = useState([]); //this will track the peers for rendering purposes
@@ -208,7 +205,9 @@ const ClassroomPage = () => {
 
   return (
     <div className="app">
-      <Header />
+      <div className="header-wrapper">
+        <Header />
+      </div>
           <div className="videos-wrapper">
             <div className="my-video">
               <video

@@ -72,6 +72,10 @@
 
 @media screen and (max-width: 900px) {
 
+  .header-wrapper {
+    display: none;
+  }
+  
   .videos-wrapper {
     margin-top: -5vh;
     display: flex;

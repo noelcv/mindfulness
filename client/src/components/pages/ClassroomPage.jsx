@@ -183,7 +183,7 @@ const ClassroomPage = () => {
   const exitCall = () => {
     userStream.current.getVideoTracks()[0].enabled = false;
     if(socketRef.current) socketRef.current.disconnect();
-    navigate('/events');
+    window.location.replace('/events');
   };
 
   const toggleCam = () => {

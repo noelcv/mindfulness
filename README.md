@@ -1,4 +1,5 @@
 # Mindfulness
+[![CodeFactor](https://www.codefactor.io/repository/github/noelcv/mindfulness/badge)](https://www.codefactor.io/repository/github/noelcv/mindfulness)
 
 <a href="https://mindfulness-ochre.vercel.app/" target="_blank" rel="noreferrer">Mindfulness</a> promotes safe spaces for gathering Wellness professionals and their clients.
 

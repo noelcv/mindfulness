@@ -43,7 +43,7 @@ const SettingsPage = () => {
           </div>
           </div>
         </div>
-        : <SignInPage /> 
+        : <h2 className="infoUser">This page is only available for authenticated users. Please sign in to continue or browse the Events section</h2>
       }
       </div>
     </div>

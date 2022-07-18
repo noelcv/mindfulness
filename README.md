@@ -33,6 +33,10 @@ Once the exchange takes place, both participants can communicate directly and th
 <a href="https://socket.io/" target="_blank" rel="noreferrer"><img src="https://socket.io/images/logo-dark.svg" width="100" height="36" alt="SocketIO" /></a>
 <a href="https://webrtc.org/" target="_blank" rel="noreferrer"><img src="https://webrtc.github.io/webrtc-org/assets/images/webrtc-logo-vert-retro-dist.svg" width="36" height="36" alt="WebRTC"/></a>
 
+
+#### Authentication
+<a href="https://socket.io/" target="_blank" rel="noreferrer"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Firebase_Logo.svg/1200px-Firebase_Logo.svg.png" width="100" height="36" alt="Firebase" /></a>
+
 #### Deployment
 
 <a href="https://herokuapp.com" target="_blank" rel="noreferrer"><img src="./screenshots/../client/src/assets/Heroku_logo.svg.png" width="100" height="50" alt="Heroku" /></a>     <a href="https://vercel.com" target="_blank" rel="noreferrer"><img src="./screenshots/vercel.svg" width="100" height="50" alt="Vercel"/></a>

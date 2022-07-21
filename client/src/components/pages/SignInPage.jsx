@@ -5,7 +5,6 @@ import  { GoogleButton } from 'react-google-button';
 import { UserAuth } from '../../AuthContext/AuthContext'
 import { useNavigate } from 'react-router-dom';
 import './SignInPage.css';
-
 import './CommonPageStyles.css';
 
 const SignInPage = () => {
@@ -25,7 +24,7 @@ const SignInPage = () => {
     if (user != null) {
       goTo('/events');
     }
-  }, [])
+  }, []) //eslint-disable-line
   
   
   return (
@@ -34,7 +33,6 @@ const SignInPage = () => {
       <div className="app-holder">
         <SideBar />
         <div className='dashboard-container'>
-        
           <div className="sign-in-container">
           <GoogleButton onClick={handleGoogleSignIn} />
           </div>

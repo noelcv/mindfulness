@@ -1,6 +1,7 @@
 'use strict';
 
 const events = require('../models/model');
+const user = require('../models/model');
 
 exports.findAllEvents = async (req, res) => {
   try {
@@ -24,6 +25,13 @@ exports.addEvent = async (req, res) => {
   }
 };
 
-// exports.routesHandler = (req, res) => {
-//   res.sendFile(__dirname, 'client', 'build', 'index.html');
-// }
+exports.editProfile = async (req, res) => {
+  try {
+    await user.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200);
+    res.send();
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+}

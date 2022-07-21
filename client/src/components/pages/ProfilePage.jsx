@@ -9,6 +9,12 @@ import { createProfile, editProfile } from '../../Services/profile'
 
 const ProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [location, setLocation] = useState('');
+  const [job, setJob] = useState('');
+  const [expertise, setExpertise] = useState('');
+  const [paymentLink, setPaymentLink] = useState('');
   const { user } = UserAuth();
   
   const toggleEditMode = () => {
@@ -19,15 +25,14 @@ const ProfilePage = () => {
     e.preventDefault();
     
     const user = {
-      uid: e.uid,
-      name: e.target.name.value,
-      email: e.target.email,
-      location: e.target.location,
-      job: e.target.job,
-      expertise: e.target.expertise,
-      paymentLink: e.target.paymentLink,
+      name: name,
+      email: email,
+      location: location,
+      job: job,
+      expertise: expertise,
+      paymentLink: paymentLink,
     }
-    
+    console.log(user, 'user before createProfile');
     createProfile(user);
     toggleEditMode();
   }
@@ -52,7 +57,9 @@ const ProfilePage = () => {
             <>
               <img src={user?.photoURL} className="profile-pic" referrerPolicy="no-referrer"  alt="profilePic" />
               <label htmlFor="name" className="display-name">Name</label>
-              <input type="text" id="name" className="display-name" placeholder="What is your name?" defaultValue={user?.displayName}/>
+              <input type="text" id="name" className="display-name" placeholder="What is your name?" defaultValue={user?.displayName}  onChange={(e) => {
+                  setName(e.target.value);
+                }}/>
             </>
           }
           </div>
@@ -66,7 +73,9 @@ const ProfilePage = () => {
             : 
             <>
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" placeholder="What is your email address?"/>
+              <input type="email" id="email" placeholder="What is your email address?"  onChange={(e) => {
+                  setEmail(e.target.value);
+                }}/>
             </>}
           </div>
       
@@ -78,7 +87,9 @@ const ProfilePage = () => {
               </> : 
               <>
                 <label htmlFor="location">Location</label>
-                <input type="text" id="location" placeholder="Where are you based?"/>
+                <input type="text" id="location" placeholder="Where are you based?"  onChange={(e) => {
+                  setLocation(e.target.value);
+                }}/>
               </>
             }
           </div>
@@ -92,7 +103,9 @@ const ProfilePage = () => {
             :
               <>
                 <label htmlFor="job">I am a</label>
-                <input type="text" id="job" placeholder="What is your job?"/>
+                <input type="text" id="job" placeholder="What is your job?"  onChange={(e) => {
+                  setJob(e.target.value);
+                }}/>
               </> 
             }
           </div>
@@ -107,7 +120,9 @@ const ProfilePage = () => {
             </> : 
             <>
               <label htmlFor="expertise">With an Expertise in</label>
-              <input type="text" id="expertise" placeholder="What do you love to do the most?"/>
+              <input type="text" id="expertise" placeholder="What do you love to do the most?"  onChange={(e) => {
+                  setExpertise(e.target.value);
+                }}/>
             </>
             }
           </div>
@@ -120,7 +135,9 @@ const ProfilePage = () => {
               </> :
               <>
                 <label htmlFor="paymentLink">Buy me a coffee</label>
-                <input type="text" id="paymentLink" placeholder="Set up a payment link"/>
+                <input type="text" id="paymentLink" placeholder="Set up a payment link"  onChange={(e) => {
+                  setPaymentLink(e.target.value);
+                }}/>
               </>
             }
           </div>

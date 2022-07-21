@@ -36,6 +36,18 @@ exports.getProfileById = async (req, res) => {
   }
 }
 
+exports.getAllProfiles = async(req, res) => {
+  try {
+    const allProfiles = await UserModel.find();
+    res.status(200);
+    res.send(allProfiles);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+} 
+
+
 exports.createProfile = async (req, res) => {
   try {
     await UserModel.create(req.body);

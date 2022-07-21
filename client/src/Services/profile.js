@@ -28,3 +28,12 @@ export const editProfile = async (user) => {
     console.log("Error at editProfile Service: ", err);
   }
 }
+
+export const getProfileById = async (id) => {
+  try {
+    const userProfile = await fetch(`${BASE_URL}/user/${id}`);
+    return await userProfile;
+  } catch (err) {
+    console.log("Error at getProfileById Service: ", err);
+  }
+}

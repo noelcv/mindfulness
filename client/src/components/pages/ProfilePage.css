@@ -34,6 +34,12 @@
 
 }
 
+.profile-edit-btn-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .profile-edit-btn,
 .profile-edit-btn:active {
     display: flex;

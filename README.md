@@ -3,6 +3,7 @@
 
 <a href="https://mindfulness-ochre.vercel.app/" target="_blank" rel="noreferrer">Mindfulness</a> promotes safe spaces for gathering Wellness professionals and their clients.
 
+![ScreenShot](https://github.com/noelcv/mindfulness/screenshots/Screenshot_VideoCall_p2p.png)
 <img src="../mindfulness/screenshots/Screenshot_VideoCall_p2p.png">
 
 Using WebRTC technology, users can communicate directly with their favorite therapist in Real-Time, peer-to-peer (p2p), without having the content of their communications intercepted and stored in a server.

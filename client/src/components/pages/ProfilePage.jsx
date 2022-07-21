@@ -42,10 +42,17 @@ const ProfilePage = () => {
           </>}
           
           <div className='profile-detail email-card'>
-            
-            <h4>Email</h4> 
-            <p className="display-email">{user?.email}</p>
-          </div>
+          { isEditMode ? 
+            <>
+              <h4>Email</h4>
+              <p className="display-email">{user?.email}</p>
+            </>
+            : 
+            <>
+              <label htmlFor="email">Email</label>
+              <input type="email" id="email" placeholder="What is your email address?" defaultValue={user?.email}/>
+            </>}
+          </div> 
           <div className='profile-detail location-card'>
             <h4>I am based in</h4>
             <textarea  className="display-location" placeholder="Where are you?"></textarea>

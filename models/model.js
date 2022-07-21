@@ -11,6 +11,22 @@ const eventSchema = new Schema({
   location: {type: String}, //only for offline events 
 });
 
-const EventModel = mongoose.model('EventModel', eventSchema);
+const userSchema = new Schema({
+    uid: {type: String},
+    name: {type: String},
+    email: {type: String},
+    location: {type: String},
+    job: {type: String},
+    expertise: {type: String},
+    paymentLink: {type: String},
+    phoneNumber: {type: String},
+    billingAddress: {type: String},
+    vatNumber: {type: String},
+    extLink: {type: String}
+    
+})
 
-module.exports = EventModel;
+const EventModel = mongoose.model('EventModel', eventSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
+
+module.exports = {EventModel, UserModel};

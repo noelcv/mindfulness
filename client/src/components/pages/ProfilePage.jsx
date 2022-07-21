@@ -10,13 +10,16 @@ import ProfileForm from '../profile/ProfileForm';
 const ProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const { user } = UserAuth();
+  
+  const toggleEditMode = () => {
+    setIsEditMode(!isEditMode);
+  }
     
   return (
     <div className="app">
       <Header />
       <div className="app-holder">
         <SideBar />
-        
         <div className='dashboard-container profile-container'>
         <div className='profile-inner-container'>
         <ProfileForm />
@@ -57,7 +60,8 @@ const ProfilePage = () => {
           </div>
           
           <div className="profile-edit-btn-container">
-            <button className="profile-edit-btn"> Edit Profile</button>
+            <button className="profile-edit-btn" onClick={toggleEditMode}> { isEditMode ? "Edit Profile" : "Cancel" }</button>
+            { !isEditMode ? <button className="profile-edit-btn submit">Submit</button> : <></> }
           </div>
           
           </div>

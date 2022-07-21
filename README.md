@@ -4,7 +4,7 @@
 <a href="https://mindfulness-ochre.vercel.app/" target="_blank" rel="noreferrer">Mindfulness</a> promotes safe spaces for gathering Wellness professionals and their clients.
 
 
-<img src="../mindfulness/screenshots/Screenshot_VideoCall_p2p.png">
+![Screenshot](screenshots/Screenshot_VideoCall_p2p.png)
 
 Using WebRTC technology, users can communicate directly with their favorite therapist in Real-Time, peer-to-peer (p2p), without having the content of their communications intercepted and stored in a server.
 
@@ -47,34 +47,33 @@ Once the exchange takes place, both participants can communicate directly and th
 ### Protected Routes
 Some pages are only available for authenticated users. We protect those routes and provide feedback to the user.
 
-<img src="../mindfulness/screenshots/Screenshot_Protected_Routes.png">
-
+![Screenshot](screenshots/Screenshot_Protected_Routes.png) 
 
 ### Authentication
 For this Proof-of-Concept we opted to allow for authentication with Google Account via Firebase
 
-<img src="../mindfulness/screenshots/Screenshot_Authentication_Google.png">
+![Screenshot](screenshots/Screenshot_Authentication_Google.png)
 
 
-<img src="../mindfulness/screenshots/Screenshot_Authentication_Firebase.png">
-
-
+![Screenshot](screenshots/Screenshot_Authentication_Firebase.png)
+ 
+ 
 ### Profile
 The Profile Picture, Name, and Email are fetched upon authentication with Firebase.
 
-<img src="../mindfulness/screenshots/Screenshot_Profile.png">
+![Screenshot](screenshots/Screenshot_Profile.png)
+
 
 ### Events
 Authenticated users can create Events.
 
-<img src="../mindfulness/screenshots/Screenshot_Events_Auth.png">
+![Screenshot](screenshots/Screenshot_Events_Auth.png)
 
 Unauthenticated users can only view and join existing events.
 
-<img src="../mindfulness/screenshots/Screenshot_Events_Protected.png">
-
+![Screenshot](screenshots/Screenshot_Events_Protected.png)
 
 ### Video Call 
 Each event has an unique RoomID that is used to establish a peer-to-peer connection between teacher and student.
 
-<img src="../mindfulness/screenshots/Screenshot_VideoCall_p2p.png">
+![Screenshot](screenshots/Screenshot_VideoCall_p2p.png)

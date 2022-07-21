@@ -29,17 +29,20 @@ const ProfilePage = () => {
       { user?.displayName && user?.photoURL ? 
         <div className='dashboard-container profile-container'>
         <div className='profile-inner-container'>
+          <div className='profile-detail name-card'>
           { isEditMode ?
-          <div className='profile-detail name-card'>
-            <img src={user?.photoURL} className="profile-pic" referrerPolicy="no-referrer"  alt="profilePic" />
-            <h2 className="display-name">{user?.displayName}</h2>
-          </div> : <>
-          <div className='profile-detail name-card'>
-            <img src={user?.photoURL} className="profile-pic" referrerPolicy="no-referrer"  alt="profilePic" />
-            <label htmlFor="name" className="display-name">Name</label>
-            <input type="text" id="name" className="display-name" placeholder="What is your name?" defaultValue={user?.displayName}/>
-          </div> 
-          </>}
+            <>
+              <img src={user?.photoURL} className="profile-pic" referrerPolicy="no-referrer"  alt="profilePic" />
+              <h2 className="display-name">{user?.displayName}</h2>
+            </>
+            : 
+            <>
+              <img src={user?.photoURL} className="profile-pic" referrerPolicy="no-referrer"  alt="profilePic" />
+              <label htmlFor="name" className="display-name">Name</label>
+              <input type="text" id="name" className="display-name" placeholder="What is your name?" defaultValue={user?.displayName}/>
+            </>
+          }
+          </div>
           
           <div className='profile-detail email-card'>
           { isEditMode ? 

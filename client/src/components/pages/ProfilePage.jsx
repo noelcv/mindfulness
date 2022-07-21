@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import './ProfilePage.css';
 import buymeacoffee from '../../assets/buymeacoffee.svg'
 import { UserAuth } from '../../AuthContext/AuthContext';
+import ProfileForm from '../profile/ProfileForm';
 
 
 const ProfilePage = () => {
-  
+  const [isEditMode, setIsEditMode] = useState(false);
   const { user } = UserAuth();
     
   return (
@@ -15,6 +16,13 @@ const ProfilePage = () => {
       <Header />
       <div className="app-holder">
         <SideBar />
+        
+        <div className='dashboard-container profile-container'>
+        <div className='profile-inner-container'>
+        <ProfileForm />
+        
+        </div>
+        </div>
       { user?.displayName && user?.photoURL ? 
         <div className='dashboard-container profile-container'>
         <div className='profile-inner-container'>
@@ -33,7 +41,7 @@ const ProfilePage = () => {
           
           <div className='profile-detail job-card'>
             <h4>I am a </h4>
-            <textarea className="display-job" placeholder="What is your job?"></textarea>
+            <p className="display-job" placeholder="What is your job?"></p>
           </div>
           
           <div className='profile-detail expertise-card'>
@@ -47,6 +55,10 @@ const ProfilePage = () => {
             <img src={buymeacoffee} alt="buy-me-a-coffee" width="180px" height="75px"></img>
             <textarea href="buymeacoffee.com/" className="buy-me-a-coffee-link" placeholder="Set a payment link"></textarea>
           </div>
+          
+          <div className="profile-edit-btn-container"> 
+          </div>
+          
           </div>
         </div>
         : 

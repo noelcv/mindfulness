@@ -1,4 +1,4 @@
-import { BACKEND_CONNECTION } from './envSwitch';
+import { BACKEND_CONNECTION } from './../utils/envSwitch';
 
 const BASE_URL = BACKEND_CONNECTION + '/api';
 

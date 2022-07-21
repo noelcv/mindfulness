@@ -92,7 +92,7 @@ io.on('connection', (socket) => {
 
 server.listen(PORT, () => {
   try {
-    console.log(`Express Server up and running`);
+    console.log(`Express Server up and running on port ${PORT}`);
   } catch (err) {
     console.log(err);
   }

@@ -1,7 +1,7 @@
 'use strict';
 
 const events = require('../models/model');
-const user = require('../models/model');
+const UserModel = require('../models/usermodel');
 
 exports.findAllEvents = async (req, res) => {
   try {
@@ -27,7 +27,7 @@ exports.addEvent = async (req, res) => {
 
 exports.getProfileById = async (req, res) => {
   try {
-    const userProfile = await user.findById(req.params.id);
+    const userProfile = await UserModel.findById(req.params.id);
     res.status(200);
     res.send(userProfile);
   } catch (err) {
@@ -38,8 +38,9 @@ exports.getProfileById = async (req, res) => {
 
 exports.createProfile = async (req, res) => {
   try {
-    await user.create(req.body);
+    await UserModel.create(req.body);
     res.status(201);
+    console.log(res)
     res.send();
   } catch (err) {
     console.log(err);
@@ -50,7 +51,7 @@ exports.createProfile = async (req, res) => {
 
 exports.editProfile = async (req, res) => {
   try {
-    await user.findByIdAndUpdate(req.params.id, req.body);
+    await UserModel.findByIdAndUpdate(req.params.id, req.body);
     res.status(200);
     res.send();
   } catch (err) {

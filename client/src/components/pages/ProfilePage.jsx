@@ -4,7 +4,7 @@ import SideBar from '../appLevel/SideBar/SideBar';
 import './ProfilePage.css';
 import buymeacoffee from '../../assets/buymeacoffee.svg'
 import { UserAuth } from '../../AuthContext/AuthContext';
-import { editProfile } from '../../Services/profile'
+import { createProfile, editProfile } from '../../Services/profile'
 
 
 const ProfilePage = () => {
@@ -28,7 +28,7 @@ const ProfilePage = () => {
       paymentLink: e.target.paymentLink,
     }
     
-    editProfile(user);
+    createProfile(user);
     toggleEditMode();
   }
     

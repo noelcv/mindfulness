@@ -14,12 +14,11 @@
 .events-page-container {
   display: flex;
   padding-top: 20vh;
-  /* align-items: center;
-  justify-content: space-between; */
+  justify-content: flex-start;
   margin-top: 2vh;
   margin-bottom: 2vh;
   margin-left: 15vw;
-  margin-right: 10vw;
+  margin-right: 12vw;
 
   height: auto;
 }
@@ -36,7 +35,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 0em;
+}
+
+.events-list-wrapper-solo {
+  margin-right: 15vw;
 }
 
 

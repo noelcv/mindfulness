@@ -26,15 +26,22 @@ const EventsPage = () => {
         <SideBar/>
         </div>
         <div className="events-page-container">
+        { user?.displayName ? 
           <div className="events-wrapper">
             <div className="events-list-wrapper">
               <EventList id="list" events={events} setEvents={setEvents} />
             </div>
-              { user?.displayName ? 
+              
             <div className="form-wrapper">
               <EventForm setEvents={setEvents} />
-            </div> : <></>} 
-          </div>
+            </div> 
+          </div>: <>
+            
+            <div className="events-list-wrapper-solo">
+              <EventList id="list" events={events} setEvents={setEvents} />
+            </div>
+          
+          </>} 
         </div>
       </div>
     </div>

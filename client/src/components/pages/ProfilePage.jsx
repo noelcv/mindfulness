@@ -56,7 +56,8 @@ const ProfilePage = () => {
             <textarea href="buymeacoffee.com/" className="buy-me-a-coffee-link" placeholder="Set a payment link"></textarea>
           </div>
           
-          <div className="profile-edit-btn-container"> 
+          <div className="profile-edit-btn-container">
+            <button className="profile-edit-btn"> Edit Profile</button>
           </div>
           
           </div>

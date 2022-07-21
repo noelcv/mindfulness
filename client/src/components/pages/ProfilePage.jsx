@@ -4,7 +4,6 @@ import SideBar from '../appLevel/SideBar/SideBar';
 import './ProfilePage.css';
 import buymeacoffee from '../../assets/buymeacoffee.svg'
 import { UserAuth } from '../../AuthContext/AuthContext';
-import ProfileForm from '../profile/ProfileForm';
 
 
 const ProfilePage = () => {
@@ -20,15 +19,11 @@ const ProfilePage = () => {
       <Header />
       <div className="app-holder">
         <SideBar />
-        <div className='dashboard-container profile-container'>
-        <div className='profile-inner-container'>
-        <ProfileForm />
         
-        </div>
-        </div>
       { user?.displayName && user?.photoURL ? 
         <div className='dashboard-container profile-container'>
         <div className='profile-inner-container'>
+         
           <div className='profile-detail name-card'>
           { isEditMode ?
             <>
@@ -56,12 +51,12 @@ const ProfilePage = () => {
               <input type="email" id="email" placeholder="What is your email address?" defaultValue={user?.email}/>
             </>}
           </div>
-           
+      
           <div className='profile-detail location-card'>
             { isEditMode ? 
               <>
                 <h4>I am based in</h4>
-                <textarea  className="display-location" placeholder="Where are you?"></textarea>
+                <p  className="display-location" placeholder="Where are you?"></p>
               </> : 
               <>
                 <label htmlFor="location">Location</label>
@@ -69,24 +64,47 @@ const ProfilePage = () => {
               </>
             }
           </div>
-          
-      
-          
+        
           <div className='profile-detail job-card'>
-            <h4>I am a </h4>
-            <p className="display-job" placeholder="What is your job?"></p>
+            { isEditMode ? 
+              <>
+                <h4>I am a </h4>
+                <p className="display-job"></p>
+              </>
+            :
+              <>
+                <label htmlFor="job">I am a</label>
+                <input type="text" id="job" placeholder="What is your job?"/>
+              </> 
+            }
           </div>
           
           <div className='profile-detail expertise-card'>
+            { isEditMode ? 
+            <>
             <h4>With an Expertise in</h4>
             <ul className="expertise-list">
-              <textarea placeholder="List your expertise"></textarea>
+              <p placeholder="List your expertise"></p>
             </ul>
+            </> : 
+            <>
+              <label htmlFor="expertise">With an Expertise in</label>
+              <input type="text" id="expertise" placeholder="What do you love to do the most?"/>
+            </>
+            }
           </div>
           
           <div className='profile-detail payment-card'>
-            <img src={buymeacoffee} alt="buy-me-a-coffee" width="180px" height="75px"></img>
-            <textarea href="buymeacoffee.com/" className="buy-me-a-coffee-link" placeholder="Set a payment link"></textarea>
+            { isEditMode ? 
+              <>
+                <img src={buymeacoffee} alt="buy-me-a-coffee" width="180px" height="75px"></img>
+                <p href="" className="buy-me-a-coffee-link" placeholder="Set a payment link"></p>
+              </> :
+              <>
+                <label htmlFor="paymentLink">Buy me a coffee</label>
+                <input type="text" id="paymentLink" placeholder="Set up a payment link"/>
+              </>
+            }
           </div>
           
           <div className="profile-edit-btn-container">

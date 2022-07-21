@@ -1,9 +1,16 @@
 .profile-container {
   margin-top: 9vh;
   margin-left: 18vh;
+  width: 200vw;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.profile-inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .profile-pic {
@@ -15,6 +22,8 @@
 .profile-detail {
   display: flex;
   justify-content: space-between;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
   align-items: center;
   flex-direction: row;
   border-bottom: 2px solid black;

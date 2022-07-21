@@ -55,11 +55,22 @@ const ProfilePage = () => {
               <label htmlFor="email">Email</label>
               <input type="email" id="email" placeholder="What is your email address?" defaultValue={user?.email}/>
             </>}
-          </div> 
-          <div className='profile-detail location-card'>
-            <h4>I am based in</h4>
-            <textarea  className="display-location" placeholder="Where are you?"></textarea>
           </div>
+           
+          <div className='profile-detail location-card'>
+            { isEditMode ? 
+              <>
+                <h4>I am based in</h4>
+                <textarea  className="display-location" placeholder="Where are you?"></textarea>
+              </> : 
+              <>
+                <label htmlFor="location">Location</label>
+                <input type="text" id="location" placeholder="Where are you based?"/>
+              </>
+            }
+          </div>
+          
+      
           
           <div className='profile-detail job-card'>
             <h4>I am a </h4>

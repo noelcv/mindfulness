@@ -4,6 +4,7 @@ import SideBar from '../appLevel/SideBar/SideBar';
 import './ProfilePage.css';
 import buymeacoffee from '../../assets/buymeacoffee.svg'
 import { UserAuth } from '../../AuthContext/AuthContext';
+import { editProfile } from '../../Services/profile'
 
 
 const ProfilePage = () => {
@@ -12,6 +13,23 @@ const ProfilePage = () => {
   
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
+  }
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    const user = {
+      uid: e.uid,
+      name: e.target.name.value,
+      email: e.target.email,
+      location: e.target.location,
+      job: e.target.job,
+      expertise: e.target.expertise,
+      paymentLink: e.target.paymentLink,
+    }
+    
+    editProfile(user);
+    toggleEditMode();
   }
     
   return (
@@ -48,7 +66,7 @@ const ProfilePage = () => {
             : 
             <>
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" placeholder="What is your email address?" defaultValue={user?.email}/>
+              <input type="email" id="email" placeholder="What is your email address?"/>
             </>}
           </div>
       
@@ -109,7 +127,7 @@ const ProfilePage = () => {
           
           <div className="profile-edit-btn-container">
             <button className="profile-edit-btn" onClick={toggleEditMode}> { isEditMode ? "Edit Profile" : "Cancel" }</button>
-            { !isEditMode ? <button className="profile-edit-btn submit">Submit</button> : <></> }
+            { !isEditMode ? <button className="profile-edit-btn submit" onClick={handleSubmit}>Submit</button> : <></> }
           </div>
           
           </div>

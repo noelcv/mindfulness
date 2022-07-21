@@ -25,6 +25,29 @@ exports.addEvent = async (req, res) => {
   }
 };
 
+exports.getProfileById = async (req, res) => {
+  try {
+    const userProfile = await user.findById(req.params.id);
+    res.status(200);
+    res.send(userProfile);
+  } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+  }
+}
+
+exports.createProfile = async (req, res) => {
+  try {
+    await user.create(req.body);
+    res.status(201);
+    res.send();
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+}
+
+
 exports.editProfile = async (req, res) => {
   try {
     await user.findByIdAndUpdate(req.params.id, req.body);

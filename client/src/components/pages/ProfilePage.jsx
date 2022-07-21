@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import './ProfilePage.css';
 import buymeacoffee from '../../assets/buymeacoffee.svg'
 import { UserAuth } from '../../AuthContext/AuthContext';
-import { createProfile, editProfile } from '../../Services/profile'
+import { createProfile, getProfileById, editProfile } from '../../Services/profile'
 
 
 const ProfilePage = () => {
@@ -17,14 +17,35 @@ const ProfilePage = () => {
   const [paymentLink, setPaymentLink] = useState('');
   const { user } = UserAuth();
   
+  const uidDb = user.uid;
+  console.log(uidDb, 'uuiDB')
+ 
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
   }
   
+  const fetchProfile = async (userProfile) => {
+    try {
+      let profileExists = await getProfileById(user.id);
+      if (profileExists) {
+        editProfile(userProfile);
+      }
+
+      //Create a new profile if one does not exist
+      if (!profileExists) {
+        return await createProfile(userProfile);
+      }
+    } catch (err) {
+      console.log('Error fetching Profile', err);
+    }
+  };
+  
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const user = {
+    const userProfile = {
+      id: uidDb,
       name: name,
       email: email,
       location: location,
@@ -32,11 +53,14 @@ const ProfilePage = () => {
       expertise: expertise,
       paymentLink: paymentLink,
     }
-    console.log(user, 'user before createProfile');
-    createProfile(user);
+    console.log(userProfile, 'user before createProfile');
+    fetchProfile(userProfile);
     toggleEditMode();
   }
-    
+  
+  console.log(UserAuth().user.uid, 'userAuth')
+  console.log(user.uid, 'userid')
+  
   return (
     <div className="app">
       <Header />
@@ -48,16 +72,16 @@ const ProfilePage = () => {
         <div className='profile-inner-container'>
          
           <div className='profile-detail name-card'>
-          { isEditMode ?
+          { !isEditMode ?
             <>
               <img src={user?.photoURL} className="profile-pic" referrerPolicy="no-referrer"  alt="profilePic" />
-              <h2 className="display-name">{user?.displayName}</h2>
+              <h2 className="display-name">{user?.displayName || name}</h2>
             </>
             : 
             <>
               <img src={user?.photoURL} className="profile-pic" referrerPolicy="no-referrer"  alt="profilePic" />
               <label htmlFor="name" className="display-name">Name</label>
-              <input type="text" id="name" className="display-name" placeholder="What is your name?" defaultValue={user?.displayName}  onChange={(e) => {
+              <input type="text" id="name" className="display-name" placeholder="What is your name?" defaultValue={user?.displayName || name}  onChange={(e) => {
                   setName(e.target.value);
                 }}/>
             </>
@@ -65,29 +89,29 @@ const ProfilePage = () => {
           </div>
           
           <div className='profile-detail email-card'>
-          { isEditMode ? 
+          { !isEditMode ? 
             <>
               <h4>Email</h4>
-              <p className="display-email">{user?.email}</p>
+              <p className="display-email">{user?.email || email}</p>
             </>
             : 
             <>
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" placeholder="What is your email address?"  onChange={(e) => {
+              <input type="email" id="email" placeholder="What is your email address?" defaultValue={email}   onChange={(e) => {
                   setEmail(e.target.value);
                 }}/>
             </>}
           </div>
       
           <div className='profile-detail location-card'>
-            { isEditMode ? 
+            { !isEditMode ? 
               <>
                 <h4>I am based in</h4>
-                <p  className="display-location" placeholder="Where are you?"></p>
+                <p  className="display-location" placeholder="Where are you?">{location}</p>
               </> : 
               <>
                 <label htmlFor="location">Location</label>
-                <input type="text" id="location" placeholder="Where are you based?"  onChange={(e) => {
+                <input type="text" id="location" placeholder="Where are you based?" defaultValue={location} onChange={(e) => {
                   setLocation(e.target.value);
                 }}/>
               </>
@@ -95,15 +119,15 @@ const ProfilePage = () => {
           </div>
         
           <div className='profile-detail job-card'>
-            { isEditMode ? 
+            { !isEditMode ? 
               <>
                 <h4>I am a </h4>
-                <p className="display-job"></p>
+                <p className="display-job">{job}</p>
               </>
             :
               <>
                 <label htmlFor="job">I am a</label>
-                <input type="text" id="job" placeholder="What is your job?"  onChange={(e) => {
+                <input type="text" id="job" placeholder="What is your job?" defaultValue={job} onChange={(e) => {
                   setJob(e.target.value);
                 }}/>
               </> 
@@ -111,16 +135,16 @@ const ProfilePage = () => {
           </div>
           
           <div className='profile-detail expertise-card'>
-            { isEditMode ? 
+            { !isEditMode ? 
             <>
             <h4>With an Expertise in</h4>
             <ul className="expertise-list">
-              <p placeholder="List your expertise"></p>
+              <p placeholder="List your expertise">{expertise}</p>
             </ul>
             </> : 
             <>
               <label htmlFor="expertise">With an Expertise in</label>
-              <input type="text" id="expertise" placeholder="What do you love to do the most?"  onChange={(e) => {
+              <input type="text" id="expertise" placeholder="What do you love to do the most?" defaultValue={expertise} onChange={(e) => {
                   setExpertise(e.target.value);
                 }}/>
             </>
@@ -128,10 +152,10 @@ const ProfilePage = () => {
           </div>
           
           <div className='profile-detail payment-card'>
-            { isEditMode ? 
+            { !isEditMode ? 
               <>
                 <img src={buymeacoffee} alt="buy-me-a-coffee" width="180px" height="75px"></img>
-                <p href="" className="buy-me-a-coffee-link" placeholder="Set a payment link"></p>
+                <p className="buy-me-a-coffee-link" placeholder="Set a payment link">{paymentLink}</p>
               </> :
               <>
                 <label htmlFor="paymentLink">Buy me a coffee</label>
@@ -143,8 +167,8 @@ const ProfilePage = () => {
           </div>
           
           <div className="profile-edit-btn-container">
-            <button className="profile-edit-btn" onClick={toggleEditMode}> { isEditMode ? "Edit Profile" : "Cancel" }</button>
-            { !isEditMode ? <button className="profile-edit-btn submit" onClick={handleSubmit}>Submit</button> : <></> }
+            <button className="profile-edit-btn" onClick={toggleEditMode}> { isEditMode ? "Cancel" : "Edit" }</button>
+            { isEditMode ? <button className="profile-edit-btn submit" onClick={handleSubmit}>Submit</button> : <></> }
           </div>
           
           </div>

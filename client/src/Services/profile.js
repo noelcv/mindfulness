@@ -18,21 +18,27 @@ export const createProfile = async (user) => {
 
 export const editProfile = async (user) => {
   try {
-    const updatedProfile = await fetch(`${BASE_URL}/user/${user.uid}/edit`, {
+    if (user.id.match(/^[0-9a-fA-F]{24}$/)) {
+      // Yes, it's a valid ObjectId, proceed with PUT call 
+    
+    const updatedProfile = await fetch(`${BASE_URL}/user/${user.id}/edit`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
     });
     return await updatedProfile;
+  }
   } catch (err) {
     console.log("Error at editProfile Service: ", err);
   }
 }
 
-export const getProfileById = async (id) => {
+export const getProfileById = async (user) => {
   try {
-    const userProfile = await fetch(`${BASE_URL}/user/${id}`);
+    if (user.id.match(/^[0-9a-fA-F]{24}$/)) {
+    const userProfile = await fetch(`${BASE_URL}/user/${user.id}`);
     return await userProfile;
+    }
   } catch (err) {
     console.log("Error at getProfileById Service: ", err);
   }

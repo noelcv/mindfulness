@@ -17,7 +17,6 @@ const ProfilePage = () => {
   const [paymentLink, setPaymentLink] = useState('');
   const { user } = UserAuth();
   
-  const uidDb = user.uid;
 
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
@@ -55,7 +54,7 @@ const ProfilePage = () => {
     e.preventDefault();
     
     const userProfile = {
-      id: uidDb,
+      id: user?.uid,
       name: name || user?.displayName,
       email: email || user?.email,
       location: location,
@@ -70,9 +69,9 @@ const ProfilePage = () => {
   
 
   useEffect(() => {
-    if (uidDb && user?.displayName && user?.photoURL) {
+    if (user?.displayName && user?.photoURL) {
       try {
-        simpleFetch(uidDb);
+        simpleFetch(user?.uid);
       } catch (err) {
         console.log('Error at simpleFetch inside useEffect: ', err);
       }

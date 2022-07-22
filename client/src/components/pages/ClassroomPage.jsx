@@ -16,7 +16,9 @@ const Video = (props) => {
 
   useEffect(() => {
     props.peer.on('stream', (stream) => {
+      if (ref.current) {
       ref.current.srcObject = stream;
+      }
     });
   }, []); //eslint-disable-line
 
@@ -188,19 +190,16 @@ const ClassroomPage = () => {
   };
 
   const toggleMic = () => {
-    const audioTrack = userStream.current
-      .getTracks()
-      .find((track) => track.kind === 'audio');
-    if (audioTrack.enabled) {
-      audioTrack.enabled = false;
-      console.log(audioTrack, 'audioTrack');
-    } else {
-      audioTrack.enabled = true;
-      console.log(audioTrack, 'audioTrack');
-
-    }
-    console.log(audioTrack.enabled, 'myMic');
-  };
+      const audioTrack = userStream.current
+        .getTracks()
+        .find((track) => track.kind === 'audio');
+          if (audioTrack.enabled) {
+            audioTrack.enabled = false;
+        } else {
+            audioTrack.enabled = true;
+        }
+        if (audioTrack) console.log(audioTrack, 'myMic');
+  }
 
   return (
     <div className="app">

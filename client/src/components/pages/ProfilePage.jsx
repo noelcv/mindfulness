@@ -70,7 +70,7 @@ const ProfilePage = () => {
   
 
   useEffect(() => {
-    if (uidDb) {
+    if (uidDb && user?.displayName && user?.photoURL) {
       try {
         simpleFetch(uidDb);
       } catch (err) {

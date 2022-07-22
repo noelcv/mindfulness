@@ -72,7 +72,7 @@ const ProfilePage = () => {
   // };
   
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     const userProfile = {
@@ -84,9 +84,9 @@ const ProfilePage = () => {
       expertise: expertise,
       paymentLink: paymentLink,
     }
-    console.log(userProfile, 'user before createProfile');
-    editProfile(userProfile);
+    console.log(userProfile, 'user before editProfile');
     toggleEditMode();
+    return await editProfile(userProfile);
   }
   
 

@@ -20,14 +20,13 @@ export const editProfile = async (user) => {
   try {
     if (user.id.match(/^[0-9a-fA-F]{24}$/)) {
       // Yes, it's a valid ObjectId, proceed with PUT call 
-    
     const updatedProfile = await fetch(`${BASE_URL}/user/${user.id}/edit`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
     });
     console.log(updatedProfile, "updatedProfile at editProfile Service")
-    return await updatedProfile;
+    return await updatedProfile.json();
   }
   } catch (err) {
     console.log("Error at editProfile Service: ", err);

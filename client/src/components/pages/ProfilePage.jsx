@@ -29,14 +29,24 @@ const ProfilePage = () => {
       if (userId) {
       console.log(userId, 'userId inside simple Fetch')
       let profile = await getProfileById(userId);
-      console.log(profile.json(), 'profile inside simple fetch');
-        if (profile) {
-          setName(profile.name);
-          setEmail(profile.email);
-          setLocation(profile.location);
-          setJob(profile.job);
-          setExpertise(profile.expertise);
-          setPaymentLink(profile.paymentLink);
+      if (profile.length === 0) {
+        const newProfile = {
+          id: userId,
+          name: user?.displayName,
+          email: user?.email
+        }
+        console.log(newProfile, 'creating new Profile inside simple fetch');
+        return await createProfile(newProfile);
+      } else {
+      console.log(profile, 'profile inside simple fetch');
+          if (profile.length > 0) {
+            setName(profile[0].name);
+            setEmail(profile[0].email);
+            setLocation(profile[0].location);
+            setJob(profile[0].job);
+            setExpertise(profile[0].expertise);
+            setPaymentLink(profile[0].paymentLink);
+          }
         }
       }
     } catch (err) {
@@ -45,21 +55,21 @@ const ProfilePage = () => {
   }
   
   
-  const fetchProfile = async (userProfile) => {
-    try {
-      let profileExists = await getProfileById(userProfile.id);
-      if (profileExists) {
-        editProfile(userProfile);
-      }
+  // const fetchProfile = async (userProfile) => {
+  //   try {
+  //     let profileExists = await getProfileById(userProfile.id);
+  //     if (profileExists) {
+  //       editProfile(userProfile);
+  //     }
 
-      //Create a new profile if one does not exist
-      if (!profileExists) {
-        return await createProfile(userProfile);
-      }
-    } catch (err) {
-      console.log('Error fetching Profile', err);
-    }
-  };
+  //     //Create a new profile if one does not exist
+  //     if (!profileExists) {
+  //       return await createProfile(userProfile);
+  //     }
+  //   } catch (err) {
+  //     console.log('Error fetching Profile', err);
+  //   }
+  // };
   
   
   const handleSubmit = (e) => {
@@ -67,15 +77,15 @@ const ProfilePage = () => {
     
     const userProfile = {
       id: uidDb,
-      name: name,
-      email: email,
+      name: name || user?.displayName,
+      email: email || user?.email,
       location: location,
       job: job,
       expertise: expertise,
       paymentLink: paymentLink,
     }
     console.log(userProfile, 'user before createProfile');
-    fetchProfile(userProfile);
+    editProfile(userProfile);
     toggleEditMode();
   }
   
@@ -99,7 +109,7 @@ const ProfilePage = () => {
       { user?.displayName && user?.photoURL ? 
         <div className='dashboard-container profile-container'>
         <div className='profile-inner-container'>
-         
+        
           <div className='profile-detail name-card'>
           { !isEditMode ?
             <>

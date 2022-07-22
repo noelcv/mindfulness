@@ -26,6 +26,7 @@ export const editProfile = async (user) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
     });
+    console.log(updatedProfile, "updatedProfile at editProfile Service")
     return await updatedProfile;
   }
   } catch (err) {
@@ -33,12 +34,10 @@ export const editProfile = async (user) => {
   }
 }
 
-export const getProfileById = async (user) => {
+export const getProfileById = async (userId) => {
   try {
-    if (user.id.match(/^[0-9a-fA-F]{24}$/)) {
-    const userProfile = await fetch(`${BASE_URL}/user/${user.id}`);
-    return await userProfile;
-    }
+    const userProfile = await fetch(`${BASE_URL}/user/${userId}`);
+    return await userProfile.json();
   } catch (err) {
     console.log("Error at getProfileById Service: ", err);
   }

@@ -18,15 +18,36 @@ const ProfilePage = () => {
   const { user } = UserAuth();
   
   const uidDb = user.uid;
-  console.log(uidDb, 'uuiDB')
+  console.log(uidDb, 'uidDb')
  
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
   }
   
+  const simpleFetch = async (userId) => {
+    try {
+      if (userId) {
+      console.log(userId, 'userId inside simple Fetch')
+      let profile = await getProfileById(userId);
+      console.log(profile.json(), 'profile inside simple fetch');
+        if (profile) {
+          setName(profile.name);
+          setEmail(profile.email);
+          setLocation(profile.location);
+          setJob(profile.job);
+          setExpertise(profile.expertise);
+          setPaymentLink(profile.paymentLink);
+        }
+      }
+    } catch (err) {
+      console.log('Error at simple fetch: ', err);
+    }
+  }
+  
+  
   const fetchProfile = async (userProfile) => {
     try {
-      let profileExists = await getProfileById(user.id);
+      let profileExists = await getProfileById(userProfile.id);
       if (profileExists) {
         editProfile(userProfile);
       }
@@ -58,8 +79,16 @@ const ProfilePage = () => {
     toggleEditMode();
   }
   
-  console.log(UserAuth().user.uid, 'userAuth')
-  console.log(user.uid, 'userid')
+
+  useEffect(() => {
+    if (uidDb) {
+      try {
+        simpleFetch(uidDb);
+      } catch (err) {
+        console.log('Error at simpleFetch inside useEffect: ', err);
+      }
+    }
+  }, []) // eslint-disable-line
   
   return (
     <div className="app">

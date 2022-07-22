@@ -27,7 +27,7 @@ exports.addEvent = async (req, res) => {
 
 exports.getProfileById = async (req, res) => {
   try {
-    const userProfile = await UserModel.findById(req.params.id);
+    const userProfile = await UserModel.find({id: req.params.id});
     res.status(200);
     res.send(userProfile);
   } catch (err) {
@@ -63,9 +63,21 @@ exports.createProfile = async (req, res) => {
 
 exports.editProfile = async (req, res) => {
   try {
-    await UserModel.findByIdAndUpdate(req.params.id, req.body);
+    const updatedProfile = await UserModel.updateOne(
+      {id: req.params.id}, 
+      {$set: {
+        name: req.body.name,
+        email: req.body.email, 
+        location: req.body.location,
+        job: req.body.job,
+        expertise: req.body.expertise,
+        paymentLink: req.body.paymentLink,
+        }
+      }
+      , {new: true});
     res.status(200);
-    res.send();
+    console.log("updatedProfile at editProfile Controller: ", updatedProfile);
+    res.send(updatedProfile);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);

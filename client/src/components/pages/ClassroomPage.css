@@ -72,6 +72,10 @@
 
 @media screen and (max-width: 390px) {
   
+  .header-wrapper {
+    visibility: hidden;
+  }
+  
   .videos-wrapper {
     top: -2vh;
     padding-top: -10em;
@@ -157,11 +161,7 @@
     padding-top: 0.2em;
     background-color:#060606;
   }
-  
-  .header-wrapper {
-    visibility: hidden;
-  }
-  
+
   .peer-video {
     padding-top: 1em;
     background-color:#060606;

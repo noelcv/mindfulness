@@ -18,8 +18,7 @@ const ProfilePage = () => {
   const { user } = UserAuth();
   
   const uidDb = user.uid;
-  console.log(uidDb, 'uidDb')
- 
+
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
   }
@@ -27,7 +26,6 @@ const ProfilePage = () => {
   const simpleFetch = async (userId) => {
     try {
       if (userId) {
-      console.log(userId, 'userId inside simple Fetch')
       let profile = await getProfileById(userId);
       if (profile.length === 0) {
         const newProfile = {
@@ -35,10 +33,8 @@ const ProfilePage = () => {
           name: user?.displayName,
           email: user?.email
         }
-        console.log(newProfile, 'creating new Profile inside simple fetch');
         return await createProfile(newProfile);
       } else {
-      console.log(profile, 'profile inside simple fetch');
           if (profile.length > 0) {
             setName(profile[0].name);
             setEmail(profile[0].email);

@@ -76,7 +76,6 @@ exports.editProfile = async (req, res) => {
       }
       , {new: true});
     res.status(200);
-    console.log("updatedProfile at editProfile Controller: ", updatedProfile);
     res.send(updatedProfile);
   } catch (err) {
     console.log(err);

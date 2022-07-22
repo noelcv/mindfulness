@@ -55,23 +55,6 @@ const ProfilePage = () => {
   }
   
   
-  // const fetchProfile = async (userProfile) => {
-  //   try {
-  //     let profileExists = await getProfileById(userProfile.id);
-  //     if (profileExists) {
-  //       editProfile(userProfile);
-  //     }
-
-  //     //Create a new profile if one does not exist
-  //     if (!profileExists) {
-  //       return await createProfile(userProfile);
-  //     }
-  //   } catch (err) {
-  //     console.log('Error fetching Profile', err);
-  //   }
-  // };
-  
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     

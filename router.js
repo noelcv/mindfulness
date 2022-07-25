@@ -9,6 +9,7 @@ router.get('/api/user', controllers.getAllProfiles);
 router.post('/api/user/create', controllers.createProfile);
 router.put('/api/user/:id/edit', controllers.editProfile);
 router.get('/api/user/:id', controllers.getProfileById);
-// router.get('*', controllers.routesHandler);
+
+router.put('/api/user/:id/settings/', controllers.editSettings);
 
 module.exports = router;

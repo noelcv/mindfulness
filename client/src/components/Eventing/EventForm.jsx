@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { currentDate } from '../../utils/utils';
-import { postEvent } from '../../utils/ApiService'
+import { postEvent } from '../../Services/eventing'
 import './EventForm.css';
 
 const EventForm = ({setEvents}) => {

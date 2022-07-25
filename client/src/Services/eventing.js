@@ -1,5 +1,5 @@
-import { currentDate, sortEvents } from './utils';
-import { BACKEND_CONNECTION } from './envSwitch';
+import { currentDate, sortEvents } from '../utils/utils';
+import { BACKEND_CONNECTION } from '../utils/envSwitch';
 
 const BASE_URL = BACKEND_CONNECTION + '/api';
 

@@ -66,7 +66,6 @@ const SettingsPage = () => {
   useEffect(() => {
     if (user?.displayName) {
       try {
-        console.log(user?.uid, 'logging user UID at useEffect SETTINGS')
         fetchSettings(user?.uid);
       } catch (err) {
         console.log('Error at useEffect: ', err);
@@ -144,11 +143,11 @@ const SettingsPage = () => {
           <div className='profile-detail payment-card'>
             { !isEditing ? 
             <>
-            <img src={linkedin} alt="linkedin" width="100px" height="100px"/>
+            <h4>Website</h4>
             <a href={extLink} target="_blank" rel="noreferrer" className="linkedin-link">{extLink}</a>
             </> : <>
             <label htmlFor="extLink" className="display-name">External Link</label>
-              <input type="text" id="extLink" className="display-name" placeholder="What is your billing address?" defaultValue={extLink} onChange={(e) => {
+              <input type="text" id="extLink" className="display-name" placeholder="Do you have a personal website or LinkedIn page?" defaultValue={extLink} onChange={(e) => {
                   setExtLink(e.target.value);
                 }}/>
             </>

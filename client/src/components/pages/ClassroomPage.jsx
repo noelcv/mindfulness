@@ -203,7 +203,7 @@ const ClassroomPage = () => {
 
   return (
     <div className="app">
-      <div className="header-wrapper">
+      <div className="header-wrapper-video">
         <Header />
       </div>
           <div className="videos-wrapper">

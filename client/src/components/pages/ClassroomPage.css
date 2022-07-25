@@ -72,7 +72,7 @@
 
 @media screen and (max-width: 390px) {
   
-  .header-wrapper {
+  .header-wrapper-video {
     visibility: hidden;
   }
   

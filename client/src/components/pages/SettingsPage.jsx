@@ -150,7 +150,7 @@ const SettingsPage = () => {
             }
           </div>
           <div className="profile-edit-btn-container">
-            <button className="profile-edit-btn" onClick={toggle(setIsEditing,!isEditing)}> { isEditing ? "Cancel" : "Edit" }</button>
+            <button className="profile-edit-btn" onClick={() => {toggle(setIsEditing, isEditing)}}> { isEditing ? "Cancel" : "Edit" }</button>
             { isEditing ? <button className="profile-edit-btn submit" onClick={handleSubmit}>Submit</button> : <></> }
           </div>
           

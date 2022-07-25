@@ -85,6 +85,7 @@ exports.editProfile = async (req, res) => {
 
 exports.editSettings = async (req, res) => {
   try {
+    console.log(req.body, 'req body at editSettings')
     const updatedProfile = await UserModel.updateOne(
       {id: req.params.id}, 
       {$set: {

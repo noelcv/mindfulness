@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import { UserAuth } from '../../AuthContext/AuthContext';
-import { createProfile, getProfileById, editProfile } from '../../Services/profile'
+import { createProfile, getProfileById, editSettings } from '../../Services/profile'
 
 import linkedin from '../../assets/linkedin.svg'
 import './SettingsPage.css';
@@ -50,7 +50,7 @@ const SettingsPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    const userProfile = {
+    const userSettings = {
       id: user?.uid,
       email: email || user?.email,
       phoneNumber: phoneNumber,
@@ -58,9 +58,9 @@ const SettingsPage = () => {
       vatNumber: vatNumber,
       extLink: extLink,
     }
-    console.log(userProfile, 'user before editProfile');
+    console.log(userSettings, 'user before editSettings');
     toggleEditMode();
-    return await editProfile(userProfile);
+    return await editSettings(userSettings);
   }
   
   useEffect(() => {

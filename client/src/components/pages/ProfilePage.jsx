@@ -58,7 +58,6 @@ const ProfilePage = () => {
       expertise: expertise,
       paymentLink: paymentLink,
     }
-    console.log(userProfile, 'user before editProfile');
     toggle(setIsEditMode, isEditMode);
     return await editProfile(userProfile);
   }

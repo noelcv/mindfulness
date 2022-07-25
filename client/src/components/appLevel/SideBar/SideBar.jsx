@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import './SideBar.css';
+import '../../../App.css';
 import ProfileBtn from './ProfileBtn/ProfileBtn';
 import EventsBtn from './EventsBtn/EventsBtn';
 import ClassroomBtn from './ClassroomBtn/ClassroomBtn';

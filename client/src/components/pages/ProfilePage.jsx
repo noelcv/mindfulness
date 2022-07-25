@@ -149,13 +149,13 @@ const ProfilePage = () => {
           <div className='profile-detail expertise-card'>
             { !isEditMode ? 
             <>
-            <h4>With an Expertise in</h4>
+            <h4>Expert in</h4>
             <ul className="expertise-list">
               <p placeholder="List your expertise">{expertise}</p>
             </ul>
             </> : 
             <>
-              <label htmlFor="expertise">With an Expertise in</label>
+              <label htmlFor="expertise">I am an Expert in</label>
               <input type="text" id="expertise" placeholder="What do you love to do the most?" defaultValue={expertise} onChange={(e) => {
                   setExpertise(e.target.value);
                 }}/>
@@ -166,7 +166,7 @@ const ProfilePage = () => {
           <div className='profile-detail payment-card'>
             { !isEditMode ? 
               <>
-                <img src={buymeacoffee} alt="buy-me-a-coffee" width="180px" height="75px"></img>
+                <h4 src={buymeacoffee} alt="buy-me-a-coffee" width="180px" height="75px">Payment Link</h4>
                 <p className="buy-me-a-coffee-link" placeholder="Set a payment link">{paymentLink}</p>
               </> :
               <>

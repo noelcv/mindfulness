@@ -86,3 +86,32 @@
     height: auto;
     flex-direction: row;
   }
+  
+  @media screen and (max-width: 390px) {
+  
+  
+    .profile-container {
+      top: -2vh;
+      padding-top: -1em;
+      margin-left:200px;
+      margin-bottom: 1em;
+      width: 2%;
+      height: auto;
+      position: fixed;
+    }
+    
+    
+  }
+  
+  @media screen and (max-width: 900px) {
+
+    .profile-container {
+      top: -2vh;
+      padding-top: -1em;
+      margin-left:200px;
+      margin-bottom: 1em;
+      width: 2%;
+      height: auto;
+      position: fixed;
+    }
+  }

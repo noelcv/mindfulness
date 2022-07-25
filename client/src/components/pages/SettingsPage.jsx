@@ -3,8 +3,6 @@ import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import { UserAuth } from '../../AuthContext/AuthContext';
 import { createProfile, getProfileById, editSettings } from '../../Services/profile'
-
-import linkedin from '../../assets/linkedin.svg'
 import './SettingsPage.css';
 
 const SettingsPage = () => {

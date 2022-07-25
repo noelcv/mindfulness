@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import { UserAuth } from '../../AuthContext/AuthContext';
@@ -21,7 +21,7 @@ const SettingsPage = () => {
     setIsEditing(!isEditing);
   }
   
-  const simpleFetch = async (userId) => {
+  const fetchSettings = async (userId) => {
     try {
       if (userId) {
       let profile = await getProfileById(userId);
@@ -43,7 +43,7 @@ const SettingsPage = () => {
         }
       }
     } catch (err) {
-      console.log('Error at simple fetch: ', err);
+      console.log('Error at fetchSettings: ', err);
     }
   }
   
@@ -63,6 +63,17 @@ const SettingsPage = () => {
     return await editProfile(userProfile);
   }
   
+  useEffect(() => {
+    if (user?.displayName) {
+      try {
+        console.log(user?.uid, 'logging user UID at useEffect SETTINGS')
+        fetchSettings(user?.uid);
+      } catch (err) {
+        console.log('Error at useEffect: ', err);
+      }
+    }
+    
+  }, []) //eslint-disable-line
   return (
     <div className="app">
       <Header />

@@ -82,3 +82,24 @@ exports.editProfile = async (req, res) => {
     res.sendStatus(500);
   }
 }
+
+exports.editSettings = async (req, res) => {
+  try {
+    const updatedProfile = await UserModel.updateOne(
+      {id: req.params.id}, 
+      {$set: {
+        email: req.body.email, 
+        phoneNumber: req.body.phoneNumber,
+        billingAddress: req.body.billingAddress,
+        vatNumber: req.body.vatNumber,
+        extLink: req.body.extLink,
+        }
+      }
+      , {new: true});
+    res.status(200);
+    res.send(updatedProfile);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+}

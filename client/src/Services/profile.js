@@ -39,12 +39,12 @@ export const getProfileById = async (userId) => {
 
 export const editSettings = async (userSettings) => {
   try {
-    const updatedProfile = await fetch(`${BASE_URL}/user/${userSettings.id}/settings/`, {
+    const updatedSettings = await fetch(`${BASE_URL}/user/${userSettings.id}/settings/`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userSettings),
     });
-    return await updatedProfile.json();
+    return await updatedSettings.json();
   } catch (err) {
     console.log("Error at editSettings Service: ", err);
   }

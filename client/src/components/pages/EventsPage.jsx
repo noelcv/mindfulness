@@ -6,7 +6,8 @@ import EventList from '../Eventing/EventList';
 import EventForm from '../Eventing/EventForm';
 import './CommonPageStyles.css';
 import './EventsPage.css'
-import { getEvents } from '../../utils/ApiService';
+import '../../App.css'
+import { getEvents } from '../../Services/eventing';
 import { UserAuth } from '../../AuthContext/AuthContext';
 
 const EventsPage = () => {

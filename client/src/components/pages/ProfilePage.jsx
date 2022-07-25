@@ -5,7 +5,7 @@ import './ProfilePage.css';
 import buymeacoffee from '../../assets/buymeacoffee.svg'
 import { UserAuth } from '../../AuthContext/AuthContext';
 import { createProfile, getProfileById, editProfile } from '../../Services/profile'
-
+import { toggle } from '../../utils/toggle';
 
 const ProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -17,10 +17,6 @@ const ProfilePage = () => {
   const [paymentLink, setPaymentLink] = useState('');
   const { user } = UserAuth();
   
-
-  const toggleEditMode = () => {
-    setIsEditMode(!isEditMode);
-  }
   
   const simpleFetch = async (userId) => {
     try {
@@ -62,8 +58,7 @@ const ProfilePage = () => {
       expertise: expertise,
       paymentLink: paymentLink,
     }
-    console.log(userProfile, 'user before editProfile');
-    toggleEditMode();
+    toggle(setIsEditMode, isEditMode);
     return await editProfile(userProfile);
   }
   
@@ -154,13 +149,13 @@ const ProfilePage = () => {
           <div className='profile-detail expertise-card'>
             { !isEditMode ? 
             <>
-            <h4>With an Expertise in</h4>
+            <h4>Expert in</h4>
             <ul className="expertise-list">
               <p placeholder="List your expertise">{expertise}</p>
             </ul>
             </> : 
             <>
-              <label htmlFor="expertise">With an Expertise in</label>
+              <label htmlFor="expertise">I am an Expert in</label>
               <input type="text" id="expertise" placeholder="What do you love to do the most?" defaultValue={expertise} onChange={(e) => {
                   setExpertise(e.target.value);
                 }}/>
@@ -171,7 +166,7 @@ const ProfilePage = () => {
           <div className='profile-detail payment-card'>
             { !isEditMode ? 
               <>
-                <img src={buymeacoffee} alt="buy-me-a-coffee" width="180px" height="75px"></img>
+                <h4 src={buymeacoffee} alt="buy-me-a-coffee" width="180px" height="75px">Payment Link</h4>
                 <p className="buy-me-a-coffee-link" placeholder="Set a payment link">{paymentLink}</p>
               </> :
               <>
@@ -184,7 +179,7 @@ const ProfilePage = () => {
           </div>
           
           <div className="profile-edit-btn-container">
-            <button className="profile-edit-btn" onClick={toggleEditMode}> { isEditMode ? "Cancel" : "Edit" }</button>
+            <button className="profile-edit-btn" onClick={() => {toggle(setIsEditMode, isEditMode)}}> { isEditMode ? "Cancel" : "Edit" }</button>
             { isEditMode ? <button className="profile-edit-btn submit" onClick={handleSubmit}>Submit</button> : <></> }
           </div>
           

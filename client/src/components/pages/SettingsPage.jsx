@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import { UserAuth } from '../../AuthContext/AuthContext';
@@ -6,6 +6,12 @@ import linkedin from '../../assets/linkedin.svg'
 import './SettingsPage.css';
 
 const SettingsPage = () => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [linkedin, setLinkedin] = useState('');
+  const [billingAddress, setBillingAddress] = useState('');
+  const [vat, setVat] = useState('');
   
   const { user } = UserAuth();
   

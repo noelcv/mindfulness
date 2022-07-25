@@ -3,7 +3,7 @@ import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import { UserAuth } from '../../AuthContext/AuthContext';
 import { createProfile, getProfileById, editSettings } from '../../Services/profile'
-import { toggleEditMode } from '../../utils/toggleEditMode';
+import { toggle } from '../../utils/toggle';
 import './SettingsPage.css';
 
 const SettingsPage = () => {
@@ -55,7 +55,7 @@ const SettingsPage = () => {
       extLink: extLink,
     }
     console.log(userSettings, 'user before editSettings');
-    toggleEditMode(setIsEditing, isEditing);
+    toggle(setIsEditing, isEditing);
     return await editSettings(userSettings);
   }
   
@@ -150,7 +150,7 @@ const SettingsPage = () => {
             }
           </div>
           <div className="profile-edit-btn-container">
-            <button className="profile-edit-btn" onClick={toggleEditMode(setIsEditing,!isEditing)}> { isEditing ? "Cancel" : "Edit" }</button>
+            <button className="profile-edit-btn" onClick={toggle(setIsEditing,!isEditing)}> { isEditing ? "Cancel" : "Edit" }</button>
             { isEditing ? <button className="profile-edit-btn submit" onClick={handleSubmit}>Submit</button> : <></> }
           </div>
           

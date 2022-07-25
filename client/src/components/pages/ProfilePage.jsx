@@ -5,7 +5,7 @@ import './ProfilePage.css';
 import buymeacoffee from '../../assets/buymeacoffee.svg'
 import { UserAuth } from '../../AuthContext/AuthContext';
 import { createProfile, getProfileById, editProfile } from '../../Services/profile'
-
+import { toggle } from '../../utils/toggle';
 
 const ProfilePage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -17,10 +17,6 @@ const ProfilePage = () => {
   const [paymentLink, setPaymentLink] = useState('');
   const { user } = UserAuth();
   
-
-  const toggleEditMode = () => {
-    setIsEditMode(!isEditMode);
-  }
   
   const simpleFetch = async (userId) => {
     try {
@@ -63,7 +59,7 @@ const ProfilePage = () => {
       paymentLink: paymentLink,
     }
     console.log(userProfile, 'user before editProfile');
-    toggleEditMode();
+    toggle(setIsEditMode, isEditMode);
     return await editProfile(userProfile);
   }
   
@@ -184,7 +180,7 @@ const ProfilePage = () => {
           </div>
           
           <div className="profile-edit-btn-container">
-            <button className="profile-edit-btn" onClick={toggleEditMode}> { isEditMode ? "Cancel" : "Edit" }</button>
+            <button className="profile-edit-btn" onClick={() => {toggle(setIsEditMode, isEditMode)}}> { isEditMode ? "Cancel" : "Edit" }</button>
             { isEditMode ? <button className="profile-edit-btn submit" onClick={handleSubmit}>Submit</button> : <></> }
           </div>
           

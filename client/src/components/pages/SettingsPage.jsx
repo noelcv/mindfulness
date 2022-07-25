@@ -54,7 +54,6 @@ const SettingsPage = () => {
       vatNumber: vatNumber,
       extLink: extLink,
     }
-    console.log(userSettings, 'user before editSettings');
     toggle(setIsEditing, isEditing);
     return await editSettings(userSettings);
   }

@@ -20,6 +20,11 @@
     z-index: 3;
   }
   
+  .events-list-wrapper-solo {
+    margin-left: -4em;
+    max-width: 22em;
+    z-index: 1000;
+  }
   
   .app-holder {
    flex-direction: column;
@@ -111,6 +116,12 @@
   .events-list-wrapper {
     margin-top: 20em;
     margin-left: -0.5em;
+  }
+  
+  .events-list-wrapper-solo {
+    margin-left: -1.5em;
+    max-width: 22em;
+    z-index: 1000;
   }
   
   .events-page-container {

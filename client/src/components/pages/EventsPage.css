@@ -38,7 +38,8 @@
 }
 
 .events-list-wrapper-solo {
-  margin-right: 15vw;
+  margin-right: 25vw;
+  z-index: 1000;
 }
 
 

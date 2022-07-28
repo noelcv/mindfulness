@@ -6,6 +6,7 @@ import io from 'socket.io-client';
 import { BACKEND_CONNECTION } from '../../utils/envSwitch';
 import { avSettings } from '../../utils/avSettings';
 import Header from '../appLevel/Header/Header';
+import { toggleMic } from '../../utils/toggle';
 import './ClassroomPage.css';
 import './CommonPageStyles.css';
 
@@ -200,6 +201,11 @@ const ClassroomPage = () => {
         }
         if (audioTrack) console.log(audioTrack, 'myMic');
   }
+  
+  // const handleMic = () => {
+  //   toggleMicrophone(userStream);
+  // }
+  
 
   return (
     <div className="app">
@@ -217,10 +223,10 @@ const ClassroomPage = () => {
               />
               
                 <div className="video-controls">
-                  <button className="cam-input-btn video-btn" onClick={toggleCam}>
+                  <button className="cam-input-btn video-btn" ref={userVideo} onClick={toggleCam}>
                     📸
                   </button>
-                  <button className="mic-input-btn video-btn" onClick={toggleMic}>
+                  <button className="mic-input-btn video-btn" onClick={()=> {toggleMic(userStream)}}>
                     🎙️
                   </button>
                   <button className="phone-input-btn video-btn" onClick={exitCall}>

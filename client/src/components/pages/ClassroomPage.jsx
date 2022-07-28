@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Peer from 'simple-peer';
+import { Video } from '../Classroom/VideoPlayer/VideoPlayer';
 import io from 'socket.io-client';
 import { BACKEND_CONNECTION } from '../../utils/envSwitch';
 import { avSettings } from '../../utils/avSettings';
@@ -11,29 +11,6 @@ import './ClassroomPage.css';
 import './CommonPageStyles.css';
 
 const BASE_URL = BACKEND_CONNECTION;
-
-const Video = (props) => {
-  const ref = useRef();
-
-  useEffect(() => {
-    props.peer.on('stream', (stream) => {
-      if (ref.current) {
-      ref.current.srcObject = stream;
-      }
-    });
-  }, []); //eslint-disable-line
-
-  return (
-    <>
-      <video
-        playsInline
-        autoPlay
-        ref={ref}
-        className="videoplayer-container"
-      />
-    </>
-  );
-};
 
 const ClassroomPage = () => {
   //HOOKS for classroom state management

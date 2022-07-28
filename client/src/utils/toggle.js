@@ -14,3 +14,15 @@ export const toggleMic = (ref) => {
         if (audioTrack) console.log(audioTrack, 'myMic');
   
 }
+
+export const toggleCam = (ref) => {
+  const videoTrack = ref.current
+    .getVideoTracks()
+    .find((track) => track.kind === 'video');
+  if (videoTrack.enabled) {
+    videoTrack.enabled = !videoTrack.enabled;
+  } else {
+    videoTrack.enabled = true;
+  }
+  console.log(videoTrack, 'myCam');
+};

@@ -26,3 +26,9 @@ export const toggleCam = (ref) => {
   }
   console.log(videoTrack, 'myCam');
 };
+
+export const exitCall = (ref, socketRef) => {
+  ref.current.getVideoTracks()[0].enabled = false;
+  if(socketRef.current) socketRef.current.disconnect();
+  window.location.replace('/events');
+};

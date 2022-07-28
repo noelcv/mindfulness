@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 import { BACKEND_CONNECTION } from '../../utils/envSwitch';
 import { avSettings } from '../../utils/avSettings';
 import Header from '../appLevel/Header/Header';
-import { toggleMic, toggleCam } from '../../utils/toggle';
+import { toggleMic, toggleCam, exitCall } from '../../utils/toggle';
 import './ClassroomPage.css';
 import './CommonPageStyles.css';
 
@@ -45,8 +45,6 @@ const ClassroomPage = () => {
 
   const currentPath = useLocation();
   const roomId = currentPath.pathname.split('/').pop();
-
-
 
   useEffect(() => {
     socketRef.current = io.connect(BASE_URL);
@@ -172,12 +170,6 @@ const ClassroomPage = () => {
     return peer;
   };
 
-  const exitCall = () => {
-    userStream.current.getVideoTracks()[0].enabled = false;
-    if(socketRef.current) socketRef.current.disconnect();
-    window.location.replace('/events');
-  };
-
   
   return (
     <div className="app">
@@ -201,7 +193,7 @@ const ClassroomPage = () => {
                   <button className="mic-input-btn video-btn" onClick={()=> {toggleMic(userStream)}}>
                     🎙️
                   </button>
-                  <button className="phone-input-btn video-btn" onClick={exitCall}>
+                  <button className="phone-input-btn video-btn" onClick={()=> exitCall(userStream, socketRef)}>
                     ☎️
                   </button>
                 </div>

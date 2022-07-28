@@ -96,6 +96,10 @@
     overflow-y: hidden;
   }
   
+  .spinner {
+    margin-right: 30vw;
+  }
+  
   .events-wrapper {
     margin-bottom: 1em;
     width: 2%;
@@ -128,6 +132,8 @@
     width: 100%;
     display: flex;
   }
+ 
+  
   
 }
 

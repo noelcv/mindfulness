@@ -11,6 +11,11 @@
   display: flex;  
 }
 
+.spinner {
+  margin-top: 15vh;
+  margin-right: 30vw;
+}
+
 .events-page-container {
   display: flex;
   padding-top: 20vh;
@@ -19,7 +24,6 @@
   margin-bottom: 2vh;
   margin-left: 15vw;
   margin-right: 12vw;
-
   height: auto;
 }
 

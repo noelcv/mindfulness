@@ -1,38 +1,16 @@
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Peer from 'simple-peer';
+import { Video } from '../Classroom/VideoPlayer/VideoPlayer';
 import io from 'socket.io-client';
 import { BACKEND_CONNECTION } from '../../utils/envSwitch';
 import { avSettings } from '../../utils/avSettings';
 import Header from '../appLevel/Header/Header';
+import { toggleMic, toggleCam, exitCall, generateNewPeer, addNewPeer } from '../../Services/video';
 import './ClassroomPage.css';
 import './CommonPageStyles.css';
 
 const BASE_URL = BACKEND_CONNECTION;
-
-const Video = (props) => {
-  const ref = useRef();
-
-  useEffect(() => {
-    props.peer.on('stream', (stream) => {
-      if (ref.current) {
-      ref.current.srcObject = stream;
-      }
-    });
-  }, []); //eslint-disable-line
-
-  return (
-    <>
-      <video
-        playsInline
-        autoPlay
-        ref={ref}
-        className="videoplayer-container"
-      />
-    </>
-  );
-};
 
 const ClassroomPage = () => {
   //HOOKS for classroom state management
@@ -44,8 +22,6 @@ const ClassroomPage = () => {
 
   const currentPath = useLocation();
   const roomId = currentPath.pathname.split('/').pop();
-
-
 
   useEffect(() => {
     socketRef.current = io.connect(BASE_URL);
@@ -67,7 +43,8 @@ const ClassroomPage = () => {
               const peer = generateNewPeer(
                 participantId,
                 socketRef.current.id,
-                stream
+                stream,
+                socketRef
               );
 
               peersRef.current.push({
@@ -86,7 +63,7 @@ const ClassroomPage = () => {
         );
 
         socketRef.current.on('userJoinedClassroom', (data) => {
-          const peer = addNewPeer(data.signal, data.callerId, stream);
+          const peer = addNewPeer(data.signal, data.callerId, stream, socketRef);
 
           peersRef.current.push({
             peerId: data.callerId,
@@ -131,76 +108,6 @@ const ClassroomPage = () => {
       });
   }, []); //eslint-disable-line
 
-  const generateNewPeer = (userToSignal, callerId, stream) => {
-    const peer = new Peer({
-      initiator: true, //so that I can inform the others that I joined
-      trickle: false,
-      stream,
-    });
-
-    peer.on('signal', (signal) => {
-      socketRef.current.emit('sendingSignalToBackEnd', {
-        userToSignal,
-        callerId,
-        signal,
-      });
-    });
-
-    return peer;
-  };
-
-  const addNewPeer = (newSignalIncoming, callerId, stream) => {
-    const peer = new Peer({
-      initiator: false,
-      trickle: false,
-      stream,
-    });
-
-    //we signal upon the newly incoming signal
-    //so when we receive an offer we send our signal back to the callerID
-    peer.on('signal', (signal) => {
-      socketRef.current.emit('returningSignalToTheBackEnd', {
-        signal,
-        callerId,
-      });
-    });
-
-    //we are accepting the signal and fire the socket event above
-    peer.signal(newSignalIncoming);
-
-    return peer;
-  };
-
-  const exitCall = () => {
-    userStream.current.getVideoTracks()[0].enabled = false;
-    if(socketRef.current) socketRef.current.disconnect();
-    window.location.replace('/events');
-  };
-
-  const toggleCam = () => {
-    const videoTrack = userStream.current
-      .getVideoTracks()
-      .find((track) => track.kind === 'video');
-    if (videoTrack.enabled) {
-      videoTrack.enabled = !videoTrack.enabled;
-    } else {
-      videoTrack.enabled = true;
-    }
-    console.log(videoTrack.enabled, 'myCam');
-  };
-
-  const toggleMic = () => {
-      const audioTrack = userStream.current
-        .getTracks()
-        .find((track) => track.kind === 'audio');
-          if (audioTrack.enabled) {
-            audioTrack.enabled = false;
-        } else {
-            audioTrack.enabled = true;
-        }
-        if (audioTrack) console.log(audioTrack, 'myMic');
-  }
-
   return (
     <div className="app">
       <div className="header-wrapper-video">
@@ -217,13 +124,13 @@ const ClassroomPage = () => {
               />
               
                 <div className="video-controls">
-                  <button className="cam-input-btn video-btn" onClick={toggleCam}>
+                  <button className="cam-input-btn video-btn" onClick={()=> toggleCam(userStream)}>
                     📸
                   </button>
-                  <button className="mic-input-btn video-btn" onClick={toggleMic}>
+                  <button className="mic-input-btn video-btn" onClick={()=> {toggleMic(userStream)}}>
                     🎙️
                   </button>
-                  <button className="phone-input-btn video-btn" onClick={exitCall}>
+                  <button className="phone-input-btn video-btn" onClick={()=> exitCall(userStream, socketRef)}>
                     ☎️
                   </button>
                 </div>

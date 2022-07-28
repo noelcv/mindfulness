@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 import { BACKEND_CONNECTION } from '../../utils/envSwitch';
 import { avSettings } from '../../utils/avSettings';
 import Header from '../appLevel/Header/Header';
-import { toggleMic, toggleCam, exitCall } from '../../Services/video';
+import { toggleMic, toggleCam, exitCall, generateNewPeer, addNewPeer } from '../../Services/video';
 import './ClassroomPage.css';
 import './CommonPageStyles.css';
 
@@ -66,7 +66,8 @@ const ClassroomPage = () => {
               const peer = generateNewPeer(
                 participantId,
                 socketRef.current.id,
-                stream
+                stream,
+                socketRef
               );
 
               peersRef.current.push({
@@ -85,7 +86,7 @@ const ClassroomPage = () => {
         );
 
         socketRef.current.on('userJoinedClassroom', (data) => {
-          const peer = addNewPeer(data.signal, data.callerId, stream);
+          const peer = addNewPeer(data.signal, data.callerId, stream, socketRef);
 
           peersRef.current.push({
             peerId: data.callerId,
@@ -130,47 +131,6 @@ const ClassroomPage = () => {
       });
   }, []); //eslint-disable-line
 
-  const generateNewPeer = (userToSignal, callerId, stream) => {
-    const peer = new Peer({
-      initiator: true, //so that I can inform the others that I joined
-      trickle: false,
-      stream,
-    });
-
-    peer.on('signal', (signal) => {
-      socketRef.current.emit('sendingSignalToBackEnd', {
-        userToSignal,
-        callerId,
-        signal,
-      });
-    });
-
-    return peer;
-  };
-
-  const addNewPeer = (newSignalIncoming, callerId, stream) => {
-    const peer = new Peer({
-      initiator: false,
-      trickle: false,
-      stream,
-    });
-
-    //we signal upon the newly incoming signal
-    //so when we receive an offer we send our signal back to the callerID
-    peer.on('signal', (signal) => {
-      socketRef.current.emit('returningSignalToTheBackEnd', {
-        signal,
-        callerId,
-      });
-    });
-
-    //we are accepting the signal and fire the socket event above
-    peer.signal(newSignalIncoming);
-
-    return peer;
-  };
-
-  
   return (
     <div className="app">
       <div className="header-wrapper-video">

@@ -1,3 +1,46 @@
+import Peer from 'simple-peer';
+
+
+export const generateNewPeer = (userToSignal, callerId, stream, socketRef) => {
+  const peer = new Peer({
+    initiator: true, //so that I can inform the others that I joined
+    trickle: false,
+    stream,
+  });
+  
+  peer.on('signal', (signal) => {
+    socketRef.current.emit('sendingSignalToBackEnd', {
+      userToSignal,
+      callerId,
+      signal,
+    });
+  });
+  
+  return peer;
+};
+
+export const addNewPeer = (newSignalIncoming, callerId, stream, socketRef) => {
+  const peer = new Peer({
+    initiator: false,
+    trickle: false,
+    stream,
+  });
+  
+  //we signal upon the newly incoming signal
+  //so when we receive an offer we send our signal back to the callerID
+  peer.on('signal', (signal) => {
+    socketRef.current.emit('returningSignalToTheBackEnd', {
+      signal,
+      callerId,
+    });
+  });
+  
+  //we are accepting the signal and fire the socket event above
+  peer.signal(newSignalIncoming);
+  
+  return peer;
+};
+
 export const toggleMic = (ref) => {
   const audioTrack = ref.current
         .getTracks()

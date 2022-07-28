@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 import { BACKEND_CONNECTION } from '../../utils/envSwitch';
 import { avSettings } from '../../utils/avSettings';
 import Header from '../appLevel/Header/Header';
-import { toggleMic, toggleCam, exitCall } from '../../utils/toggle';
+import { toggleMic, toggleCam, exitCall } from '../../Services/video';
 import './ClassroomPage.css';
 import './CommonPageStyles.css';
 

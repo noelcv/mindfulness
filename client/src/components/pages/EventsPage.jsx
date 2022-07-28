@@ -14,10 +14,11 @@ import { UserAuth } from '../../AuthContext/AuthContext';
 const EventsPage = () => {
   //HOOKS
   const [events, setEvents] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const { user } = UserAuth();
 
   useEffect(() => {
+    setIsLoading(true)
     getEvents().then((res) => setEvents(res));
     setIsLoading(false)
   }, []);
@@ -32,7 +33,7 @@ const EventsPage = () => {
         <div className="events-page-container">
         { user?.displayName ? 
           <div className="events-wrapper">
-            { !isLoading ?
+            { isLoading ?
                 <div className="spinner-container"> 
                   <h2 className="loader">Loading...</h2>
                 </div> :
@@ -46,7 +47,7 @@ const EventsPage = () => {
             </div> 
           </div>: <>
             
-          { !isLoading ?
+          { isLoading ?
                 <div className="spinner-container"> 
                   <img className="spinner" src={aura_spinner} alt="loading events..." />
                 </div> :
@@ -54,8 +55,6 @@ const EventsPage = () => {
               <EventList id="list" events={events} setEvents={setEvents} />
             </div>
             }
-            
-          
           </>} 
         </div>
       </div>

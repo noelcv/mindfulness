@@ -81,7 +81,7 @@
 @media screen and (max-width: 390px) {
   
   .header-wrapper-video {
-    visibility: hidden;
+    display: none !important;
   }
   
   .videos-wrapper {
@@ -127,11 +127,14 @@
 }
 
 @media screen and (max-width: 900px) {
-
-  .header-wrapper {
-    width: 45%;
-    background-color: transparent;
+  
+  .header-wrapper-video {
+    display: none !important;
   }
+
+  
+
+  
   
   .videos-wrapper {
     margin-top: -5vh;

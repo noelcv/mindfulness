@@ -19,7 +19,7 @@ root.render(
     <AuthContextProvider>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<LandingPage />}/>
+          <Route path='/land' element={<LandingPage />}/>
           <Route path='/signin' element={<SignInPage />}/>
           <Route path='/profile' element={<ProfilePage />}/>
           <Route path='/events' element={<EventsPage />}/>

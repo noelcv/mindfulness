@@ -22,24 +22,15 @@ const SignInPage = () => {
   
   useEffect(() => {
     if (user != null) {
-      goTo('/events');
+      goTo('/land');
     }
   }, []) //eslint-disable-line
   
   
   return (
-    <div className="app">
-      <Header />
-      <div className="app-holder">
-        <SideBar />
-        <div className='dashboard-container'>
-          <div className="sign-in-container">
+      <div className='signin-container'>
           <GoogleButton onClick={handleGoogleSignIn} />
-          </div>
-        </div>
-    
       </div>
-    </div>
   );
 };
 

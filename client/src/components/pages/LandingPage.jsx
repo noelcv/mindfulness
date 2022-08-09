@@ -1,5 +1,6 @@
 import React, {useRef, useEffect, useState} from 'react';
 import "./LandingPage.css"
+import SignInPage from './SignInPage';
 
 const LandingPage = () => {
   
@@ -11,6 +12,7 @@ const LandingPage = () => {
     <div className="app">
      <div className="landing-header">
       <h1>Mindfulness</h1>
+      <SignInPage />
      </div>
      <div className="land l-hero" ref={heroRef}></div>
      <div className="land l-main" ref={mainRef}></div>

@@ -114,3 +114,115 @@
   background-color: rgba(100,100,100, 0.2)
 }
 
+@media only screen and (max-width: 810px) {
+
+  .landing-header {
+    display:flex;
+    flex-direction: column;
+    max-width: 98%;
+    height: auto;
+  }
+  
+  .signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -9vh;
+    width: 56vh;
+    min-height: 20vh;
+    height: fit-content;
+  }
+  
+  .header-packshot {
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  
+  .header-packshot h2 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: -1em;
+    padding-top: 0.5em;
+    padding-left: 0.2em;
+  }
+  
+  .l-main {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(202, 196, 196, 0.2);
+    width: 100%;
+    height: 75rem;
+  }
+  
+  
+  .box-wrapper {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+  }
+  
+  .box-topic {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em;
+    flex-direction: column;
+    border: none;
+  }
+  
+  
+  
+}
+
+@media screen and (max-width: 390px) {
+  
+  .app {
+    overflow-y: auto;
+  }
+  
+  .landing-header {
+    display:flex;
+    flex-direction: column;
+    max-width: 98%;
+    height: auto;
+  }
+  
+  .signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -9vh;
+    width: 36.5vh;
+    min-height: 20vh;
+  }
+  
+  .header-packshot {
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  
+  .header-packshot h2 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: -1em;
+    padding-top: 0.5em;
+    padding-left: 0.2em;
+  }
+  
+  .l-main {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(202, 196, 196, 0.2);
+    width: 100%;
+    height: 95rem;
+  }
+  
+  
+}
+

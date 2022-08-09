@@ -6,6 +6,7 @@ import './index.css';
 import ClassroomPage from './components/pages/ClassroomPage';
 import EventsPage from './components/pages/EventsPage';
 import ProfilePage from './components/pages/ProfilePage';
+import LandingPage from './components/pages/LandingPage';
 import SettingsPage from './components/pages/SettingsPage';
 import SignInPage from './components/pages/SignInPage';
 import { AuthContextProvider } from './AuthContext/AuthContext';
@@ -18,7 +19,7 @@ root.render(
     <AuthContextProvider>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<EventsPage />}/>
+          <Route path='/' element={<LandingPage />}/>
           <Route path='/signin' element={<SignInPage />}/>
           <Route path='/profile' element={<ProfilePage />}/>
           <Route path='/events' element={<EventsPage />}/>

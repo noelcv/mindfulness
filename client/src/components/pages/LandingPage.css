@@ -1,0 +1,29 @@
+.landing-header {
+  background-color: #d900ff;
+  margin-top:-4em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.landing-header h1 {
+  text-align: left;
+  padding-top: 0.5em;
+  padding-left: 0.2em;
+}
+
+.land  {
+  width: 100%;
+  height: 50vh;
+}
+
+.l-hero {
+  background-color: rgba(100,100,100, 0.2)
+}
+
+.l-main {
+  background-color: rgba(202, 196, 196, 0.2)
+}
+
+.l-footer {
+  background-color: rgba(100,100,100, 0.2)
+}

@@ -32,8 +32,6 @@
   height: fit-content;
 }
 
-
-
 .l-hero {
   display: flex;
   justify-content: space-around;
@@ -86,7 +84,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgba(202, 196, 196, 0.2);
+  background-color: rgba(233, 228, 228, 0.2);
   width: 100%;
   height: 75rem;
 }
@@ -111,15 +109,23 @@
 
 
 .l-footer {
-  background-color: rgba(100,100,100, 0.2)
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.foot-signup {
+  margin-bottom: 2.5em;
+}
+
 
 @media only screen and (max-width: 810px) {
 
   .landing-header {
     display:flex;
     flex-direction: column;
-    max-width: 98%;
+    max-width: 100%;
     height: auto;
   }
   
@@ -147,11 +153,24 @@
     padding-left: 0.2em;
   }
   
+  .hero-title {
+    font-size:  2.5em;
+    margin-right: 0%;
+    margin-left: -0%;
+  }
+  
+  .hero-text {
+    font-size:  2em;
+    display: flex;
+    max-width: 35ch;
+  }
+  
+  
   .l-main {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: rgba(202, 196, 196, 0.2);
+    background-color: rgba(233, 228, 228, 0.2);
     width: 100%;
     height: 75rem;
   }
@@ -173,9 +192,16 @@
     flex-direction: column;
     border: none;
   }
+
+  .box-mobile {
+    background-image: url("../../assets/svg/foam.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 2px,-3px, 2.5px, 3.3px rgba(202, 196, 196, 0.2)
+  }
   
-  
-  
+
+
 }
 
 @media screen and (max-width: 390px) {
@@ -187,17 +213,12 @@
   .landing-header {
     display:flex;
     flex-direction: column;
-    max-width: 98%;
+    max-width: 100%;
     height: auto;
   }
   
   .signin-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -9vh;
-    width: 36.5vh;
-    min-height: 20vh;
+    display:none;
   }
   
   .header-packshot {
@@ -217,12 +238,23 @@
   .l-main {
     display: flex;
     justify-content: space-around;
+    background-color: rgba(233, 228, 228, 0.2);
     align-items: center;
-    background-color: rgba(202, 196, 196, 0.2);
     width: 100%;
     height: 95rem;
   }
   
+  .box-mobile {
+    background-image: url("../../assets/svg/foam.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 2px,-3px, 2.5px, 3.3px rgba(202, 196, 196, 0.2)
+  }
   
-}
-
+  .foot-signup {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5em;
+  } 
+  
+  }

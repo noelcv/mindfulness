@@ -41,16 +41,16 @@ const LandingPage = () => {
         
         <div className="land l-main" ref={mainRef}>
           <div className="box-wrapper">
-            <div className="box-topic event-box">
+            <div className="box-topic box-mobile event-box">
               <div className="calendar_svg">
                 <img src={Calendar} alt="calendar"/>
               </div>
               <h4 className="box-title">Create Events</h4>
               <p className="description">Publish your therapy session, 1-on-1 coaching or private yoga class.
-              Keep an agenda of your upcoming events and convert more, by allowing your clients to easily sign up.
+              Keep an agenda of your upcoming events and allow your customers to easily sign up.
               </p>
             </div>
-            <div className="box-topic video-box">
+            <div className="box-topic box-mobile video-box">
               <div className="video_svg">
                 
                 <img src={Video} alt="calendar"/>
@@ -59,21 +59,21 @@ const LandingPage = () => {
               <h4 className="box-title">Host Video Sessions</h4>
               <p className="description">Create safe spaces for sharing. Mindfulness allows you to communicate directly to your client (p2p). We do not keep track of the content of your video calls, which means enhanced privacy for your communications.</p>
             </div>
-            <div className="box-topic payment-box" onMouseLeave={() => scrollHandler(footerRef)}>
+            <div className="box-topic box-mobile payment-box" onMouseLeave={() => scrollHandler(footerRef)}>
               <div className="payment_svg">
                 <img src={Payment} alt="calendar"/>
               </div>
               <h4 className="box-title">Accept payments</h4>
-              <p className="description">Provide a Payment Link or connect a Stripe account and immediately start collecting payments upon your clients sign up for your events.</p>
-
+              <p className="description">Provide a Payment Link or connect a Stripe account to increase your sales and immediately start collecting payments upon your clients sign up for your events.</p>
+             
             </div>
+            <div className="foot-signup">
+             </div>
           </div>
         </div>
-        <div className="land l-footer" ref={footerRef}>
+        <div className="land l-footer" ref={footerRef} onMouseLeave={() => scrollHandler(heroRef)}>
         <h2>FAQ</h2>
-        
-        <button className="button-scroll" onMouseEnter={() => scrollHandler(heroRef)}>Go to Top</button>
-
+              <SignInPage />
         </div>
     </div>
   )

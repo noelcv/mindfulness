@@ -28,9 +28,9 @@ const SignInPage = () => {
   
   
   return (
-      <div className='signin-container'>
+      <>
           <GoogleButton onClick={handleGoogleSignIn} />
-      </div>
+      </>
   );
 };
 

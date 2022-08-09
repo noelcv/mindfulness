@@ -1,8 +1,11 @@
 .landing-header {
-  background-color: rgba(240, 233, 233, 0.2);
-  margin-top:-4em;
+  background-color: rgb(255, 255, 255);
+  margin-top:0em;
+  position: fixed;
+  width: 100%;
+  overflow-y: hidden;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   z-index:30;
 }
 
@@ -12,14 +15,33 @@
   padding-left: 0.2em;
 }
 
+.signin-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 0vh;
+  margin-left: -9vw;
+  width: 160vh;
+  min-height: 20vh;
+  height: fit-content;
+}
+
 .land  {
   width: 100%;
-  height: 50vh;
+  height: 155rem;
 }
 
 .l-hero {
-  background-color: rgba(100,100,100, 0.2)
+  background-color: rgba(100,100,100, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.button-scroll {
+  z-index: 100;
+}
+
 
 .l-main {
   background-color: rgba(202, 196, 196, 0.2)
@@ -28,3 +50,4 @@
 .l-footer {
   background-color: rgba(100,100,100, 0.2)
 }
+

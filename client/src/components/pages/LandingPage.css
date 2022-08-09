@@ -27,25 +27,70 @@
 }
 
 .land  {
-  width: 100%;
-  height: 155rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+ 
 }
 
 .l-hero {
-  background-color: rgba(100,100,100, 0.2);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(200, 200, 200, 0.2);
+  width: 100%;
+  height: 75rem;
 }
 
+.hero-title {
+  font-size:  5.5em;
+  margin-right: 0%;
+  margin-left: -0%;
+}
+
+.hero-text {
+  font-size:  2.5em;
+  display: flex;
+  margin-right: 0%;
+  margin-left: -0%;
+}
+
+.description {
+  max-width: 60ch;
+}
+
+
+
 .button-scroll {
-  z-index: 100;
+  z-index: 1;
 }
 
 
 .l-main {
-  background-color: rgba(202, 196, 196, 0.2)
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(202, 196, 196, 0.2);
+  width: 100%;
+  height: 75rem;
 }
+
+
+.box-wrapper {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+
+.box-topic {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em;
+  flex-direction: column;
+  border: none;
+}
+
 
 .l-footer {
   background-color: rgba(100,100,100, 0.2)

@@ -22,9 +22,11 @@ const SignInPage = () => {
   
   useEffect(() => {
     if (user != null) {
-      goTo('/land');
+      goTo('/events')
+    } else {
+      goTo('/')
     }
-  }, []) //eslint-disable-line
+  }, [user]) //eslint-disable-line
   
   
   return (

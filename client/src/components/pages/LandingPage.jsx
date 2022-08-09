@@ -18,8 +18,10 @@ const LandingPage = () => {
   return (
     <div className="app">
         <div className="landing-header">
-          <h1>Mindfulness</h1>
-          
+          <div className="header-packshot">
+            <h1>Mindfulness</h1>
+            <h2>Tools for Professionals</h2>
+          </div>
           <div className='signin-container'>
             <SignInPage />
           </div>
@@ -27,13 +29,13 @@ const LandingPage = () => {
     
         <div className="land l-hero" ref={heroRef}>
           <div className="hero-box">
-          <div className="box-topic" onMouseLeave={() => scrollHandler(mainRef)}>
-            <h3 className="hero-title">Tools for Professionals</h3>
-            <p className="hero-text">
-              Mindfulness is a one-stop-shop for freelance Mindfulness, Wellness and Mental Health professionals.</p>
-              <p className="hero-text">Start your own global studio today</p>
-              <SignInPage />
-          </div>
+            <div className="box-topic" onMouseLeave={() => scrollHandler(mainRef)}>
+              <p className="hero-title"></p>
+              <p className="hero-text">
+                Mindfulness is a one-stop-shop for freelance coaches, Wellness therapists and Mental Health professionals.</p>
+                <p className="hero-text">Start your own global studio today</p>
+                <SignInPage />
+            </div>
           </div>
         </div>
         
@@ -68,8 +70,9 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="land l-footer" ref={footerRef}>
-        <h2>FOOTER</h2>
-        <button className="button-scroll" onMouseEnter={() => scrollHandler(heroRef)}>Go to Hero</button>
+        <h2>FAQ</h2>
+        
+        <button className="button-scroll" onMouseEnter={() => scrollHandler(heroRef)}>Go to Top</button>
 
         </div>
     </div>

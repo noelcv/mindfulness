@@ -26,18 +26,25 @@
   height: fit-content;
 }
 
-.land  {
- 
-}
+
 
 .l-hero {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  background-color: rgba(200, 200, 200, 0.2);
   width: 100%;
   height: 75rem;
+}
+
+.hero-box {
+  background-image: url("../../assets/svg/foam.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 15em;
+  padding-bottom:25em;
+  width: 100%;
+  height: 100%;
 }
 
 .hero-title {
@@ -49,13 +56,18 @@
 .hero-text {
   font-size:  2.5em;
   display: flex;
-  margin-right: 0%;
-  margin-left: -0%;
+  max-width: 35ch;
 }
 
 .description {
   max-width: 60ch;
+  font-size: 1.5em;
 }
+
+.box-title {
+  font-size: 2em;
+}
+
 
 
 

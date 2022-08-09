@@ -9,8 +9,6 @@ const LandingPage = () => {
   const mainRef = useRef()
   const footerRef = useRef()
   
-
-  
   return (
     <div className="app">
         <div className="landing-header">
@@ -22,15 +20,18 @@ const LandingPage = () => {
         </div>
     
         <div className="land l-hero" ref={heroRef}>
-          <button className="button-scroll" onClick={() => scrollHandler(mainRef)}>Hello Worlds</button>
-
+          <h2>HERO</h2>
+          <button className="button-scroll" onClick={() => scrollHandler(mainRef)}>Go to main</button>
         </div>
         
         <div className="land l-main" ref={mainRef}>
-          
+          <h2>MAIN</h2>
+          <button className="button-scroll" onClick={() => scrollHandler(footerRef)}>Go to footer</button>
         </div>
         <div className="land l-footer" ref={footerRef}>
-          
+        <h2>FOOTER</h2>
+        <button className="button-scroll" onClick={() => scrollHandler(heroRef)}>Go to Hero</button>
+
         </div>
     </div>
   )

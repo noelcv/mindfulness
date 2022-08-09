@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import Header from '../appLevel/Header/Header';
-import SideBar from '../appLevel/SideBar/SideBar';
 import  { GoogleButton } from 'react-google-button';
 import { UserAuth } from '../../AuthContext/AuthContext'
 import { useNavigate } from 'react-router-dom';

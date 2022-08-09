@@ -1,10 +1,9 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useRef} from 'react';
 import "./LandingPage.css"
 import SignInPage from './SignInPage';
 import { scrollHandler } from '../../utils/scrollHandler';
 import Video from '../../assets/svg/video.svg';
 import Payment from '../../assets/svg/payment.svg';
-import Foam from '../../assets/svg/foam.svg';
 import Calendar from '../../assets/svg/calendar-compressed.svg';
 
 

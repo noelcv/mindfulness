@@ -10,6 +10,7 @@ import ClassBoard from '../../Classroom/ClassBoard/ClassBoard';
 import SignInBtn from './SigninBtn/SigninBtn';
 import { UserAuth } from '../../../AuthContext/AuthContext';
 import SignOutBtn from './SignOutBtn/SignOutBtn';
+import SignInPage from '../../pages/SignInPage';
 
 const SideBar = () => {
   const { user, logOut } = UserAuth();
@@ -46,9 +47,7 @@ const SideBar = () => {
           Sign Out
         </button>
       ) : (
-        <Link to="/signin" className="sidebar-link btn-section-sidebar  sign-in-btn">
-          Sign In
-        </Link>
+        <SignInPage />
       )}
 
       <Outlet />

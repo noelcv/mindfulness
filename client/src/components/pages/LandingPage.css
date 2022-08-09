@@ -1,0 +1,260 @@
+.landing-header {
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  width: 100%;
+  height: fit-content;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: space-around;
+  z-index:30;
+}
+
+.header-packshot {
+  text-transform: uppercase;
+}
+
+.header-packshot h2 {
+  text-align: left;
+  font-size: 1.8em;
+  margin-top: -2em;
+  padding-top: 0.5em;
+  padding-left: 0.2em;
+}
+
+.signin-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 0vh;
+  margin-left: -9vw;
+  width: 160vh;
+  min-height: 20vh;
+  height: fit-content;
+}
+
+.l-hero {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 75rem;
+}
+
+.hero-box {
+  background-image: url("../../assets/svg/foam.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 15em;
+  padding-bottom:25em;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-title {
+  font-size:  5.5em;
+  margin-right: 0%;
+  margin-left: -0%;
+}
+
+.hero-text {
+  font-size:  2.5em;
+  display: flex;
+  max-width: 35ch;
+}
+
+.description {
+  max-width: 60ch;
+  font-size: 1.5em;
+}
+
+.box-title {
+  font-size: 2em;
+}
+
+
+
+
+.button-scroll {
+  z-index: 1;
+}
+
+
+.l-main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(233, 228, 228, 0.2);
+  width: 100%;
+  height: 75rem;
+}
+
+
+.box-wrapper {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+
+.box-topic {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em;
+  flex-direction: column;
+  border: none;
+}
+
+
+.l-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.foot-signup {
+  margin-bottom: 2.5em;
+}
+
+
+@media only screen and (max-width: 810px) {
+
+  .landing-header {
+    display:flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -9vh;
+    width: 56vh;
+    min-height: 20vh;
+    height: fit-content;
+  }
+  
+  .header-packshot {
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  
+  .header-packshot h2 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: -1em;
+    padding-top: 0.5em;
+    padding-left: 0.2em;
+  }
+  
+  .hero-title {
+    font-size:  2.5em;
+    margin-right: 0%;
+    margin-left: -0%;
+  }
+  
+  .hero-text {
+    font-size:  2em;
+    display: flex;
+    max-width: 35ch;
+  }
+  
+  
+  .l-main {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(233, 228, 228, 0.2);
+    width: 100%;
+    height: 75rem;
+  }
+  
+  
+  .box-wrapper {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+  }
+  
+  .box-topic {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em;
+    flex-direction: column;
+    border: none;
+  }
+
+  .box-mobile {
+    background-image: url("../../assets/svg/foam.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 2px,-3px, 2.5px, 3.3px rgba(202, 196, 196, 0.2)
+  }
+  
+
+
+}
+
+@media screen and (max-width: 390px) {
+  
+  .app {
+    overflow-y: auto;
+  }
+  
+  .landing-header {
+    display:flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .signin-container {
+    display:none;
+  }
+  
+  .header-packshot {
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  
+  .header-packshot h2 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: -1em;
+    padding-top: 0.5em;
+    padding-left: 0.2em;
+  }
+  
+  .l-main {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(233, 228, 228, 0.2);
+    align-items: center;
+    width: 100%;
+    height: 95rem;
+  }
+  
+  .box-mobile {
+    background-image: url("../../assets/svg/foam.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 2px,-3px, 2.5px, 3.3px rgba(202, 196, 196, 0.2)
+  }
+  
+  .foot-signup {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5em;
+  } 
+  
+  }

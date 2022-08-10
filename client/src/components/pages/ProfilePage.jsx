@@ -16,7 +16,6 @@ const ProfilePage = () => {
   const [paymentLink, setPaymentLink] = useState('');
   const { user } = UserAuth();
   
-  
   const simpleFetch = async (userId) => {
     try {
       if (userId) {
@@ -43,7 +42,6 @@ const ProfilePage = () => {
       console.log('Error at simple fetch: ', err);
     }
   }
-  
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,8 +74,7 @@ const ProfilePage = () => {
     <div className="app">
       <Header />
       <div className="app-holder">
-        <SideBar />
-        
+        <SideBar />   
       { user?.displayName && user?.photoURL ? 
         <div className='dashboard-container profile-container'>
         <div className='profile-inner-container'>

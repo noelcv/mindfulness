@@ -4,7 +4,7 @@ import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import EventList from '../Eventing/EventList';
 import EventForm from '../Eventing/EventForm';
-import aura_spinner from '../../assets/aura_spinner.svg'
+import aura_spinner from '../../assets/svg/aura_spinner.svg'
 import './CommonPageStyles.css';
 import './EventsPage.css'
 import '../../App.css'

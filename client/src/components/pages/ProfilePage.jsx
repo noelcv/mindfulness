@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import Header from '../appLevel/Header/Header';
 import SideBar from '../appLevel/SideBar/SideBar';
 import './ProfilePage.css';
-import buymeacoffee from '../../assets/buymeacoffee.svg'
 import { UserAuth } from '../../AuthContext/AuthContext';
 import { createProfile, getProfileById, editProfile } from '../../Services/profile'
 import { toggle } from '../../utils/toggle';
@@ -166,7 +165,7 @@ const ProfilePage = () => {
           <div className='profile-detail payment-card'>
             { !isEditMode ? 
               <>
-                <h4 src={buymeacoffee} alt="buy-me-a-coffee" width="180px" height="75px">Payment Link</h4>
+                <h4>Payment Link</h4>
                 <p className="buy-me-a-coffee-link" placeholder="Set a payment link">{paymentLink}</p>
               </> :
               <>

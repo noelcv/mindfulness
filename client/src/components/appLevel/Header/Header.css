@@ -2,7 +2,8 @@
 
 h1 {
   text-transform: uppercase;
-  font-family: Lato;
+  font-family: "Lato", sans-serif;
+  font-display: swap;
   display: flex;
   justify-content: center;
   line-height: 1em;

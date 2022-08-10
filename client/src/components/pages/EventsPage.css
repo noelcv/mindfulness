@@ -2,8 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400;700&display=swap');
 
 * {
-  font-family: Lato;
+  font-family: "Lato", sans-serif;
   line-height: 1.5;
+  font-display: swap;
 }
 
 .app-main {

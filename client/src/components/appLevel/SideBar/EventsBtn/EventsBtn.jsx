@@ -1,6 +1,6 @@
 import React from 'react'
 import './EventsBtn.css';
-import Lotus from './lotus.svg';
+import Lotus from '../../../../assets/svg/lotus.svg';
 
 const EventsBtn = () => {
   return ( <div className="events-btn btn-section-sidebar">

@@ -96,6 +96,7 @@
 }
 
 .settings-btn {
+  will-change: transform;
   width: 90%;
 };
 

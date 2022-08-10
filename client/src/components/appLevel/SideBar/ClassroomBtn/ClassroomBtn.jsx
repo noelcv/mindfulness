@@ -1,6 +1,6 @@
 import React from 'react';
 import './ClassroomBtn.css';
-import YogaClass from './classroom.svg';
+import YogaClass from '../../../../assets/svg/classroom.svg';
 
 const ClassroomBtn = () => {
   return ( <div className="settings-btn btn-section-sidebar">
